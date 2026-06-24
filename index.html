@@ -3,26 +3,17 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>업무 가이드</title>
+<title>품고 나우 시스템 가이드</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --bg: #f7f7f5;
     --surface: #ffffff;
-    --surface-2: #f2f1ef;
     --border: #e4e3df;
     --border-hover: #c8c6c0;
     --text-primary: #1a1a18;
     --text-secondary: #5e5d58;
-    --text-muted: #9e9c96;
-    --blue: #2563eb;
-    --blue-light: #eff4ff;
-    --teal: #0F6E56;
-    --teal-light: #E1F5EE;
-    --amber: #854F0B;
-    --amber-light: #FAEEDA;
-    --radius: 10px;
     --radius-lg: 16px;
   }
 
@@ -37,39 +28,16 @@
     padding: 2rem 1rem;
   }
 
-  .page {
-    max-width: 860px;
-    width: 100%;
-  }
+  .page { max-width: 960px; width: 100%; }
 
-  .header {
-    margin-bottom: 2.5rem;
-    text-align: center;
-  }
-  .header-badge {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: .08em;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 700;
-    letter-spacing: -.02em;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-  }
-  .header p {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
+  .header { margin-bottom: 2.5rem; text-align: center; }
+  .header-badge { display: block; font-size: 16px; color: var(--text-secondary); margin-bottom: 10px; }
+  .header h1 { font-size: 32px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 8px; }
+  .header p { font-size: 15px; color: var(--text-secondary); }
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
 
@@ -77,13 +45,14 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.75rem 1.5rem 1.5rem;
+    padding: 2rem 1rem 1.75rem;
     cursor: pointer;
     text-decoration: none;
     color: inherit;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    align-items: center;
+    gap: 16px;
     transition: border-color .15s, box-shadow .15s, transform .12s;
     position: relative;
     overflow: hidden;
@@ -100,158 +69,56 @@
     height: 3px;
     border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   }
-  .card.blue::before  { background: #2563eb; }
-  .card.teal::before  { background: #0F6E56; }
-  .card.amber::before { background: #B87018; }
+  .card.blue::before   { background: #2563eb; }
+  .card.teal::before   { background: #0F6E56; }
+  .card.amber::before  { background: #B87018; }
+  .card.purple::before { background: #534AB7; }
 
   .card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
+    width: 60px; height: 60px;
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
   }
-  .card.blue  .card-icon { background: var(--blue-light); }
-  .card.teal  .card-icon { background: var(--teal-light); }
-  .card.amber .card-icon { background: var(--amber-light); }
+  .card.blue   .card-icon { background: #eff4ff; }
+  .card.teal   .card-icon { background: #E1F5EE; }
+  .card.amber  .card-icon { background: #FAEEDA; }
+  .card.purple .card-icon { background: #EEEDFE; }
 
-  .card-meta {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: .08em;
-    text-transform: uppercase;
-  }
-  .card.blue  .card-meta { color: var(--blue); }
-  .card.teal  .card-meta { color: var(--teal); }
-  .card.amber .card-meta { color: var(--amber); }
-
-  .card-title {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -.01em;
-    color: var(--text-primary);
-    margin-top: -4px;
-  }
-  .card-desc {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    flex: 1;
-  }
-
-  .card-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 14px;
-    border-top: 1px solid var(--border);
-  }
-  .card-tag {
-    display: flex;
-    gap: 5px;
-    flex-wrap: wrap;
-  }
-  .tag {
-    font-size: 10px;
-    font-weight: 600;
-    padding: 2px 7px;
-    border-radius: 4px;
-    background: var(--surface-2);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-  .card-arrow {
-    font-size: 16px;
-    color: var(--text-muted);
-    transition: color .15s, transform .15s;
-  }
-  .card:hover .card-arrow {
-    color: var(--text-primary);
-    transform: translateX(3px);
-  }
-
-  .footer-note {
-    text-align: center;
-    margin-top: 2rem;
-    font-size: 12px;
-    color: var(--text-muted);
-  }
+  .card-title { font-size: 17px; font-weight: 700; text-align: center; }
 
   @media (max-width: 640px) {
-    .grid { grid-template-columns: 1fr; }
-    .header h1 { font-size: 22px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 24px; }
   }
 </style>
 </head>
 <body>
 <div class="page">
   <div class="header">
-    <div class="header-badge">품고 이천 375 XFC</div>
-    <h1>업무 가이드</h1>
-    <p>항목을 선택하면 상세 처리 가이드로 이동합니다</p>
+    <span class="header-badge">365일 가장 빠른 물류 POOMGO</span>
+    <h1>품고 나우 시스템 가이드</h1>
+    <p>자세한 가이드는 각 항목을 선택해주세요🙂</p>
   </div>
 
   <div class="grid">
-
-    <!-- 재고 반출 -->
     <a class="card blue" href="guides/stock.html">
       <div class="card-icon">📦</div>
-      <div>
-        <div class="card-meta">Inventory</div>
-        <div class="card-title">재고 반출</div>
-      </div>
-      <div class="card-desc">택배 반출 및 차량 반출(PLT·박스) 처리 절차, B2B 출고 요청서 등록부터 출고까지의 전 과정 안내</div>
-      <div class="card-footer">
-        <div class="card-tag">
-          <span class="tag">택배</span>
-          <span class="tag">차량 PLT</span>
-          <span class="tag">차량 박스</span>
-        </div>
-        <span class="card-arrow">→</span>
-      </div>
+      <div class="card-title">재고 반출</div>
     </a>
-
-    <!-- 사은품 -->
     <a class="card teal" href="guides/gift.html">
       <div class="card-icon">🎁</div>
-      <div>
-        <div class="card-meta">Gift</div>
-        <div class="card-title">사은품</div>
-      </div>
-      <div class="card-desc">사은품 등록·수령·배포 처리 절차 및 재고 차감 기준, 누락 방지를 위한 체크리스트 안내</div>
-      <div class="card-footer">
-        <div class="card-tag">
-          <span class="tag">등록</span>
-          <span class="tag">배포</span>
-          <span class="tag">재고관리</span>
-        </div>
-        <span class="card-arrow">→</span>
-      </div>
+      <div class="card-title">사은품</div>
     </a>
-
-    <!-- CS -->
     <a class="card amber" href="guides/cs.html">
       <div class="card-icon">🎧</div>
-      <div>
-        <div class="card-meta">CS</div>
-        <div class="card-title">CS</div>
-      </div>
-      <div class="card-desc">고객 문의·클레임 접수 및 유형별 처리 절차, 오배송·파손·미배송 대응 기준 안내</div>
-      <div class="card-footer">
-        <div class="card-tag">
-          <span class="tag">오배송</span>
-          <span class="tag">파손</span>
-          <span class="tag">미배송</span>
-        </div>
-        <span class="card-arrow">→</span>
-      </div>
+      <div class="card-title">CS</div>
     </a>
-
+    <a class="card purple" href="guides/faq.html">
+      <div class="card-icon">💬</div>
+      <div class="card-title">자주 하는 질문</div>
+    </a>
   </div>
-
-  <div class="footer-note">마지막 업데이트 · 2026.06.22 &nbsp;|&nbsp; 담당 : 물류운영팀</div>
 </div>
 </body>
 </html>
