@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>품고 나우 시스템 가이드</title>
+<title>품고 업무 가이드</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -23,12 +23,25 @@
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
     padding: 2rem 1rem;
   }
 
-  .page { max-width: 960px; width: 100%; }
+  .topbar {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto 2.5rem;
+  }
+  .topbar img {
+    height: 32px;
+    display: block;
+  }
+
+  .page {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+  }
 
   .header { margin-bottom: 2.5rem; text-align: center; }
   .header-badge { display: block; font-size: 16px; color: var(--text-secondary); margin-bottom: 10px; }
@@ -94,31 +107,37 @@
 </style>
 </head>
 <body>
-<div class="page">
-  <div class="header">
-    <span class="header-badge">365일 가장 빠른 물류 POOMGO</span>
-    <h1>품고 나우 시스템 가이드</h1>
-    <p>자세한 가이드는 각 항목을 선택해주세요🙂</p>
+
+  <div class="topbar">
+    <img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" />
   </div>
 
-  <div class="grid">
-    <a class="card blue" href="guides/stock.html">
-      <div class="card-icon">📦</div>
-      <div class="card-title">재고 반출</div>
-    </a>
-    <a class="card teal" href="guides/gift.html">
-      <div class="card-icon">🎁</div>
-      <div class="card-title">사은품</div>
-    </a>
-    <a class="card amber" href="guides/cs.html">
-      <div class="card-icon">🎧</div>
-      <div class="card-title">CS</div>
-    </a>
-    <a class="card purple" href="guides/faq.html">
-      <div class="card-icon">💬</div>
-      <div class="card-title">자주 하는 질문</div>
-    </a>
+  <div class="page">
+    <div class="header">
+      <span class="header-badge">365일 가장 빠른 물류</span>
+      <h1>업무 가이드</h1>
+      <p>자세한 가이드는 각 항목을 선택해주세요🙂</p>
+    </div>
+
+    <div class="grid">
+      <a class="card blue" href="guides/stock.html">
+        <div class="card-icon">📦</div>
+        <div class="card-title">재고 반출</div>
+      </a>
+      <a class="card teal" href="guides/gift.html">
+        <div class="card-icon">🎁</div>
+        <div class="card-title">사은품</div>
+      </a>
+      <a class="card amber" href="guides/cs.html">
+        <div class="card-icon">🎧</div>
+        <div class="card-title">CS</div>
+      </a>
+      <a class="card purple" href="guides/faq.html">
+        <div class="card-icon">💬</div>
+        <div class="card-title">자주 하는 질문</div>
+      </a>
+    </div>
   </div>
-</div>
+
 </body>
 </html>
