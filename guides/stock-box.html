@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>차량 반출 (박스) · 품고 업무 가이드</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --border: #e4e3df;
+    --text-primary: #1a1a18;
+    --text-secondary: #5e5d58;
+    --text-muted: #9e9c96;
+    --accent: #B87018;
+    --accent-light: #FAEEDA;
+    --accent-border: #f3cc8a;
+    --amber-light: #FAEEDA;
+    --amber-border: #f3cc8a;
+    --amber-text: #854F0B;
+    --green-light: #E1F5EE;
+    --green-border: #6DD9B0;
+    --green-text: #0F6E56;
+    --blue-light: #eff4ff;
+    --blue-border: #bfcffd;
+    --blue-text: #1e3a8a;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  body {
+    background: var(--bg);
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 4rem;
+  }
+
+  .topbar {
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar a { display: flex; align-items: center; }
+  .topbar img { height: 26px; display: block; }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-primary); }
+  .breadcrumb span.sep { color: #c8c6c0; }
+
+  .content {
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
+  .page-title .label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+
+  .section { display: flex; flex-direction: column; gap: 16px; }
+  .section-title {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 18px;
+    border-radius: 2px;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .callout {
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .callout.info    { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--amber-text); }
+  .callout.warning { background: var(--blue-light); border: 1px solid var(--blue-border); color: var(--blue-text); }
+  .callout.success { background: var(--green-light); border: 1px solid var(--green-border); color: var(--green-text); }
+  .callout .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+  .callout strong { font-weight: 700; }
+
+  .desc { font-size: 14.5px; line-height: 1.8; color: var(--text-secondary); }
+
+  .prep-list { display: flex; flex-direction: column; gap: 12px; }
+  .prep-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .prep-num {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .prep-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .prep-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+
+  .process-list { display: flex; flex-direction: column; gap: 28px; }
+  .process-step { display: flex; flex-direction: column; gap: 10px; }
+  .step-header { display: flex; align-items: center; gap: 10px; }
+  .step-badge {
+    background: var(--accent);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: .04em;
+    flex-shrink: 0;
+  }
+  .step-title { font-size: 15px; font-weight: 700; }
+  .step-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; padding-left: 4px; }
+  .step-img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: #e8e7e3;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    overflow: hidden;
+  }
+  .step-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+
+  .divider { border: none; border-top: 1px solid var(--border); }
+
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 15px 16px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .faq-question:hover { background: var(--bg); }
+  .faq-arrow { font-size: 14px; color: var(--text-muted); transition: transform .2s; flex-shrink: 0; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-answer {
+    display: none;
+    padding: 13px 16px 15px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    border-top: 1px solid var(--border);
+  }
+  .faq-item.open .faq-answer { display: block; }
+
+  @media (max-width: 640px) { .page-title h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="../index.html">
+      <img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" />
+    </a>
+    <div class="breadcrumb">
+      <span class="sep">›</span>
+      <a href="../index.html">업무 가이드</a>
+      <span class="sep">›</span>
+      <a href="stock.html">재고 반출</a>
+      <span class="sep">›</span>
+      <span style="color: var(--text-primary); font-weight: 600;">차량 반출 (박스)</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="page-title">
+      <div class="label">Inventory · Vehicle / Box</div>
+      <h1>차량 반출 (박스)</h1>
+    </div>
+
+    <!-- 기능 개요 -->
+    <div class="section">
+      <div class="callout info">
+        <span class="icon">ℹ️</span>
+        <div>박스 차량 반출은 파렛트 단위가 아닌 <strong>박스 낱개 단위</strong>로 차량에 적재하여 출고하는 방식입니다. 도착지에 하차 장비가 없거나 소량~중량 B2B 출고 시 활용합니다.</div>
+      </div>
+      <div class="section-title">기능 개요</div>
+      <p class="desc">
+        박스 차량 반출은 파렛트 없이 개별 박스를 차량 적재함에 직접 상차하는 방식입니다.
+        PLT 반출 대비 하차지 조건의 제약이 적고 유연하게 운용할 수 있습니다.
+        출고 요청서 등록 → 피킹 → 박스 봉함 및 라벨 부착 → 차량 상차 → WMS 출고 확정 순으로 처리합니다.
+      </p>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- 준비사항 -->
+    <div class="section">
+      <div class="callout warning">
+        <span class="icon">⚠️</span>
+        <div>박스 수량이 많을수록 상차 시간이 길어집니다. <strong>충분한 인원 배치</strong>를 사전에 확인하세요.</div>
+      </div>
+      <div class="section-title">처리 전 준비사항</div>
+      <div class="prep-list">
+        <div class="prep-item">
+          <div class="prep-num">1</div>
+          <div>
+            <div class="prep-item-title">출고 요청서 및 수량 확인</div>
+            <div class="prep-item-desc">WMS > 출고관리 > B2B출고에서 해당 건을 확인합니다. SKU별 출고 수량과 박스 수를 파악하여 피킹 계획을 수립합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">2</div>
+          <div>
+            <div class="prep-item-title">차량 수배 및 적재 용량 확인</div>
+            <div class="prep-item-desc">총 박스 수와 무게를 산정하여 적정 차량 크기(1t, 2.5t, 5t 등)를 결정합니다. 출고 예정일 전일까지 차량 예약을 완료합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">3</div>
+          <div>
+            <div class="prep-item-title">포장재 및 라벨 준비</div>
+            <div class="prep-item-desc">출고 박스가 봉함 상태인지 확인합니다. 박스 라벨(출고처, 수량, 품목)을 사전 출력하여 부착 준비를 합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">4</div>
+          <div>
+            <div class="prep-item-title">상차 인원 배치</div>
+            <div class="prep-item-desc">박스 낱개 상차는 인력이 많이 필요합니다. 출고 물량에 따라 상차 작업 인원을 사전에 배치합니다. 50박스 이상은 최소 2인 이상을 권장합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">5</div>
+          <div>
+            <div class="prep-item-title">도착지 정보 재확인</div>
+            <div class="prep-item-desc">도착지 주소, 담당자 연락처, 하차 가능 시간대를 출고 전날 재확인합니다. 도착 예정 시간을 도착지 담당자에게 사전 안내합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- 처리 과정 -->
+    <div class="section">
+      <div class="callout success">
+        <span class="icon">✅</span>
+        <div>상차 완료 후 박스 수량을 기사와 반드시 교차 확인하고, WMS 출고 확정까지 완료해야 합니다.</div>
+      </div>
+      <div class="section-title">처리 과정</div>
+      <div class="process-list">
+
+        <div class="process-step">
+          <div class="step-header">
+            <span class="step-badge">STEP 1</span>
+            <span class="step-title">WMS 출고 요청 확인 및 피킹지시서 출력</span>
+          </div>
+          <p class="step-desc">WMS에서 출고 요청 건을 확인하고 피킹지시서를 출력합니다. SKU별 로케이션과 수량을 확인하여 피킹 동선을 최적화합니다.</p>
+          <div class="step-img">📷 WMS 출고 요청 화면</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header">
+            <span class="step-badge">STEP 2</span>
+            <span class="step-title">피킹 및 박스 봉함</span>
+          </div>
+          <p class="step-desc">피킹지시서에 따라 해당 로케이션에서 상품을 수거합니다. 박스가 열려 있는 경우 봉함 테이프로 밀봉하고, 파손 위험 상품은 완충재를 추가 투입합니다.</p>
+          <div class="step-img">📷 피킹 및 박스 봉함 현장 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header">
+            <span class="step-badge">STEP 3</span>
+            <span class="step-title">출고 라벨 부착</span>
+          </div>
+          <p class="step-desc">각 박스에 출고 라벨을 부착합니다. 라벨에는 품목명, 수량, 출고처, 출고일이 포함되어야 합니다. 동일 SKU라도 박스별로 빠짐없이 부착합니다.</p>
+          <div class="step-img">📷 박스 라벨 부착 예시 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header">
+            <span class="step-badge">STEP 4</span>
+            <span class="step-title">차량 상차</span>
+          </div>
+          <p class="step-desc">차량 도착 후 박스를 차례로 적재합니다. 무거운 박스는 하단, 가벼운 박스는 상단에 배치합니다. 상차 중 파손 방지를 위해 박스를 던지거나 무리하게 쌓지 않습니다.</p>
+          <div class="step-img">📷 차량 박스 상차 현장 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header">
+            <span class="step-badge">STEP 5</span>
+            <span class="step-title">수량 확인 및 WMS 출고 확정</span>
+          </div>
+          <p class="step-desc">상차 완료 후 차량 기사와 박스 총 수량을 교차 확인합니다. 인수증에 서명 후 보관하고, WMS에서 출고 확정 처리하여 재고를 차감합니다.</p>
+          <div class="step-img">📷 인수증 서명 및 WMS 확정 화면</div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- FAQ -->
+    <div class="section">
+      <div class="section-title">자주 하는 질문</div>
+      <div class="faq-list">
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            박스 차량 반출과 PLT 반출 중 어떤 걸 선택해야 하나요?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-answer">
+            도착지에 지게차 등 하차 장비가 있고 물량이 많다면 PLT 반출이 효율적입니다. 도착지 하차 장비가 없거나 물량이 적고 품목이 다양한 경우, 또는 혼재 출고가 필요한 경우 박스 차량 반출을 선택합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            상차 도중 박스가 파손됐어요.
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-answer">
+            즉시 작업을 중단하고 파손 상태를 사진으로 기록합니다. 내용물 손상 여부를 확인하고, 손상이 있다면 재포장 후 상차를 재개합니다. 파손 내역은 WMS 메모와 출고지시서에 기록하고 고객사에 안내합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            차량 기사가 박스 수를 다르게 주장해요.
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-answer">
+            상차 완료 후 기사와 수량이 맞지 않으면 즉시 재계수를 진행합니다. 재계수 후에도 불일치가 발생하면 차량 적재함을 함께 확인하고, 결과를 사진과 함께 기록합니다. 최종 확인된 수량으로 인수증에 서명하고 WMS에 실제 출고 수량을 반영합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            출고 라벨 없이 상차해도 되나요?
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-answer">
+            안 됩니다. 라벨 없이 출고된 박스는 도착지에서 내용물 확인이 어려워 수령 거부 또는 분류 오류가 발생할 수 있습니다. 라벨 출력이 안 되는 경우 수기 라벨(품목명, 수량, 출고일 기재)이라도 반드시 부착 후 출고합니다.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            차량 적재 용량이 초과될 것 같아요.
+            <span class="faq-arrow">▾</span>
+          </button>
+          <div class="faq-answer">
+            과적은 법적 제재 및 안전 사고의 원인입니다. 즉시 운영팀에 보고하고 추가 차량 수배 또는 익일 분할 출고 여부를 결정합니다. 고객사에도 상황을 안내하고 처리 방향을 협의합니다.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
