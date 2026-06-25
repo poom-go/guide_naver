@@ -3,706 +3,139 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>재고 반출 가이드 | 품고</title>
+<title>재고 반출 가이드</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
     --bg: #f7f7f5;
     --surface: #ffffff;
-    --surface-2: #f2f1ef;
     --border: #e4e3df;
-    --border-strong: #ccc9c3;
+    --border-hover: #c8c6c0;
     --text-primary: #1a1a18;
     --text-secondary: #5e5d58;
-    --text-muted: #9e9c96;
-    --accent: #2563eb;
-    --accent-light: #eff4ff;
-    --accent-border: #bfcffe;
-    --warn: #92400e;
-    --warn-light: #fffbeb;
-    --warn-border: #fde68a;
-    --danger: #991b1b;
-    --danger-light: #fff1f2;
-    --danger-border: #fecaca;
-    --step-line: #d4d2cc;
-    --radius-sm: 6px;
-    --radius: 10px;
-    --radius-lg: 14px;
+    --radius-lg: 16px;
   }
 
   body {
     background: var(--bg);
     font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
     color: var(--text-primary);
-    font-size: 15px;
-    line-height: 1.7;
-    padding: 2rem 1rem 4rem;
-  }
-
-  /* 뒤로가기 */
-  .back-bar {
-    max-width: 780px;
-    margin: 0 auto 1.25rem;
-  }
-  .back-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--text-muted);
-    text-decoration: none;
-    padding: 5px 0;
-    transition: color .15s;
-  }
-  .back-btn:hover { color: var(--text-primary); }
-  .back-btn svg { width: 14px; height: 14px; }
-
-  .page {
-    max-width: 780px;
-    margin: 0 auto;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    padding: 2rem 1rem;
   }
 
-  .section {
+  .topbar {
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar a { display: flex; align-items: center; }
+  .topbar img { height: 28px; display: block; }
+  .breadcrumb {
+    font-size: 13px;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: 4px;
+  }
+  .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-primary); }
+  .breadcrumb span { color: #c8c6c0; }
+
+  .page { max-width: 960px; width: 100%; margin: 0 auto; }
+
+  .header { margin-bottom: 2.5rem; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 6px; }
+  .header p { font-size: 14px; color: var(--text-secondary); }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .card {
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
-  }
-
-  .section-head {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0.85rem 1.25rem;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface-2);
-  }
-  .section-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  .section-body {
-    padding: 1.25rem 1.5rem;
-  }
-
-  /* 개요 */
-  .overview-text {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.8;
-  }
-  .overview-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 10px;
-    margin-top: 1rem;
-  }
-  .overview-card {
-    background: var(--surface-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 0.8rem 1rem;
-  }
-  .overview-label {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: .04em;
-    text-transform: uppercase;
-    margin-bottom: 5px;
-  }
-  .overview-val {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  /* 준비사항 */
-  .checklist {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .check-emoji {
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .check-texts { display: flex; flex-direction: column; gap: 2px; }
-  .check-name {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-  .check-desc {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-  .badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 700;
-    padding: 1px 6px;
-    border-radius: 4px;
-    margin-left: 6px;
-    vertical-align: middle;
-    letter-spacing: .03em;
-  }
-  .badge.required {
-    background: var(--danger-light);
-    color: var(--danger);
-    border: 1px solid var(--danger-border);
-  }
-  .badge.optional {
-    background: var(--surface-2);
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-  }
-
-  /* 탭 */
-  .tab-bar {
-    display: flex;
-    gap: 8px;
-    padding: 16px 20px 0;
-    border-bottom: 1px solid var(--border);
-  }
-  .proc-tab {
-    height: 34px;
-    border: 1px solid var(--border);
-    border-radius: 17px;
-    padding: 0 18px;
-    font-size: 13px;
-    font-family: inherit;
-    background: #fff;
-    color: #888;
+    padding: 2rem 1rem 1.75rem;
     cursor: pointer;
-    font-weight: 500;
-    margin-bottom: 12px;
-    transition: all .15s;
-  }
-  .proc-tab:hover { border-color: var(--accent); color: var(--accent); }
-  .proc-tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
-  .proc-panel { display: none; }
-  .proc-panel.active { display: block; }
-
-  /* 스텝 */
-  .steps { display: flex; flex-direction: column; gap: 0; }
-  .step { display: flex; gap: 14px; }
-  .step-aside {
+    text-decoration: none;
+    color: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 32px;
-    flex-shrink: 0;
-  }
-  .step-circle {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-  }
-  .step-connector {
-    width: 1.5px;
-    flex: 1;
-    min-height: 16px;
-    background: var(--step-line);
-    margin: 5px 0;
-  }
-  .step-content {
-    flex: 1;
-    padding-bottom: 24px;
-  }
-  .step:last-child .step-content { padding-bottom: 0; }
-  .step:last-child .step-connector { display: none; }
-  .step-name {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-top: 5px;
-    margin-bottom: 4px;
-  }
-  .step-desc {
-    font-size: 13px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    margin-bottom: 10px;
-  }
-  .step-tip {
-    font-size: 12px;
-    color: var(--accent);
-    background: var(--accent-light);
-    border: 1px solid var(--accent-border);
-    border-radius: var(--radius-sm);
-    padding: 6px 10px;
-    margin-top: 6px;
-    line-height: 1.6;
-  }
-
-  /* 이미지 슬롯 */
-  .step-img-slot {
-    border: 1.5px dashed var(--border-strong);
-    border-radius: var(--radius);
-    background: var(--surface-2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    min-height: 120px;
-    padding: 1rem;
-    cursor: pointer;
-    transition: border-color .15s, background .15s;
+    gap: 16px;
+    transition: border-color .15s, box-shadow .15s, transform .12s;
     position: relative;
     overflow: hidden;
-    margin-top: 8px;
   }
-  .step-img-slot:hover { border-color: var(--accent); background: var(--accent-light); }
-  .step-img-slot input[type="file"] {
-    position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+  .card:hover {
+    border-color: var(--border-hover);
+    box-shadow: 0 4px 24px rgba(0,0,0,.07);
+    transform: translateY(-2px);
   }
-  .slot-icon { font-size: 24px; color: var(--text-muted); }
-  .slot-label { font-size: 12px; color: var(--text-muted); text-align: center; }
-  .slot-preview { display: none; width: 100%; border-radius: 6px; max-height: 300px; object-fit: contain; }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .card.blue::before  { background: #2563eb; }
+  .card.teal::before  { background: #0F6E56; }
+  .card.amber::before { background: #B87018; }
 
-  /* 유의사항 */
-  .notes { display: flex; flex-direction: column; gap: 8px; }
-  .note {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    padding: .75rem 1rem;
-    border-radius: var(--radius);
-    font-size: 13px;
-    line-height: 1.65;
-    border: 1px solid;
-  }
-  .note-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
-  .note.danger { background: var(--danger-light); border-color: var(--danger-border); color: var(--danger); }
-  .note.warn   { background: var(--warn-light);   border-color: var(--warn-border);   color: var(--warn); }
-  .note.info   { background: var(--accent-light);  border-color: var(--accent-border);  color: var(--accent); }
-  .note b { font-weight: 700; }
+  .card-title { font-size: 17px; font-weight: 700; text-align: center; }
+  .card-sub { font-size: 12px; color: var(--text-secondary); text-align: center; margin-top: -8px; }
 
-  @media (max-width: 600px) {
-    .section-body { padding: 1rem; }
-    .tab-bar { flex-wrap: wrap; }
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
-<div class="back-bar">
-  <a class="back-btn" href="../index.html">
-    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M10 12L6 8l4-4"/></svg>
-    목록으로 돌아가기
-  </a>
-</div>
-
-<div class="page">
-
-  <!-- 문서 헤더 -->
-  <div style="padding: .5rem .25rem .25rem;">
-    <div style="font-size: 22px; font-weight: 700; letter-spacing: -.02em; color: var(--text-primary); margin-bottom: 6px;">재고 반출 처리 가이드</div>
-    <div style="font-size: 13px; color: var(--text-secondary); margin-bottom: 10px;">B2B 출고 요청 기반 택배·차량 반출 처리 절차 (이천 375 XFC 네이버센터)</div>
-    <div style="display: flex; gap: 16px; font-size: 12px; color: var(--text-muted);">
-      <span>버전 <b style="color: var(--text-secondary); font-weight: 600;">v1.0</b></span>
-      <span>작성일 <b style="color: var(--text-secondary); font-weight: 600;">2026.06.22</b></span>
-      <span>작성자 <b style="color: var(--text-secondary); font-weight: 600;">물류운영팀</b></span>
+  <div class="topbar">
+    <a href="../index.html">
+      <img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" />
+    </a>
+    <div class="breadcrumb">
+      <span>›</span>
+      <a href="../index.html">업무 가이드</a>
+      <span>›</span>
+      <span style="color: var(--text-primary); font-weight: 600;">재고 반출</span>
     </div>
   </div>
 
-  <!-- 기능 개요 -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">기능 개요</span>
+  <div class="page">
+    <div class="header">
+      <h1>📦 재고 반출</h1>
+      <p>반출 유형을 선택해주세요</p>
     </div>
-    <div class="section-body">
-      <p class="overview-text">
-        재고 반출은 셀러가 <strong>seller.poomgo.com</strong>에서 B2B 출고 요청서를 등록하면, 품고 담당자가 접수 후 피킹·포장·출고까지 처리하는 업무입니다.<br><br>
-        반출 방식은 <strong>택배 반출</strong>, <strong>차량 반출 (PLT 단위)</strong>, <strong>차량 반출 (박스 단위)</strong> 세 가지로 구분되며, 방식에 따라 포장·적재 방법과 체크 항목이 다릅니다.
-      </p>
-      <div class="overview-grid">
-        <div class="overview-card">
-          <div class="overview-label">처리 유형</div>
-          <div class="overview-val">3가지</div>
-        </div>
-        <div class="overview-card">
-          <div class="overview-label">요청 채널</div>
-          <div class="overview-val">seller.poomgo.com</div>
-        </div>
-        <div class="overview-card">
-          <div class="overview-label">요청서 유형</div>
-          <div class="overview-val">B2B 출고 요청서</div>
-        </div>
-        <div class="overview-card">
-          <div class="overview-label">처리 센터</div>
-          <div class="overview-val">이천 375 XFC</div>
-        </div>
-      </div>
+
+    <div class="grid">
+      <a class="card blue" href="stock-parcel.html">
+        <div class="card-title">택배 반출</div>
+        <div class="card-sub">소량 · 개별 박스</div>
+      </a>
+      <a class="card teal" href="stock-plt.html">
+        <div class="card-title">차량 반출</div>
+        <div class="card-sub">PLT 단위</div>
+      </a>
+      <a class="card amber" href="stock-box.html">
+        <div class="card-title">차량 반출</div>
+        <div class="card-sub">박스 단위</div>
+      </a>
     </div>
   </div>
 
-  <!-- 처리 전 준비사항 -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">처리 전 준비사항</span>
-    </div>
-    <div class="section-body">
-      <ul class="checklist">
-        <li class="check-item">
-          <span class="check-emoji">✅</span>
-          <div class="check-texts">
-            <div class="check-name">출고 요청서 내용 확인 <span class="badge required">필수</span></div>
-            <div class="check-desc">SKU, 수량, 반출 방식(택배/차량), 수취인 정보, 배송지가 정확히 입력되어 있는지 사전 확인합니다. 오기입 시 재처리가 발생합니다.</div>
-          </div>
-        </li>
-        <li class="check-item">
-          <span class="check-emoji">✅</span>
-          <div class="check-texts">
-            <div class="check-name">재고 위치 및 수량 확인 <span class="badge required">필수</span></div>
-            <div class="check-desc">WMS에서 해당 SKU의 현재 재고 위치(로케이션)와 가용 수량을 확인합니다. 재고 부족 시 즉시 셀러에게 안내합니다.</div>
-          </div>
-        </li>
-        <li class="check-item">
-          <span class="check-emoji">✅</span>
-          <div class="check-texts">
-            <div class="check-name">차량 반출 시 — 차량 정보 및 도착 예정 시각 확인 <span class="badge required">필수</span></div>
-            <div class="check-desc">차량 반출의 경우 차량 번호, 기사 연락처, 도착 예정 시각을 사전에 확보하여 상차 준비를 합니다.</div>
-          </div>
-        </li>
-        <li class="check-item">
-          <span class="check-emoji">✅</span>
-          <div class="check-texts">
-            <div class="check-name">포장 자재 준비 <span class="badge optional">선택</span></div>
-            <div class="check-desc">택배 반출 시 박스·에어캡·테이프 등 포장 자재를 미리 준비합니다. PLT 반출 시 팔레트·스트레치 랩을 점검합니다.</div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- 처리절차 -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">처리절차</span>
-    </div>
-
-    <div class="tab-bar">
-      <button class="proc-tab active" onclick="switchProc('tab1',this)">📦 택배 반출</button>
-      <button class="proc-tab" onclick="switchProc('tab2',this)">🚛 차량 반출 — PLT</button>
-      <button class="proc-tab" onclick="switchProc('tab3',this)">📫 차량 반출 — 박스</button>
-    </div>
-
-    <!-- 탭1: 택배 -->
-    <div class="proc-panel active" id="tab1">
-      <div class="section-body">
-        <div class="steps">
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">1</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">B2B 출고 요청서 등록 (셀러)</div>
-              <div class="step-desc">셀러가 seller.poomgo.com > B2B 출고 메뉴에서 요청서를 작성합니다. SKU, 수량, 수취인 정보(이름/연락처/주소), 택배사를 선택하여 제출합니다.</div>
-              <div class="step-tip">💡 요청서 제출 후 자동으로 품고 담당자에게 알림이 발송됩니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">2</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">출고 요청서 접수 (품고 담당자)</div>
-              <div class="step-desc">품고 담당자가 요청서 내용(SKU·수량·수취인)을 검토하고 WMS에 접수 처리합니다. 오기입이나 재고 부족이 확인되면 셀러에게 즉시 연락합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">3</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">재고 피킹 및 검수</div>
-              <div class="step-desc">WMS 로케이션 기준으로 해당 SKU를 피킹합니다. 피킹 후 SKU·수량·상품 상태(파손 여부)를 반드시 확인합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">4</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">포장 및 운송장 부착</div>
-              <div class="step-desc">상품을 택배 박스에 포장하고 에어캡 등 완충재로 보강합니다. 출력된 운송장을 박스 외부에 부착하고 바코드 스캔으로 등록합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">5</div></div>
-            <div class="step-content">
-              <div class="step-name">택배사 집하 및 출고 완료 처리</div>
-              <div class="step-desc">택배사 집하 후 WMS에서 출고 완료 처리합니다. 셀러에게 운송장 번호가 자동 발송됩니다.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 탭2: PLT -->
-    <div class="proc-panel" id="tab2">
-      <div class="section-body">
-        <div class="steps">
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">1</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">B2B 출고 요청서 등록 (셀러)</div>
-              <div class="step-desc">셀러가 PLT 단위 반출 정보(SKU, 팔레트 수량, 차량 정보, 도착 예정일시)를 포함하여 요청서를 등록합니다.</div>
-              <div class="step-tip">💡 PLT 반출은 최소 2영업일 전 요청을 원칙으로 합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">2</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">출고 요청서 접수 및 일정 조율</div>
-              <div class="step-desc">품고 담당자가 PLT 구성·수량 및 차량 도착 일정을 확인 후 접수합니다. 필요 시 셀러와 상차 시각을 협의합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">3</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">재고 피킹 및 팔레트 적재</div>
-              <div class="step-desc">WMS 기준으로 SKU를 피킹하여 팔레트에 적재합니다. 적재 시 무거운 상품을 하단에, 파손 위험 상품은 상단에 배치합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">4</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">랩핑 및 PLT 라벨 부착</div>
-              <div class="step-desc">스트레치 랩으로 팔레트를 3회 이상 랩핑합니다. PLT 식별 라벨(SKU·수량·목적지)을 팔레트 4면에 부착합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">5</div></div>
-            <div class="step-content">
-              <div class="step-name">차량 상차 및 출고 완료 처리</div>
-              <div class="step-desc">지게차로 PLT를 차량에 상차합니다. 상차 완료 후 기사에게 인수증을 받고, WMS에서 출고 완료 처리합니다.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 탭3: 박스 -->
-    <div class="proc-panel" id="tab3">
-      <div class="section-body">
-        <div class="steps">
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">1</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">B2B 출고 요청서 등록 (셀러)</div>
-              <div class="step-desc">셀러가 박스 단위 반출 정보(SKU별 박스 수량, 차량 정보, 도착 예정일시)를 포함하여 요청서를 등록합니다.</div>
-              <div class="step-tip">💡 박스 반출도 최소 1영업일 전 요청을 원칙으로 합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">2</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">출고 요청서 접수 및 수량 확인</div>
-              <div class="step-desc">품고 담당자가 박스 수량 및 SKU별 내용을 확인 후 접수합니다. 혼입 방지를 위해 SKU 구성을 꼼꼼히 체크합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">3</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">재고 피킹 및 박스 포장</div>
-              <div class="step-desc">WMS 기준 SKU를 피킹하여 박스 단위로 포장합니다. 박스별 내용물이 요청서와 일치하는지 재확인 후 테이핑합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">4</div><div class="step-connector"></div></div>
-            <div class="step-content">
-              <div class="step-name">라벨 부착 및 수량 집계</div>
-              <div class="step-desc">각 박스에 SKU·수량·목적지가 표기된 라벨을 부착합니다. 총 박스 수량을 집계하여 요청서와 대조합니다.</div>
-              <div class="step-img-slot" onclick="this.querySelector('input').click()">
-                <input type="file" accept="image/*" onchange="previewImage(this)" />
-                <div class="slot-icon">🖼</div>
-                <div class="slot-label">스크린샷 업로드 (PNG · JPG)</div>
-                <img class="slot-preview" alt="" />
-              </div>
-            </div>
-          </div>
-          <div class="step">
-            <div class="step-aside"><div class="step-circle">5</div></div>
-            <div class="step-content">
-              <div class="step-name">차량 상차 및 출고 완료 처리</div>
-              <div class="step-desc">지정 차량에 박스 단위로 상차합니다. 상차 완료 후 기사에게 인수증을 받고, WMS에서 출고 완료 처리합니다.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- 유의사항 -->
-  <div class="section">
-    <div class="section-head">
-      <span class="section-title">유의사항</span>
-    </div>
-    <div class="section-body">
-      <div class="notes">
-        <div class="note danger">
-          <span class="note-icon">⛔</span>
-          <span><b>출고 요청서 없이 재고 반출 절대 금지</b> — 구두 요청만으로 반출 처리 시 재고 불일치 및 분쟁이 발생합니다. 반드시 시스템에 등록된 요청서 기반으로만 처리합니다.</span>
-        </div>
-        <div class="note danger">
-          <span class="note-icon">⛔</span>
-          <span><b>SKU 혼입 금지</b> — 다수 SKU 반출 시 박스·팔레트 단위로 SKU가 혼입되지 않도록 철저히 구분합니다. 혼입 발생 시 전량 재작업이 필요합니다.</span>
-        </div>
-        <div class="note warn">
-          <span class="note-icon">⚠️</span>
-          <span><b>차량 도착 지연 시 담당자에게 즉시 공유</b> — 차량이 예정 시각보다 2시간 이상 지연될 경우, 적재 완료 재고의 보관 위치를 조정해야 할 수 있으므로 즉시 알립니다.</span>
-        </div>
-        <div class="note warn">
-          <span class="note-icon">⚠️</span>
-          <span><b>파손 상품 발견 시 반출 전 셀러 확인 필수</b> — 피킹 중 파손 상품이 발견되면 임의로 반출하지 않고 셀러에게 먼저 안내 후 처리 방향을 결정합니다.</span>
-        </div>
-        <div class="note info">
-          <span class="note-icon">💡</span>
-          <span><b>WMS 출고 완료 처리 시점</b> — 출고 완료는 물리적 상차가 끝난 직후 처리합니다. 상차 전 처리 시 재고 수량 오차가 발생할 수 있습니다.</span>
-        </div>
-        <div class="note info">
-          <span class="note-icon">💡</span>
-          <span><b>셀러 문의 대응</b> — 출고 현황 문의는 WMS 출고 이력 화면을 기준으로 안내합니다. 운송장 번호는 택배사 집하 완료 후 자동 발송됩니다.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-  function switchProc(tabId, btn) {
-    document.querySelectorAll('.proc-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.proc-panel').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(tabId).classList.add('active');
-  }
-
-  function previewImage(input) {
-    if (!input.files || !input.files[0]) return;
-    const slot = input.closest('.step-img-slot');
-    const img = slot.querySelector('.slot-preview');
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      img.src = e.target.result;
-      img.style.display = 'block';
-      slot.querySelector('.slot-icon').style.display = 'none';
-      slot.querySelector('.slot-label').style.display = 'none';
-    };
-    reader.readAsDataURL(input.files[0]);
-  }
-
-  document.querySelectorAll('.step-img-slot').forEach(slot => {
-    slot.addEventListener('dragover', e => {
-      e.preventDefault();
-      slot.style.borderColor = 'var(--accent)';
-      slot.style.background = 'var(--accent-light)';
-    });
-    slot.addEventListener('dragleave', () => {
-      slot.style.borderColor = '';
-      slot.style.background = '';
-    });
-    slot.addEventListener('drop', e => {
-      e.preventDefault();
-      slot.style.borderColor = '';
-      slot.style.background = '';
-      const file = e.dataTransfer.files[0];
-      if (!file || !file.type.startsWith('image/')) return;
-      const img = slot.querySelector('.slot-preview');
-      const reader = new FileReader();
-      reader.onload = ev => {
-        img.src = ev.target.result;
-        img.style.display = 'block';
-        slot.querySelector('.slot-icon').style.display = 'none';
-        slot.querySelector('.slot-label').style.display = 'none';
-      };
-      reader.readAsDataURL(file);
-    });
-  });
-</script>
 </body>
 </html>
