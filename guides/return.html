@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>반품 · 품고 업무 가이드</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df;
+    --text-primary: #1a1a18; --text-secondary: #5e5d58; --text-muted: #9e9c96;
+    --accent: #993C1D; --accent-light: #FAECE7; --accent-border: #f0a98a;
+    --amber-light: #FAEEDA; --amber-border: #f3cc8a; --amber-text: #854F0B;
+    --green-light: #E1F5EE; --green-border: #6DD9B0; --green-text: #0F6E56;
+    --blue-light: #eff4ff; --blue-border: #bfcffd; --blue-text: #1e3a8a;
+    --radius: 10px; --radius-lg: 16px;
+  }
+  body { background: var(--bg); font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; padding: 2rem 1rem 4rem; }
+  .topbar { max-width: 780px; width: 100%; margin: 0 auto 2rem; display: flex; align-items: center; gap: 12px; }
+  .topbar a { display: flex; align-items: center; }
+  .topbar img { height: 26px; display: block; }
+  .breadcrumb { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-primary); }
+  .breadcrumb span.sep { color: #c8c6c0; }
+  .content { max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
+  .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
+  .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+  .section { display: flex; flex-direction: column; gap: 16px; }
+  .section-title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); flex-shrink: 0; }
+  .callout { border-radius: var(--radius); padding: 14px 16px; font-size: 13.5px; line-height: 1.7; display: flex; gap: 10px; align-items: flex-start; }
+  .callout.info    { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent); }
+  .callout.warning { background: var(--amber-light); border: 1px solid var(--amber-border); color: var(--amber-text); }
+  .callout.success { background: var(--green-light); border: 1px solid var(--green-border); color: var(--green-text); }
+  .callout .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+  .callout strong { font-weight: 700; }
+  .desc { font-size: 14.5px; line-height: 1.8; color: var(--text-secondary); }
+  .prep-list { display: flex; flex-direction: column; gap: 12px; }
+  .prep-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; gap: 14px; align-items: flex-start; }
+  .prep-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .prep-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .prep-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+  .process-list { display: flex; flex-direction: column; gap: 28px; }
+  .process-step { display: flex; flex-direction: column; gap: 10px; }
+  .step-header { display: flex; align-items: center; gap: 10px; }
+  .step-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; flex-shrink: 0; }
+  .step-title { font-size: 15px; font-weight: 700; }
+  .step-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; padding-left: 4px; }
+  .step-img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); overflow: hidden; }
+  .step-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
+  .divider { border: none; border-top: 1px solid var(--border); }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; }
+  .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+  .faq-question { width: 100%; background: none; border: none; padding: 15px 16px; text-align: left; font-size: 14px; font-weight: 600; font-family: inherit; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .faq-question:hover { background: var(--bg); }
+  .faq-arrow { font-size: 14px; color: var(--text-muted); transition: transform .2s; flex-shrink: 0; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-answer { display: none; padding: 13px 16px 15px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; border-top: 1px solid var(--border); }
+  .faq-item.open .faq-answer { display: block; }
+  @media (max-width: 640px) { .page-title h1 { font-size: 22px; } }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
+    <div class="breadcrumb">
+      <span class="sep">›</span><a href="../index.html">업무 가이드</a>
+      <span class="sep">›</span><span style="color: var(--text-primary); font-weight: 600;">반품</span>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="page-title">
+      <div class="label">Returns</div>
+      <h1>반품</h1>
+    </div>
+
+    <div class="section">
+      <div class="callout info">
+        <span class="icon">ℹ️</span>
+        <div>반품은 고객이 수령한 상품을 창고로 회수하는 프로세스입니다. <strong>반품 사유 및 상품 상태</strong>에 따라 양품·불량 처리가 결정됩니다.</div>
+      </div>
+      <div class="section-title">기능 개요</div>
+      <p class="desc">고객 반품 요청 접수 후 택배 회수 → 입고 검수 → 양품/불량 분류 → WMS 재고 반영 순으로 처리합니다. 반품 사유는 단순변심, 오배송, 상품불량으로 구분되며 사유에 따라 배송비 처리 기준이 다릅니다. 검수 완료된 양품은 판매 가능 재고로 복귀되며, 불량품은 별도 불량 로케이션에 보관합니다.</p>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <div class="callout warning">
+        <span class="icon">⚠️</span>
+        <div>반품 접수 전 고객사로부터 <strong>반품 승인 번호</strong>를 반드시 확인하세요. 미승인 반품 건은 입고 처리 보류합니다.</div>
+      </div>
+      <div class="section-title">처리 전 준비사항</div>
+      <div class="prep-list">
+        <div class="prep-item">
+          <div class="prep-num">1</div>
+          <div>
+            <div class="prep-item-title">반품 승인 여부 확인</div>
+            <div class="prep-item-desc">WMS > 반품관리에서 해당 주문의 반품 승인 상태를 확인합니다. 승인되지 않은 건은 고객사 확인 후 처리합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">2</div>
+          <div>
+            <div class="prep-item-title">반품 사유 파악</div>
+            <div class="prep-item-desc">단순변심, 오배송, 상품불량 중 어떤 사유인지 확인합니다. 사유에 따라 검수 기준과 배송비 처리가 달라집니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">3</div>
+          <div>
+            <div class="prep-item-title">검수 기준표 확인</div>
+            <div class="prep-item-desc">고객사별 반품 검수 기준이 다를 수 있습니다. 해당 고객사의 양품 기준(포장 상태, 사용 여부, 구성품 확인 등)을 사전에 숙지합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">4</div>
+          <div>
+            <div class="prep-item-title">검수 공간 및 자재 준비</div>
+            <div class="prep-item-desc">반품 검수대, 불량 표시 스티커, 카메라(파손 사진 촬영용)를 준비합니다. 검수 결과를 기록할 반품 검수서 양식도 준비합니다.</div>
+          </div>
+        </div>
+        <div class="prep-item">
+          <div class="prep-num">5</div>
+          <div>
+            <div class="prep-item-title">불량 로케이션 공간 확인</div>
+            <div class="prep-item-desc">불량 처리 예상 물량에 맞는 보관 공간이 확보되어 있는지 사전 확인합니다.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <div class="callout success">
+        <span class="icon">✅</span>
+        <div>검수 완료 후 WMS 반영까지 완료해야 재고가 정확히 업데이트됩니다.</div>
+      </div>
+      <div class="section-title">처리 과정</div>
+      <div class="process-list">
+
+        <div class="process-step">
+          <div class="step-header"><span class="step-badge">STEP 1</span><span class="step-title">반품 택배 수령</span></div>
+          <p class="step-desc">반품 택배가 도착하면 송장 번호를 스캔하여 WMS에서 해당 반품 건을 확인합니다. 박스 외관 파손 여부를 먼저 확인하고 사진으로 기록합니다.</p>
+          <div class="step-img">📷 반품 택배 수령 현장 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header"><span class="step-badge">STEP 2</span><span class="step-title">개봉 및 내용물 확인</span></div>
+          <p class="step-desc">박스를 개봉하여 상품 구성품이 모두 있는지, 사용 흔적이 있는지 확인합니다. 상품 상태를 사진으로 기록합니다.</p>
+          <div class="step-img">📷 반품 개봉 검수 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header"><span class="step-badge">STEP 3</span><span class="step-title">양품 / 불량 분류</span></div>
+          <p class="step-desc">고객사 검수 기준에 따라 양품과 불량으로 분류합니다. 판단이 어려운 경우 고객사 담당자에게 사진을 전송하여 확인을 받습니다.</p>
+          <div class="step-img">📷 양품·불량 분류 현장 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header"><span class="step-badge">STEP 4</span><span class="step-title">로케이션 입고</span></div>
+          <p class="step-desc">양품은 해당 SKU 로케이션에 입고 처리합니다. 불량품은 불량 전용 로케이션에 보관하고 불량 라벨을 부착합니다.</p>
+          <div class="step-img">📷 로케이션 입고 처리 사진</div>
+        </div>
+
+        <div class="process-step">
+          <div class="step-header"><span class="step-badge">STEP 5</span><span class="step-title">WMS 반품 처리 완료</span></div>
+          <p class="step-desc">WMS에서 반품 입고 처리를 완료합니다. 양품 수량과 불량 수량을 각각 입력하고, 불량 사유를 메모란에 기록합니다. 처리 완료 후 고객사에 결과를 안내합니다.</p>
+          <div class="step-img">📷 WMS 반품 처리 완료 화면</div>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="section">
+      <div class="section-title">자주 하는 질문</div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">반품 승인 없이 상품이 들어왔어요.<span class="faq-arrow">▾</span></button>
+          <div class="faq-answer">미승인 반품 건은 즉시 입고 처리하지 않고 보류합니다. 고객사 담당자에게 연락하여 반품 승인 처리를 요청합니다. 승인 확인 후 정상 프로세스로 진행합니다.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">반품 상품이 양품인지 불량인지 판단이 어려워요.<span class="faq-arrow">▾</span></button>
+          <div class="faq-answer">임의 판단하지 말고 사진을 찍어 고객사 담당자에게 확인 요청합니다. 고객사 응답 전까지는 별도 보류 공간에 보관하고 WMS에 보류 상태로 등록합니다.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">반품 박스 안에 다른 상품이 들어 있어요.<span class="faq-arrow">▾</span></button>
+          <div class="faq-answer">오입고 상품은 별도 보관하고 고객사에 즉시 안내합니다. 해당 상품의 원 주문 건을 파악하여 처리 방향(반송 또는 보관)을 결정합니다. WMS에 오입고 이력을 기록합니다.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">불량품은 얼마나 보관하나요?<span class="faq-arrow">▾</span></button>
+          <div class="faq-answer">불량품 보관 기간은 고객사별 계약 조건에 따라 다릅니다. 일반적으로 불량 확정 후 30일 이내에 고객사가 처리 방향(폐기, 반송 등)을 결정해야 합니다. 기간 초과 시 고객사에 처리 요청 안내를 발송합니다.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">반품 건수가 갑자기 급증하면 어떻게 하나요?<span class="faq-arrow">▾</span></button>
+          <div class="faq-answer">검수 인력이 부족할 경우 즉시 운영팀장에게 보고하여 인력을 추가 배치합니다. 급증 원인(특정 상품 불량, 배송 오류 등)을 파악하여 고객사에 공유하고, 처리 완료 예상 일정을 안내합니다.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
