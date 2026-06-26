@@ -7,12 +7,12 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df;
+    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df; --border-hover: #c8c6c0;
     --text-primary: #1a1a18; --text-secondary: #5e5d58; --text-muted: #9e9c96;
-    --accent: #B87018; --accent-light: #FAEEDA; --accent-border: #f3cc8a;
-    --amber-text: #854F0B;
+    --accent: #B87018; --accent-light: #FAEEDA; --accent-border: #f3cc8a; --accent-text: #854F0B;
     --green-light: #E1F5EE; --green-border: #6DD9B0; --green-text: #0F6E56;
-    --blue-light: #eff4ff; --blue-border: #bfcffd; --blue-text: #1e3a8a;
+    --coral-light: #FAECE7; --coral-border: #f0a98a; --coral-text: #993C1D;
+    --blue-light: #eff4ff; --blue-border: #bfcffd;
     --radius: 10px; --radius-lg: 16px;
   }
   body { background: var(--bg); font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; padding: 2rem 1rem 4rem; }
@@ -22,18 +22,16 @@
   .breadcrumb { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
   .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
   .breadcrumb a:hover { color: var(--text-primary); }
-  .breadcrumb span.sep { color: #c8c6c0; }
+  .breadcrumb .sep { color: #c8c6c0; }
   .content { max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
   .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
-  .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent-text); margin-bottom: 8px; }
   .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
   .section { display: flex; flex-direction: column; gap: 16px; }
-  .section-title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .section-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); flex-shrink: 0; }
   .callout { border-radius: var(--radius); padding: 14px 16px; font-size: 13.5px; line-height: 1.7; display: flex; gap: 10px; align-items: flex-start; }
-  .callout.info    { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--amber-text); }
-  .callout.warning { background: var(--blue-light); border: 1px solid var(--blue-border); color: var(--blue-text); }
-  .callout.success { background: var(--green-light); border: 1px solid var(--green-border); color: var(--green-text); }
+  .callout.warning { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent-text); }
   .callout .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
   .callout strong { font-weight: 700; }
   .desc { font-size: 14.5px; line-height: 1.8; color: var(--text-secondary); }
@@ -42,14 +40,14 @@
   .prep-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .prep-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .prep-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-  .process-list { display: flex; flex-direction: column; gap: 28px; }
-  .process-step { display: flex; flex-direction: column; gap: 10px; }
-  .step-header { display: flex; align-items: center; gap: 10px; }
-  .step-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; flex-shrink: 0; }
-  .step-title { font-size: 15px; font-weight: 700; }
-  .step-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; padding-left: 4px; }
-  .step-img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); overflow: hidden; }
   .divider { border: none; border-top: 1px solid var(--border); }
+  .process-btn-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .btn-process { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 1.25rem 1rem; border-radius: var(--radius-lg); border: 1.5px solid; cursor: pointer; font-family: inherit; transition: transform .12s, box-shadow .15s; }
+  .btn-process:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .btn-process.c1 { background: var(--accent-light); border-color: var(--accent-border); color: var(--accent-text); }
+  .btn-process.c2 { background: var(--coral-light); border-color: var(--coral-border); color: var(--coral-text); }
+  .btn-process.c3 { background: var(--green-light); border-color: var(--green-border); color: var(--green-text); }
+  .btn-process-title { font-size: 13.5px; font-weight: 700; text-align: center; }
   .faq-list { display: flex; flex-direction: column; gap: 8px; }
   .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .faq-question { width: 100%; background: none; border: none; padding: 15px 16px; text-align: left; font-size: 14px; font-weight: 600; font-family: inherit; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -58,153 +56,218 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-answer { display: none; padding: 13px 16px 15px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; border-top: 1px solid var(--border); }
   .faq-item.open .faq-answer { display: block; }
-  @media (max-width: 640px) { .page-title h1 { font-size: 22px; } }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border-radius: 20px; width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+  .modal-header { padding: 18px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-header-left { display: flex; flex-direction: column; gap: 3px; }
+  .modal-type-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .modal-type-label.c1 { color: var(--accent-text); }
+  .modal-type-label.c2 { color: var(--coral-text); }
+  .modal-type-label.c3 { color: var(--green-text); }
+  .modal-title { font-size: 17px; font-weight: 700; }
+  .modal-close { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 18px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .modal-close:hover { background: var(--bg); color: var(--text-primary); }
+  .modal-body { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .step-dots { display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .2s, transform .2s; }
+  .step-dot.active { transform: scale(1.4); }
+  .step-dot.active.c1 { background: var(--accent); }
+  .step-dot.active.c2 { background: var(--coral-text); }
+  .step-dot.active.c3 { background: var(--green-text); }
+  .modal-img-wrap { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); cursor: zoom-in; flex-shrink: 0; aspect-ratio: 16/9; }
+  .modal-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .modal-step-info { display: flex; flex-direction: column; gap: 10px; }
+  .modal-badge { display: inline-flex; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; width: fit-content; }
+  .modal-badge.c1 { background: var(--accent); color: #fff; }
+  .modal-badge.c2 { background: var(--coral-text); color: #fff; }
+  .modal-badge.c3 { background: var(--green-text); color: #fff; }
+  .modal-step-title { font-size: 17px; font-weight: 700; }
+  .modal-step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+  .modal-options { display: flex; gap: 8px; }
+  .modal-option-item { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .modal-option-label { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+  .modal-option-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .modal-notes { display: flex; flex-direction: column; gap: 6px; }
+  .modal-note-item { background: var(--blue-light); border: 1px solid var(--blue-border); border-radius: 8px; padding: 10px 12px; }
+  .modal-note-label { font-size: 12px; font-weight: 700; color: #1e3a8a; margin-bottom: 3px; }
+  .modal-note-desc { font-size: 12px; color: #1e3a8a; line-height: 1.55; opacity: .85; }
+  .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-counter { font-size: 13px; color: var(--text-muted); font-weight: 600; min-width: 50px; text-align: center; }
+  .btn-nav { display: flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; font-family: inherit; color: var(--text-primary); transition: all .15s; }
+  .btn-nav:hover:not(:disabled) { border-color: var(--border-hover); background: var(--bg); }
+  .btn-nav:disabled { opacity: .35; cursor: not-allowed; }
+  .btn-nav.primary.c1 { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-nav.primary.c2 { background: var(--coral-text); color: #fff; border-color: var(--coral-text); }
+  .btn-nav.primary.c3 { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+  .btn-nav.primary:hover:not(:disabled) { filter: brightness(.9); }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; pointer-events: none; }
+  .lightbox-close { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.25); }
+  @media (max-width: 580px) { .process-btn-group { grid-template-columns: 1fr; } .page-title h1 { font-size: 22px; } .modal-options { flex-direction: column; } .modal { height: 95vh; border-radius: 14px; } }
 </style>
 </head>
 <body>
-  <div class="topbar">
-    <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
-    <div class="breadcrumb">
-      <span class="sep">›</span><a href="../index.html">업무 가이드</a>
-      <span class="sep">›</span><span style="color: var(--text-primary); font-weight: 600;">재발송</span>
+<div class="topbar">
+  <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
+  <div class="breadcrumb">
+    <span class="sep">›</span><a href="../index.html">업무 가이드</a>
+    <span class="sep">›</span><span style="color:var(--text-primary);font-weight:600">재발송</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="page-title">
+    <div class="label">Resend</div>
+    <h1>재발송</h1>
+  </div>
+
+  <div class="section">
+    <div class="section-title">기능 개요</div>
+    <p class="desc">재발송은 미배송, 오배송, 배송 중 파손 등의 사유로 <strong>동일 상품을 동일 고객에게 다시 출고</strong>하는 프로세스입니다.<br>재발송 접수, 사유 확인 및 처리, 재출고 세 단계로 진행됩니다.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="callout warning">
+      <span class="icon">⚠️</span>
+      <div>재발송 전 <strong>원인 파악</strong>이 먼저입니다. 사유 확인 없이 재출고하면 동일 문제가 반복될 수 있습니다.</div>
+    </div>
+    <div class="section-title">처리 전 준비사항</div>
+    <div class="prep-list">
+      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">재발송 사유 확인</div><div class="prep-item-desc">미배송, 배송 중 파손, 오배송 중 어떤 사유인지 정확히 파악합니다. 사유에 따라 배송비 처리와 재발송 방식이 달라집니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">배송지 정보 재확인</div><div class="prep-item-desc">기존 주문의 배송지 정보에 오류가 있었다면 정확한 주소로 수정합니다. 고객에게 직접 연락하여 주소를 재확인하는 것을 권장합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">재발송 상품 재고 및 승인 확인</div><div class="prep-item-desc">동일 SKU의 재고가 있는지 확인합니다. 재발송은 반드시 고객사 승인 후 진행합니다.</div></div></div>
     </div>
   </div>
 
-  <div class="content">
+  <hr class="divider" />
 
-    <div class="page-title">
-      <div class="label">Resend</div>
-      <h1>재발송</h1>
-    </div>
-
-    <div class="section">
-      <div class="callout info">
-        <span class="icon">ℹ️</span>
-        <div>재발송은 미배송, 오배송, 배송 중 파손 등의 사유로 <strong>동일 상품을 동일 고객에게 다시 출고</strong>하는 프로세스입니다.</div>
-      </div>
-      <div class="section-title">기능 개요</div>
-      <p class="desc">재발송은 기존 주문 건에 대해 추가 출고 처리하는 방식입니다. 미배송(주소 오류, 수취 거부), 배송 중 파손, 오배송 등의 사유로 발생합니다. 원인에 따라 배송비 부담 주체가 달라지므로 사유 확인이 중요합니다. 재발송 처리 시 원 주문 건과의 연결을 WMS에서 관리합니다.</p>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout warning">
-        <span class="icon">⚠️</span>
-        <div>재발송 전 <strong>원인 파악</strong>이 먼저입니다. 사유 확인 없이 재출고하면 동일 문제가 반복될 수 있습니다.</div>
-      </div>
-      <div class="section-title">처리 전 준비사항</div>
-      <div class="prep-list">
-        <div class="prep-item">
-          <div class="prep-num">1</div>
-          <div>
-            <div class="prep-item-title">재발송 사유 확인</div>
-            <div class="prep-item-desc">미배송, 배송 중 파손, 오배송 중 어떤 사유인지 정확히 파악합니다. 사유에 따라 배송비 처리와 재발송 방식이 달라집니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">2</div>
-          <div>
-            <div class="prep-item-title">배송지 정보 재확인</div>
-            <div class="prep-item-desc">기존 주문의 배송지 정보에 오류가 있었다면 정확한 주소로 수정합니다. 고객에게 직접 연락하여 주소를 재확인하는 것을 권장합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">3</div>
-          <div>
-            <div class="prep-item-title">재발송 상품 재고 확인</div>
-            <div class="prep-item-desc">동일 SKU의 재고가 있는지 확인합니다. 재고 부족 시 고객사에 즉시 안내하고 처리 방향을 협의합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">4</div>
-          <div>
-            <div class="prep-item-title">원 주문 건 배송 상태 확인</div>
-            <div class="prep-item-desc">원 주문 건이 반송 중이거나 보관 중인지 확인합니다. 원 상품이 창고로 회수될 예정이라면 회수 후 재발송 여부도 검토합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">5</div>
-          <div>
-            <div class="prep-item-title">고객사 재발송 승인 확인</div>
-            <div class="prep-item-desc">재발송은 반드시 고객사 승인 후 진행합니다. WMS에 재발송 요청 건이 등록되어 있는지 확인합니다.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout success">
-        <span class="icon">✅</span>
-        <div>재발송 출고 후 WMS에서 원 주문 건과 재발송 건을 모두 정확히 연결하여 이력을 관리합니다.</div>
-      </div>
+  <div class="section">
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <div class="section-title">처리 과정</div>
-      <div class="process-list">
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 1</span><span class="step-title">재발송 요청 확인 및 사유 파악</span></div>
-          <p class="step-desc">WMS에서 재발송 요청 건을 확인합니다. 사유(미배송/파손/오배송)와 배송지 정보를 재확인하고 재발송 가능 여부를 판단합니다.</p>
-          <div class="step-img">📷 WMS 재발송 요청 확인 화면</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 2</span><span class="step-title">재발송 상품 피킹 및 포장</span></div>
-          <p class="step-desc">동일 SKU를 피킹하여 포장합니다. 파손으로 인한 재발송의 경우 포장 보강에 특히 주의합니다. 사은품 동봉 여부는 원 주문 기준을 따릅니다.</p>
-          <div class="step-img">📷 재발송 상품 피킹·포장 사진</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 3</span><span class="step-title">재발송 송장 발행 및 부착</span></div>
-          <p class="step-desc">WMS에서 재발송 송장을 발행합니다. 수정된 배송지 정보가 정확히 반영되어 있는지 확인 후 박스에 부착합니다.</p>
-          <div class="step-img">📷 재발송 송장 발행 화면</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 4</span><span class="step-title">택배사 인수 및 출고</span></div>
-          <p class="step-desc">택배사 집하 구역에 적재하고 인수 스캔을 확인합니다. 출고 완료 후 WMS에 재발송 출고 처리합니다.</p>
-          <div class="step-img">📷 재발송 출고 현장 사진</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 5</span><span class="step-title">고객사 안내 및 이력 기록</span></div>
-          <p class="step-desc">재발송 출고 완료 후 고객사에 새 운송장 번호를 안내합니다. WMS에서 원 주문 건과 재발송 건을 연결하고 사유 및 처리 내용을 기록합니다.</p>
-          <div class="step-img">📷 WMS 재발송 이력 기록 화면</div>
-        </div>
-      </div>
+      <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="section-title">자주 하는 질문</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">원 주문 상품이 아직 반송 중인데 재발송을 먼저 해도 되나요?<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">고객사 정책에 따라 다릅니다. 선재발송이 승인된 경우 진행 가능하지만, 재고 차감이 이중으로 발생할 수 있으므로 WMS 재고를 정확히 확인 후 진행합니다. 원 상품 회수 후 WMS에 반품 입고 처리를 잊지 않아야 합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">주소 오류로 반송된 상품을 재발송해야 해요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">반송 상품이 창고로 입고되면 먼저 검수 후 양품 여부를 확인합니다. 양품이라면 수정된 주소로 재포장 없이 재출고 가능합니다. 단, 박스 상태가 불량하다면 재포장 후 출고합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">재발송 상품도 사은품을 동봉해야 하나요?<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">원칙적으로 원 주문과 동일하게 사은품을 동봉합니다. 단, 고객사가 재발송 건에 대해 사은품 제외를 별도 안내한 경우 해당 지침을 따릅니다. 불명확한 경우 고객사에 확인 후 진행합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">동일 고객에게 두 번째 재발송 요청이 왔어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">반복 재발송은 고객사 담당자에게 먼저 보고합니다. 배송 주소 오류, 수취 거부 반복 등 근본 원인을 파악하고 해결 후 진행합니다. 고객사의 명시적인 승인 없이 임의로 처리하지 않습니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">배송 중 파손 재발송인데 재고가 없어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">고객사에 재고 부족 사실을 즉시 안내합니다. 처리 방향(환불, 유사 상품 대체, 입고 후 처리 대기 등)을 고객사와 협의합니다. WMS에 처리 보류 상태로 등록하고 고객사 결정을 기다립니다.</div>
-        </div>
-      </div>
+    <div class="process-btn-group">
+      <button class="btn-process c1" onclick="openModal('apply')"><span class="btn-process-title">재발송 접수</span></button>
+      <button class="btn-process c2" onclick="openModal('check')"><span class="btn-process-title">사유 확인 및 처리</span></button>
+      <button class="btn-process c3" onclick="openModal('ship')"><span class="btn-process-title">재출고</span></button>
     </div>
-
   </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-title">자주 하는 질문</div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">원 주문 상품이 아직 반송 중인데 재발송을 먼저 해도 되나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">고객사 정책에 따라 다릅니다. 선재발송이 승인된 경우 진행 가능하지만, 재고 차감이 이중으로 발생할 수 있으므로 WMS 재고를 정확히 확인 후 진행합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 상품도 사은품을 동봉해야 하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">원칙적으로 원 주문과 동일하게 사은품을 동봉합니다. 고객사가 재발송 건에 대해 사은품 제외를 별도 안내한 경우 해당 지침을 따릅니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">동일 고객에게 두 번째 재발송 요청이 왔어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">반복 재발송은 고객사 담당자에게 먼저 보고합니다. 배송 주소 오류, 수취 거부 반복 등 근본 원인을 파악하고 해결 후 진행합니다. 고객사의 명시적인 승인 없이 임의로 처리하지 않습니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">배송 중 파손 재발송인데 재고가 없어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">고객사에 재고 부족 사실을 즉시 안내합니다. 처리 방향(환불, 유사 상품 대체, 입고 후 처리 대기 등)을 고객사와 협의합니다. WMS에 처리 보류 상태로 등록하고 고객사 결정을 기다립니다.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-type-label" id="modalTypeLabel"></span>
+        <span class="modal-title" id="modalTitle"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="step-dots" id="stepDots"></div>
+      <div class="modal-step-info">
+        <span class="modal-badge" id="modalBadge"></span>
+        <div class="modal-step-title" id="modalStepTitle"></div>
+        <div class="modal-step-desc" id="modalStepDesc"></div>
+        <div id="modalOptions" class="modal-options" style="display:none;"></div>
+        <div id="modalNotes" class="modal-notes" style="display:none;"></div>
+        <div id="modalWarn" class="callout warning" style="display:none;"><span class="icon">⚠️</span><span id="modalWarnText"></span></div>
+      </div>
+      <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-nav" id="btnPrev" onclick="prevStep()">← 이전</button>
+      <span class="modal-counter" id="modalCounter"></span>
+      <button class="btn-nav primary" id="btnNext" onclick="nextStep()">다음 →</button>
+    </div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
 
 <script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  item.classList.toggle('open');
+const STEPS = {
+  apply: {
+    label: 'Resend · Apply', title: '재발송 접수', color: 'c1',
+    steps: [
+      { badge:'STEP 1', title:'재발송 접수 메뉴 접속', desc:'품고 나우 > 출고관리 > 재발송 접수 > 등록 클릭합니다.', img:'../images/reship-apply1.png' },
+      { badge:'STEP 2', title:'원 주문 조회', desc:'재발송이 필요한 원 주문번호를 조회합니다.<br>주문 정보와 배송지가 정확한지 확인합니다.', img:'../images/reship-apply2.png' },
+      { badge:'STEP 3', title:'재발송 사유 및 배송지 입력', desc:'재발송 사유(미배송 / 오배송 / 파손)를 선택합니다.<br>수정된 배송지 정보가 있는 경우 반드시 업데이트합니다.', img:'../images/reship-apply3.png' },
+      { badge:'STEP 4', title:'접수 완료 확인', desc:'재발송 접수 목록에서 상태가 접수완료로 변경되었는지 확인합니다.', img:'../images/reship-apply4.png' },
+    ]
+  },
+  check: {
+    label: 'Resend · Check', title: '사유 확인 및 처리', color: 'c2',
+    steps: [
+      { badge:'STEP 1', title:'재발송 사유 상세 확인', desc:'접수된 재발송 건의 사유를 상세히 파악합니다.<br>미배송의 경우 택배사에 배송 현황을 확인합니다.', img:'../images/reship-check1.png' },
+      { badge:'STEP 2', title:'원 주문 상품 회수 여부 확인', desc:'원 상품이 반송 중이거나 창고로 회수될 예정인지 확인합니다.<br>회수 예정이라면 입고 후 재발송 여부를 검토합니다.', img:'../images/reship-check2.png' },
+      { badge:'STEP 3', title:'고객사 재발송 승인 확인', desc:'재발송 처리 전 고객사의 승인 여부를 최종 확인합니다.<br>승인 내용을 WMS 메모에 기록합니다.', img:'../images/reship-check3.png' },
+    ]
+  },
+  ship: {
+    label: 'Resend · Ship', title: '재출고', color: 'c3',
+    steps: [
+      { badge:'STEP 1', title:'재발송 상품 피킹 및 포장', desc:'동일 SKU를 피킹하여 포장합니다.<br>파손으로 인한 재발송의 경우 포장 보강에 특히 주의합니다.', img:'../images/reship-ship1.png' },
+      { badge:'STEP 2', title:'재발송 송장 발행 및 부착', desc:'WMS에서 재발송 송장을 발행합니다.<br>수정된 배송지 정보가 정확히 반영되어 있는지 확인 후 박스에 부착합니다.', img:'../images/reship-ship2.png' },
+      { badge:'STEP 3', title:'택배사 인수 및 출고 처리', desc:'택배사 집하 구역에 적재하고 인수 스캔을 확인합니다.<br>출고 완료 후 WMS에 재발송 출고 처리합니다.', img:'../images/reship-ship3.png' },
+      { badge:'STEP 4', title:'고객사 안내 및 이력 기록', desc:'재발송 출고 완료 후 고객사에 새 운송장 번호를 안내합니다.<br>WMS에서 원 주문 건과 재발송 건을 연결하고 사유 및 처리 내용을 기록합니다.', img:'../images/reship-ship4.png' },
+    ]
+  }
+};
+let currentType = null; let currentStep = 0;
+function openModal(type) { currentType = type; currentStep = 0; renderModal(); document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function renderModal() {
+  const data = STEPS[currentType]; const step = data.steps[currentStep]; const color = data.color; const total = data.steps.length;
+  document.getElementById('modalTypeLabel').textContent = data.label;
+  document.getElementById('modalTypeLabel').className = 'modal-type-label ' + color;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('stepDots').innerHTML = data.steps.map((_, i) => `<div class="step-dot ${i === currentStep ? 'active ' + color : ''}"></div>`).join('');
+  const imgs = Array.isArray(step.img) ? step.img : [step.img];
+  document.getElementById('modalImgs').innerHTML = imgs.map(src => `<div class="modal-img-wrap" onclick="openLightbox('${src}')"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`).join('');
+  document.getElementById('modalBadge').textContent = step.badge;
+  document.getElementById('modalBadge').className = 'modal-badge ' + color;
+  document.getElementById('modalStepTitle').textContent = step.title;
+  document.getElementById('modalStepDesc').innerHTML = step.desc;
+  const optionsEl = document.getElementById('modalOptions');
+  if (step.options?.length) { optionsEl.style.display = 'flex'; optionsEl.innerHTML = step.options.map(o => `<div class="modal-option-item"><div class="modal-option-label">${o.label}</div><div class="modal-option-desc">${o.desc}</div></div>`).join(''); } else { optionsEl.style.display = 'none'; optionsEl.innerHTML = ''; }
+  const notesEl = document.getElementById('modalNotes');
+  if (step.notes?.length) { notesEl.style.display = 'flex'; notesEl.innerHTML = step.notes.map(n => `<div class="modal-note-item"><div class="modal-note-label">${n.label}</div><div class="modal-note-desc">${n.desc}</div></div>`).join(''); } else { notesEl.style.display = 'none'; notesEl.innerHTML = ''; }
+  const warnEl = document.getElementById('modalWarn');
+  if (step.warn) { warnEl.style.display = 'flex'; document.getElementById('modalWarnText').innerHTML = step.warn; } else { warnEl.style.display = 'none'; }
+  document.getElementById('modalCounter').textContent = `${currentStep + 1} / ${total}`;
+  const btnNext = document.getElementById('btnNext');
+  btnNext.className = 'btn-nav primary ' + color;
+  if (currentStep === total - 1) { btnNext.textContent = '완료'; btnNext.onclick = closeModal; } else { btnNext.textContent = '다음 →'; btnNext.onclick = nextStep; }
+  document.getElementById('btnPrev').disabled = currentStep === 0;
 }
+function nextStep() { if (currentStep < STEPS[currentType].steps.length - 1) { currentStep++; renderModal(); } }
+function prevStep() { if (currentStep > 0) { currentStep--; renderModal(); } }
+function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (document.getElementById('lightbox').classList.contains('open')) closeLightbox(); else closeModal(); } });
+function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 </script>
 </body>
 </html>
