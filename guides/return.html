@@ -7,12 +7,12 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df;
+    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df; --border-hover: #c8c6c0;
     --text-primary: #1a1a18; --text-secondary: #5e5d58; --text-muted: #9e9c96;
     --accent: #993C1D; --accent-light: #FAECE7; --accent-border: #f0a98a;
     --amber-light: #FAEEDA; --amber-border: #f3cc8a; --amber-text: #854F0B;
     --green-light: #E1F5EE; --green-border: #6DD9B0; --green-text: #0F6E56;
-    --blue-light: #eff4ff; --blue-border: #bfcffd; --blue-text: #1e3a8a;
+    --blue-light: #eff4ff; --blue-border: #bfcffd;
     --radius: 10px; --radius-lg: 16px;
   }
   body { background: var(--bg); font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; padding: 2rem 1rem 4rem; }
@@ -22,16 +22,15 @@
   .breadcrumb { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
   .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
   .breadcrumb a:hover { color: var(--text-primary); }
-  .breadcrumb span.sep { color: #c8c6c0; }
+  .breadcrumb .sep { color: #c8c6c0; }
   .content { max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
   .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
   .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
   .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
   .section { display: flex; flex-direction: column; gap: 16px; }
-  .section-title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .section-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); flex-shrink: 0; }
   .callout { border-radius: var(--radius); padding: 14px 16px; font-size: 13.5px; line-height: 1.7; display: flex; gap: 10px; align-items: flex-start; }
-  .callout.info    { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent); }
   .callout.warning { background: var(--amber-light); border: 1px solid var(--amber-border); color: var(--amber-text); }
   .callout.success { background: var(--green-light); border: 1px solid var(--green-border); color: var(--green-text); }
   .callout .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
@@ -42,15 +41,14 @@
   .prep-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .prep-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .prep-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-  .process-list { display: flex; flex-direction: column; gap: 28px; }
-  .process-step { display: flex; flex-direction: column; gap: 10px; }
-  .step-header { display: flex; align-items: center; gap: 10px; }
-  .step-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; flex-shrink: 0; }
-  .step-title { font-size: 15px; font-weight: 700; }
-  .step-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; padding-left: 4px; }
-  .step-img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); overflow: hidden; }
-  .step-img img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius); }
   .divider { border: none; border-top: 1px solid var(--border); }
+  .process-btn-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .btn-process { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 1.25rem 1rem; border-radius: var(--radius-lg); border: 1.5px solid; cursor: pointer; font-family: inherit; transition: transform .12s, box-shadow .15s; }
+  .btn-process:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .btn-process.c1 { background: var(--accent-light); border-color: var(--accent-border); color: var(--accent); }
+  .btn-process.c2 { background: var(--amber-light); border-color: var(--amber-border); color: var(--amber-text); }
+  .btn-process.c3 { background: var(--green-light); border-color: var(--green-border); color: var(--green-text); }
+  .btn-process-title { font-size: 13.5px; font-weight: 700; text-align: center; }
   .faq-list { display: flex; flex-direction: column; gap: 8px; }
   .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .faq-question { width: 100%; background: none; border: none; padding: 15px 16px; text-align: left; font-size: 14px; font-weight: 600; font-family: inherit; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -59,159 +57,245 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-answer { display: none; padding: 13px 16px 15px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; border-top: 1px solid var(--border); }
   .faq-item.open .faq-answer { display: block; }
-  @media (max-width: 640px) { .page-title h1 { font-size: 22px; } }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border-radius: 20px; width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+  .modal-header { padding: 18px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-header-left { display: flex; flex-direction: column; gap: 3px; }
+  .modal-type-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .modal-type-label.c1 { color: var(--accent); }
+  .modal-type-label.c2 { color: var(--amber-text); }
+  .modal-type-label.c3 { color: var(--green-text); }
+  .modal-title { font-size: 17px; font-weight: 700; }
+  .modal-close { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 18px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .modal-close:hover { background: var(--bg); color: var(--text-primary); }
+  .modal-body { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .step-dots { display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .2s, transform .2s; }
+  .step-dot.active { transform: scale(1.4); }
+  .step-dot.active.c1 { background: var(--accent); }
+  .step-dot.active.c2 { background: var(--amber-text); }
+  .step-dot.active.c3 { background: var(--green-text); }
+  .modal-img-wrap { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); cursor: zoom-in; flex-shrink: 0; aspect-ratio: 16/9; }
+  .modal-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .modal-step-info { display: flex; flex-direction: column; gap: 10px; }
+  .modal-badge { display: inline-flex; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; width: fit-content; }
+  .modal-badge.c1 { background: var(--accent); color: #fff; }
+  .modal-badge.c2 { background: var(--amber-text); color: #fff; }
+  .modal-badge.c3 { background: var(--green-text); color: #fff; }
+  .modal-step-title { font-size: 17px; font-weight: 700; }
+  .modal-step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+  .modal-options { display: flex; gap: 8px; }
+  .modal-option-item { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .modal-option-label { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+  .modal-option-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .modal-notes { display: flex; flex-direction: column; gap: 6px; }
+  .modal-note-item { background: var(--blue-light); border: 1px solid var(--blue-border); border-radius: 8px; padding: 10px 12px; }
+  .modal-note-label { font-size: 12px; font-weight: 700; color: #1e3a8a; margin-bottom: 3px; }
+  .modal-note-desc { font-size: 12px; color: #1e3a8a; line-height: 1.55; opacity: .85; }
+  .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-counter { font-size: 13px; color: var(--text-muted); font-weight: 600; min-width: 50px; text-align: center; }
+  .btn-nav { display: flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; font-family: inherit; color: var(--text-primary); transition: all .15s; }
+  .btn-nav:hover:not(:disabled) { border-color: var(--border-hover); background: var(--bg); }
+  .btn-nav:disabled { opacity: .35; cursor: not-allowed; }
+  .btn-nav.primary.c1 { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-nav.primary.c2 { background: var(--amber-text); color: #fff; border-color: var(--amber-text); }
+  .btn-nav.primary.c3 { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+  .btn-nav.primary:hover:not(:disabled) { filter: brightness(.9); }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; pointer-events: none; }
+  .lightbox-close { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.25); }
+  @media (max-width: 580px) { .process-btn-group { grid-template-columns: 1fr; } .page-title h1 { font-size: 22px; } .modal-options { flex-direction: column; } .modal { height: 95vh; border-radius: 14px; } }
 </style>
 </head>
 <body>
-  <div class="topbar">
-    <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
-    <div class="breadcrumb">
-      <span class="sep">›</span><a href="../index.html">업무 가이드</a>
-      <span class="sep">›</span><span style="color: var(--text-primary); font-weight: 600;">반품</span>
+<div class="topbar">
+  <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
+  <div class="breadcrumb">
+    <span class="sep">›</span><a href="../index.html">업무 가이드</a>
+    <span class="sep">›</span><span style="color:var(--text-primary);font-weight:600">반품</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="page-title">
+    <div class="label">Returns</div>
+    <h1>반품</h1>
+  </div>
+
+  <div class="section">
+    <div class="section-title">기능 개요</div>
+    <p class="desc">고객이 수령한 상품을 창고로 회수하는 프로세스입니다.<br>반품 사유 및 상품 상태에 따라 <strong>양품·불량 처리</strong>가 결정됩니다.<br>수기 접수, 검품 결과 확인, 반품 반출 요청 세 가지 유형으로 구분됩니다.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="callout warning">
+      <span class="icon">⚠️</span>
+      <div>처리 전 아래 사항을 반드시 확인하세요.</div>
+    </div>
+    <div class="section-title">처리 전 준비사항</div>
+    <div class="prep-list">
+      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">반품 승인 여부 확인</div><div class="prep-item-desc">WMS > 반품관리에서 해당 주문의 반품 승인 상태를 확인합니다. 승인되지 않은 건은 고객사 확인 후 처리합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">반품 사유 파악</div><div class="prep-item-desc">단순변심, 오배송, 상품불량 중 어떤 사유인지 확인합니다. 사유에 따라 검수 기준과 배송비 처리가 달라집니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">고객사별 검수 기준 확인</div><div class="prep-item-desc">고객사별 반품 검수 기준이 다를 수 있습니다. 해당 고객사의 양품 기준(포장 상태, 사용 여부, 구성품 확인 등)을 사전에 숙지합니다.</div></div></div>
     </div>
   </div>
 
-  <div class="content">
+  <hr class="divider" />
 
-    <div class="page-title">
-      <div class="label">Returns</div>
-      <h1>반품</h1>
-    </div>
-
-    <div class="section">
-      <div class="callout info">
-        <span class="icon">ℹ️</span>
-        <div>반품은 고객이 수령한 상품을 창고로 회수하는 프로세스입니다. <strong>반품 사유 및 상품 상태</strong>에 따라 양품·불량 처리가 결정됩니다.</div>
-      </div>
-      <div class="section-title">기능 개요</div>
-      <p class="desc">고객 반품 요청 접수 후 택배 회수 → 입고 검수 → 양품/불량 분류 → WMS 재고 반영 순으로 처리합니다. 반품 사유는 단순변심, 오배송, 상품불량으로 구분되며 사유에 따라 배송비 처리 기준이 다릅니다. 검수 완료된 양품은 판매 가능 재고로 복귀되며, 불량품은 별도 불량 로케이션에 보관합니다.</p>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout warning">
-        <span class="icon">⚠️</span>
-        <div>반품 접수 전 고객사로부터 <strong>반품 승인 번호</strong>를 반드시 확인하세요. 미승인 반품 건은 입고 처리 보류합니다.</div>
-      </div>
-      <div class="section-title">처리 전 준비사항</div>
-      <div class="prep-list">
-        <div class="prep-item">
-          <div class="prep-num">1</div>
-          <div>
-            <div class="prep-item-title">반품 승인 여부 확인</div>
-            <div class="prep-item-desc">WMS > 반품관리에서 해당 주문의 반품 승인 상태를 확인합니다. 승인되지 않은 건은 고객사 확인 후 처리합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">2</div>
-          <div>
-            <div class="prep-item-title">반품 사유 파악</div>
-            <div class="prep-item-desc">단순변심, 오배송, 상품불량 중 어떤 사유인지 확인합니다. 사유에 따라 검수 기준과 배송비 처리가 달라집니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">3</div>
-          <div>
-            <div class="prep-item-title">검수 기준표 확인</div>
-            <div class="prep-item-desc">고객사별 반품 검수 기준이 다를 수 있습니다. 해당 고객사의 양품 기준(포장 상태, 사용 여부, 구성품 확인 등)을 사전에 숙지합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">4</div>
-          <div>
-            <div class="prep-item-title">검수 공간 및 자재 준비</div>
-            <div class="prep-item-desc">반품 검수대, 불량 표시 스티커, 카메라(파손 사진 촬영용)를 준비합니다. 검수 결과를 기록할 반품 검수서 양식도 준비합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">5</div>
-          <div>
-            <div class="prep-item-title">불량 로케이션 공간 확인</div>
-            <div class="prep-item-desc">불량 처리 예상 물량에 맞는 보관 공간이 확보되어 있는지 사전 확인합니다.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout success">
-        <span class="icon">✅</span>
-        <div>검수 완료 후 WMS 반영까지 완료해야 재고가 정확히 업데이트됩니다.</div>
-      </div>
+  <div class="section">
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <div class="section-title">처리 과정</div>
-      <div class="process-list">
-
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 1</span><span class="step-title">반품 택배 수령</span></div>
-          <p class="step-desc">반품 택배가 도착하면 송장 번호를 스캔하여 WMS에서 해당 반품 건을 확인합니다. 박스 외관 파손 여부를 먼저 확인하고 사진으로 기록합니다.</p>
-          <div class="step-img">📷 반품 택배 수령 현장 사진</div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 2</span><span class="step-title">개봉 및 내용물 확인</span></div>
-          <p class="step-desc">박스를 개봉하여 상품 구성품이 모두 있는지, 사용 흔적이 있는지 확인합니다. 상품 상태를 사진으로 기록합니다.</p>
-          <div class="step-img">📷 반품 개봉 검수 사진</div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 3</span><span class="step-title">양품 / 불량 분류</span></div>
-          <p class="step-desc">고객사 검수 기준에 따라 양품과 불량으로 분류합니다. 판단이 어려운 경우 고객사 담당자에게 사진을 전송하여 확인을 받습니다.</p>
-          <div class="step-img">📷 양품·불량 분류 현장 사진</div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 4</span><span class="step-title">로케이션 입고</span></div>
-          <p class="step-desc">양품은 해당 SKU 로케이션에 입고 처리합니다. 불량품은 불량 전용 로케이션에 보관하고 불량 라벨을 부착합니다.</p>
-          <div class="step-img">📷 로케이션 입고 처리 사진</div>
-        </div>
-
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 5</span><span class="step-title">WMS 반품 처리 완료</span></div>
-          <p class="step-desc">WMS에서 반품 입고 처리를 완료합니다. 양품 수량과 불량 수량을 각각 입력하고, 불량 사유를 메모란에 기록합니다. 처리 완료 후 고객사에 결과를 안내합니다.</p>
-          <div class="step-img">📷 WMS 반품 처리 완료 화면</div>
-        </div>
-
-      </div>
+      <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="section-title">자주 하는 질문</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">반품 승인 없이 상품이 들어왔어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">미승인 반품 건은 즉시 입고 처리하지 않고 보류합니다. 고객사 담당자에게 연락하여 반품 승인 처리를 요청합니다. 승인 확인 후 정상 프로세스로 진행합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">반품 상품이 양품인지 불량인지 판단이 어려워요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">임의 판단하지 말고 사진을 찍어 고객사 담당자에게 확인 요청합니다. 고객사 응답 전까지는 별도 보류 공간에 보관하고 WMS에 보류 상태로 등록합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">반품 박스 안에 다른 상품이 들어 있어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">오입고 상품은 별도 보관하고 고객사에 즉시 안내합니다. 해당 상품의 원 주문 건을 파악하여 처리 방향(반송 또는 보관)을 결정합니다. WMS에 오입고 이력을 기록합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">불량품은 얼마나 보관하나요?<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">불량품 보관 기간은 고객사별 계약 조건에 따라 다릅니다. 일반적으로 불량 확정 후 30일 이내에 고객사가 처리 방향(폐기, 반송 등)을 결정해야 합니다. 기간 초과 시 고객사에 처리 요청 안내를 발송합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">반품 건수가 갑자기 급증하면 어떻게 하나요?<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">검수 인력이 부족할 경우 즉시 운영팀장에게 보고하여 인력을 추가 배치합니다. 급증 원인(특정 상품 불량, 배송 오류 등)을 파악하여 고객사에 공유하고, 처리 완료 예상 일정을 안내합니다.</div>
-        </div>
-      </div>
+    <div class="process-btn-group">
+      <button class="btn-process c1" onclick="openModal('manual')"><span class="btn-process-title">반품 수기 접수</span></button>
+      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">반품 검품 결과 확인</span></button>
+      <button class="btn-process c3" onclick="openModal('export')"><span class="btn-process-title">반품 반출 요청</span></button>
     </div>
-
   </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-title">자주 하는 질문</div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">반품 승인 없이 상품이 들어왔어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">미승인 반품 건은 즉시 입고 처리하지 않고 보류합니다. 고객사 담당자에게 연락하여 반품 승인 처리를 요청합니다. 승인 확인 후 정상 프로세스로 진행합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">반품 상품이 양품인지 불량인지 판단이 어려워요.<span class="faq-arrow">▾</span></button><div class="faq-answer">임의 판단하지 말고 사진을 찍어 고객사 담당자에게 확인 요청합니다. 고객사 응답 전까지는 별도 보류 공간에 보관하고 WMS에 보류 상태로 등록합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">반품 박스 안에 다른 상품이 들어 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">오입고 상품은 별도 보관하고 고객사에 즉시 안내합니다. 해당 상품의 원 주문 건을 파악하여 처리 방향(반송 또는 보관)을 결정합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">불량품은 얼마나 보관하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">불량품 보관 기간은 고객사별 계약 조건에 따라 다릅니다. 일반적으로 불량 확정 후 30일 이내에 고객사가 처리 방향(폐기, 반송 등)을 결정해야 합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">반품 건수가 갑자기 급증하면 어떻게 하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">검수 인력이 부족할 경우 즉시 운영팀장에게 보고하여 인력을 추가 배치합니다. 급증 원인을 파악하여 고객사에 공유하고 처리 완료 예상 일정을 안내합니다.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-type-label" id="modalTypeLabel"></span>
+        <span class="modal-title" id="modalTitle"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="step-dots" id="stepDots"></div>
+      <div class="modal-step-info">
+        <span class="modal-badge" id="modalBadge"></span>
+        <div class="modal-step-title" id="modalStepTitle"></div>
+        <div class="modal-step-desc" id="modalStepDesc"></div>
+        <div id="modalOptions" class="modal-options" style="display:none;"></div>
+        <div id="modalNotes" class="modal-notes" style="display:none;"></div>
+        <div id="modalWarn" class="callout warning" style="display:none;">
+          <span class="icon">⚠️</span><span id="modalWarnText"></span>
+        </div>
+      </div>
+      <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-nav" id="btnPrev" onclick="prevStep()">← 이전</button>
+      <span class="modal-counter" id="modalCounter"></span>
+      <button class="btn-nav primary" id="btnNext" onclick="nextStep()">다음 →</button>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
 
 <script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  item.classList.toggle('open');
+const STEPS = {
+  manual: {
+    label: 'Returns · Manual', title: '반품 수기 접수', color: 'c1',
+    steps: [
+      { badge:'STEP 1', title:'반품 접수 메뉴 접속', desc:'품고 나우 > 반품관리 > 반품 접수 > 등록 클릭합니다.', img:'../images/return-manual1.png' },
+      { badge:'STEP 2', title:'주문 정보 및 반품 사유 입력', desc:'원 주문번호를 조회하여 반품 대상 상품을 선택합니다.<br>반품 사유(단순변심 / 오배송 / 상품불량)를 선택합니다.', img:'../images/return-manual2.png' },
+      { badge:'STEP 3', title:'반품 수량 및 수거 방법 선택', desc:'반품 수량을 입력하고 수거 방법(택배 / 직접 방문)을 선택합니다.', img:'../images/return-manual3.png' },
+      { badge:'STEP 4', title:'접수 완료 확인', desc:'등록 후 반품 접수 목록에서 상태가 접수완료로 변경되었는지 확인합니다.', img:'../images/return-manual4.png' },
+    ]
+  },
+  inspect: {
+    label: 'Returns · Inspection', title: '반품 검품 결과 확인', color: 'c2',
+    steps: [
+      { badge:'STEP 1', title:'반품 입고 확인', desc:'반품 택배가 도착하면 송장 번호를 스캔하여 WMS에서 해당 반품 건을 확인합니다.<br>박스 외관 파손 여부를 먼저 확인하고 사진으로 기록합니다.', img:'../images/return-inspect1.png' },
+      { badge:'STEP 2', title:'개봉 및 내용물 검수', desc:'박스를 개봉하여 상품 구성품이 모두 있는지, 사용 흔적이 있는지 확인합니다.<br>상품 상태를 사진으로 기록합니다.', img:'../images/return-inspect2.png' },
+      { badge:'STEP 3', title:'양품 / 불량 분류', desc:'고객사 검수 기준에 따라 양품과 불량으로 분류합니다.<br>판단이 어려운 경우 고객사 담당자에게 사진을 전송하여 확인을 받습니다.', img:'../images/return-inspect3.png' },
+      { badge:'STEP 4', title:'WMS 검품 결과 등록', desc:'양품은 해당 SKU 로케이션에 입고 처리합니다.<br>불량품은 불량 전용 로케이션에 보관하고 WMS에 불량 결과를 등록합니다.', img:'../images/return-inspect4.png' },
+    ]
+  },
+  export: {
+    label: 'Returns · Export', title: '반품 반출 요청', color: 'c3',
+    steps: [
+      { badge:'STEP 1', title:'반품 반출 요청 메뉴 접속', desc:'품고 나우 > 반품관리 > 반출 요청 > 등록 클릭합니다.', img:'../images/return-export1.png' },
+      { badge:'STEP 2', title:'반출 대상 상품 선택', desc:'반출이 필요한 반품 재고를 검색하여 선택합니다.<br>반출 수량과 반출 사유를 입력합니다.', img:'../images/return-export2.png' },
+      { badge:'STEP 3', title:'반출 일자 및 방법 선택', desc:'반출 희망일자를 입력합니다.<br>반출 방법(택배 / 차량)을 선택합니다.', warn:'반출 가능일은 신청일 기준 3영업일 이후입니다.<br>임의 날짜 지정 시 출고가 제한될 수 있습니다.', img:'../images/return-export3.png' },
+      { badge:'STEP 4', title:'접수 완료 확인', desc:'등록 후 초안 상태에서는 출고가 불가합니다.<br>요청서 상단 접수를 꼭 클릭해주세요!', img:'../images/return-export4.png' },
+    ]
+  }
+};
+
+let currentType = null;
+let currentStep = 0;
+
+function openModal(type) { currentType = type; currentStep = 0; renderModal(); document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+
+function renderModal() {
+  const data = STEPS[currentType];
+  const step = data.steps[currentStep];
+  const color = data.color;
+  const total = data.steps.length;
+
+  document.getElementById('modalTypeLabel').textContent = data.label;
+  document.getElementById('modalTypeLabel').className = 'modal-type-label ' + color;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('stepDots').innerHTML = data.steps.map((_, i) => `<div class="step-dot ${i === currentStep ? 'active ' + color : ''}"></div>`).join('');
+
+  const imgs = Array.isArray(step.img) ? step.img : [step.img];
+  document.getElementById('modalImgs').innerHTML = imgs.map(src => `
+    <div class="modal-img-wrap" onclick="openLightbox('${src}')">
+      <img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" />
+    </div>`).join('');
+
+  document.getElementById('modalBadge').textContent = step.badge;
+  document.getElementById('modalBadge').className = 'modal-badge ' + color;
+  document.getElementById('modalStepTitle').textContent = step.title;
+  document.getElementById('modalStepDesc').innerHTML = step.desc;
+
+  const optionsEl = document.getElementById('modalOptions');
+  if (step.options?.length) { optionsEl.style.display = 'flex'; optionsEl.innerHTML = step.options.map(o => `<div class="modal-option-item"><div class="modal-option-label">${o.label}</div><div class="modal-option-desc">${o.desc}</div></div>`).join(''); }
+  else { optionsEl.style.display = 'none'; optionsEl.innerHTML = ''; }
+
+  const notesEl = document.getElementById('modalNotes');
+  if (step.notes?.length) { notesEl.style.display = 'flex'; notesEl.innerHTML = step.notes.map(n => `<div class="modal-note-item"><div class="modal-note-label">${n.label}</div><div class="modal-note-desc">${n.desc}</div></div>`).join(''); }
+  else { notesEl.style.display = 'none'; notesEl.innerHTML = ''; }
+
+  const warnEl = document.getElementById('modalWarn');
+  if (step.warn) { warnEl.style.display = 'flex'; document.getElementById('modalWarnText').innerHTML = step.warn; }
+  else { warnEl.style.display = 'none'; }
+
+  document.getElementById('modalCounter').textContent = `${currentStep + 1} / ${total}`;
+  const btnNext = document.getElementById('btnNext');
+  btnNext.className = 'btn-nav primary ' + color;
+  if (currentStep === total - 1) { btnNext.textContent = '완료'; btnNext.onclick = closeModal; }
+  else { btnNext.textContent = '다음 →'; btnNext.onclick = nextStep; }
+  document.getElementById('btnPrev').disabled = currentStep === 0;
 }
+
+function nextStep() { if (currentStep < STEPS[currentType].steps.length - 1) { currentStep++; renderModal(); } }
+function prevStep() { if (currentStep > 0) { currentStep--; renderModal(); } }
+function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (document.getElementById('lightbox').classList.contains('open')) closeLightbox(); else closeModal(); } });
+function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 </script>
 </body>
 </html>
