@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>사은품 · 품고 업무 가이드</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df; --border-hover: #c8c6c0;
+    --text-primary: #1a1a18; --text-secondary: #5e5d58; --radius-lg: 16px;
+  }
+  body { background: var(--bg); font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; padding: 2rem 1rem; }
+  .topbar { max-width: 960px; width: 100%; margin: 0 auto 2.5rem; display: flex; align-items: center; gap: 12px; }
+  .topbar a { display: flex; align-items: center; }
+  .topbar img { height: 28px; display: block; }
+  .breadcrumb { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
+  .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--text-primary); }
+  .breadcrumb span { color: #c8c6c0; }
+  .page { max-width: 960px; width: 100%; margin: 0 auto; }
+  .header { margin-bottom: 2rem; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -.02em; margin-bottom: 6px; }
+  .header p { font-size: 14px; color: var(--text-secondary); }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem 1rem 1.35rem; cursor: pointer; text-decoration: none; color: inherit; display: flex; flex-direction: column; align-items: center; gap: 10px; transition: border-color .15s, box-shadow .15s, transform .12s; position: relative; overflow: hidden; }
+  .card:hover { border-color: var(--border-hover); box-shadow: 0 4px 24px rgba(0,0,0,.07); transform: translateY(-2px); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: var(--radius-lg) var(--radius-lg) 0 0; background: #0F6E56; }
+  .card-title { font-size: 14px; font-weight: 700; text-align: center; }
+  .card-sub { font-size: 11px; color: var(--text-secondary); text-align: center; }
+  @media (max-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
+    <div class="breadcrumb">
+      <span>›</span><a href="../index.html">업무 가이드</a>
+      <span>›</span><span style="color: var(--text-primary); font-weight: 600;">사은품</span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="header">
+      <h1>🎁 사은품</h1>
+      <p>사은품 유형을 선택해주세요</p>
+    </div>
+    <div class="grid">
+      <a class="card" href="gift-all.html">
+        <div class="card-title">전체 대상 증정</div>
+        <div class="card-sub">모든 주문에 동봉</div>
+      </a>
+      <a class="card" href="gift-amount.html">
+        <div class="card-title">결제 금액 기준</div>
+        <div class="card-sub">금액 초과 시 증정</div>
+      </a>
+      <a class="card" href="gift-qty.html">
+        <div class="card-title">상품 수량 기준</div>
+        <div class="card-sub">수량 충족 시 증정</div>
+      </a>
+      <a class="card" href="gift-option.html">
+        <div class="card-title">옵션 수량 기준</div>
+        <div class="card-sub">특정 옵션 구매 시</div>
+      </a>
+      <a class="card" href="gift-sku.html">
+        <div class="card-title">SKU 수량 기준</div>
+        <div class="card-sub">특정 SKU 구매 시</div>
+      </a>
+      <a class="card" href="gift-first.html">
+        <div class="card-title">최초 주문 기준</div>
+        <div class="card-sub">첫 구매 고객 대상</div>
+      </a>
+      <a class="card" href="gift-random.html">
+        <div class="card-title">랜덤 사은품</div>
+        <div class="card-sub">무작위 증정</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
