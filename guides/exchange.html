@@ -7,11 +7,12 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df;
+    --bg: #f7f7f5; --surface: #ffffff; --border: #e4e3df; --border-hover: #c8c6c0;
     --text-primary: #1a1a18; --text-secondary: #5e5d58; --text-muted: #9e9c96;
     --accent: #993556; --accent-light: #FBEAF0; --accent-border: #f0a0bc;
     --amber-light: #FAEEDA; --amber-border: #f3cc8a; --amber-text: #854F0B;
     --green-light: #E1F5EE; --green-border: #6DD9B0; --green-text: #0F6E56;
+    --blue-light: #eff4ff; --blue-border: #bfcffd;
     --radius: 10px; --radius-lg: 16px;
   }
   body { background: var(--bg); font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; color: var(--text-primary); min-height: 100vh; display: flex; flex-direction: column; padding: 2rem 1rem 4rem; }
@@ -21,18 +22,16 @@
   .breadcrumb { font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 6px; }
   .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
   .breadcrumb a:hover { color: var(--text-primary); }
-  .breadcrumb span.sep { color: #c8c6c0; }
+  .breadcrumb .sep { color: #c8c6c0; }
   .content { max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
   .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
   .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
   .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
   .section { display: flex; flex-direction: column; gap: 16px; }
-  .section-title { font-size: 18px; font-weight: 700; letter-spacing: -.01em; display: flex; align-items: center; gap: 8px; }
+  .section-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
   .section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; border-radius: 2px; background: var(--accent); flex-shrink: 0; }
   .callout { border-radius: var(--radius); padding: 14px 16px; font-size: 13.5px; line-height: 1.7; display: flex; gap: 10px; align-items: flex-start; }
-  .callout.info    { background: var(--accent-light); border: 1px solid var(--accent-border); color: var(--accent); }
   .callout.warning { background: var(--amber-light); border: 1px solid var(--amber-border); color: var(--amber-text); }
-  .callout.success { background: var(--green-light); border: 1px solid var(--green-border); color: var(--green-text); }
   .callout .icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
   .callout strong { font-weight: 700; }
   .desc { font-size: 14.5px; line-height: 1.8; color: var(--text-secondary); }
@@ -41,14 +40,14 @@
   .prep-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .prep-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
   .prep-item-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
-  .process-list { display: flex; flex-direction: column; gap: 28px; }
-  .process-step { display: flex; flex-direction: column; gap: 10px; }
-  .step-header { display: flex; align-items: center; gap: 10px; }
-  .step-badge { background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; letter-spacing: .04em; flex-shrink: 0; }
-  .step-title { font-size: 15px; font-weight: 700; }
-  .step-desc { font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; padding-left: 4px; }
-  .step-img { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; height: 200px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); overflow: hidden; }
   .divider { border: none; border-top: 1px solid var(--border); }
+  .process-btn-group { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .btn-process { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 1.25rem 1rem; border-radius: var(--radius-lg); border: 1.5px solid; cursor: pointer; font-family: inherit; transition: transform .12s, box-shadow .15s; }
+  .btn-process:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,.08); }
+  .btn-process.c1 { background: var(--accent-light); border-color: var(--accent-border); color: var(--accent); }
+  .btn-process.c2 { background: var(--amber-light); border-color: var(--amber-border); color: var(--amber-text); }
+  .btn-process.c3 { background: var(--green-light); border-color: var(--green-border); color: var(--green-text); }
+  .btn-process-title { font-size: 13.5px; font-weight: 700; text-align: center; }
   .faq-list { display: flex; flex-direction: column; gap: 8px; }
   .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
   .faq-question { width: 100%; background: none; border: none; padding: 15px 16px; text-align: left; font-size: 14px; font-weight: 600; font-family: inherit; color: var(--text-primary); cursor: pointer; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -57,153 +56,218 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-answer { display: none; padding: 13px 16px 15px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; border-top: 1px solid var(--border); }
   .faq-item.open .faq-answer { display: block; }
-  @media (max-width: 640px) { .page-title h1 { font-size: 22px; } }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
+  .modal-overlay.open { display: flex; }
+  .modal { background: var(--surface); border-radius: 20px; width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
+  .modal-header { padding: 18px 24px 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-header-left { display: flex; flex-direction: column; gap: 3px; }
+  .modal-type-label { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .modal-type-label.c1 { color: var(--accent); }
+  .modal-type-label.c2 { color: var(--amber-text); }
+  .modal-type-label.c3 { color: var(--green-text); }
+  .modal-title { font-size: 17px; font-weight: 700; }
+  .modal-close { width: 34px; height: 34px; border-radius: 8px; border: 1px solid var(--border); background: none; cursor: pointer; font-size: 18px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .modal-close:hover { background: var(--bg); color: var(--text-primary); }
+  .modal-body { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 18px; }
+  .step-dots { display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .step-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); transition: background .2s, transform .2s; }
+  .step-dot.active { transform: scale(1.4); }
+  .step-dot.active.c1 { background: var(--accent); }
+  .step-dot.active.c2 { background: var(--amber-text); }
+  .step-dot.active.c3 { background: var(--green-text); }
+  .modal-img-wrap { width: 100%; border-radius: var(--radius); border: 1px solid var(--border); background: #e8e7e3; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); cursor: zoom-in; flex-shrink: 0; aspect-ratio: 16/9; }
+  .modal-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .modal-step-info { display: flex; flex-direction: column; gap: 10px; }
+  .modal-badge { display: inline-flex; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: .04em; width: fit-content; }
+  .modal-badge.c1 { background: var(--accent); color: #fff; }
+  .modal-badge.c2 { background: var(--amber-text); color: #fff; }
+  .modal-badge.c3 { background: var(--green-text); color: #fff; }
+  .modal-step-title { font-size: 17px; font-weight: 700; }
+  .modal-step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.75; }
+  .modal-options { display: flex; gap: 8px; }
+  .modal-option-item { flex: 1; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+  .modal-option-label { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
+  .modal-option-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+  .modal-notes { display: flex; flex-direction: column; gap: 6px; }
+  .modal-note-item { background: var(--blue-light); border: 1px solid var(--blue-border); border-radius: 8px; padding: 10px 12px; }
+  .modal-note-label { font-size: 12px; font-weight: 700; color: #1e3a8a; margin-bottom: 3px; }
+  .modal-note-desc { font-size: 12px; color: #1e3a8a; line-height: 1.55; opacity: .85; }
+  .modal-footer { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+  .modal-counter { font-size: 13px; color: var(--text-muted); font-weight: 600; min-width: 50px; text-align: center; }
+  .btn-nav { display: flex; align-items: center; gap: 6px; padding: 9px 20px; border-radius: 8px; font-size: 13px; font-weight: 600; border: 1.5px solid var(--border); background: var(--surface); cursor: pointer; font-family: inherit; color: var(--text-primary); transition: all .15s; }
+  .btn-nav:hover:not(:disabled) { border-color: var(--border-hover); background: var(--bg); }
+  .btn-nav:disabled { opacity: .35; cursor: not-allowed; }
+  .btn-nav.primary.c1 { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-nav.primary.c2 { background: var(--amber-text); color: #fff; border-color: var(--amber-text); }
+  .btn-nav.primary.c3 { background: var(--green-text); color: #fff; border-color: var(--green-text); }
+  .btn-nav.primary:hover:not(:disabled) { filter: brightness(.9); }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.92); z-index: 2000; align-items: center; justify-content: center; padding: 1rem; cursor: zoom-out; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; pointer-events: none; }
+  .lightbox-close { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lightbox-close:hover { background: rgba(255,255,255,.25); }
+  @media (max-width: 580px) { .process-btn-group { grid-template-columns: 1fr; } .page-title h1 { font-size: 22px; } .modal-options { flex-direction: column; } .modal { height: 95vh; border-radius: 14px; } }
 </style>
 </head>
 <body>
-  <div class="topbar">
-    <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
-    <div class="breadcrumb">
-      <span class="sep">›</span><a href="../index.html">업무 가이드</a>
-      <span class="sep">›</span><span style="color: var(--text-primary); font-weight: 600;">교환</span>
+<div class="topbar">
+  <a href="../index.html"><img src="https://raw.githubusercontent.com/poom-go/guide_naver/main/Primary%20Logo.png" alt="품고 로고" /></a>
+  <div class="breadcrumb">
+    <span class="sep">›</span><a href="../index.html">업무 가이드</a>
+    <span class="sep">›</span><span style="color:var(--text-primary);font-weight:600">교환</span>
+  </div>
+</div>
+
+<div class="content">
+  <div class="page-title">
+    <div class="label">Exchange</div>
+    <h1>교환</h1>
+  </div>
+
+  <div class="section">
+    <div class="section-title">기능 개요</div>
+    <p class="desc">교환은 고객이 수령한 상품을 반품하고 <strong>동일 또는 다른 옵션의 상품으로 재출고</strong>하는 프로세스입니다.<br>교환 접수, 회수 상품 검수, 교환 출고 세 단계로 진행됩니다.</p>
+  </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="callout warning">
+      <span class="icon">⚠️</span>
+      <div>교환 처리 시 <strong>회수 송장과 출고 송장</strong>을 혼동하지 않도록 주의합니다.</div>
+    </div>
+    <div class="section-title">처리 전 준비사항</div>
+    <div class="prep-list">
+      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">교환 승인 및 처리 방식 확인</div><div class="prep-item-desc">WMS에서 교환 승인 여부를 확인합니다. 선출고 방식인지 검수 후 출고 방식인지 고객사 정책을 확인합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">교환 상품 재고 확인</div><div class="prep-item-desc">고객이 원하는 교환 상품(옵션, 사이즈 등)의 재고가 충분한지 사전 확인합니다. 재고 부족 시 고객사에 즉시 안내합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">회수 송장 발행 확인</div><div class="prep-item-desc">고객에게 회수용 반품 송장이 정상 발행되었는지 확인합니다. 미발행 건은 고객사를 통해 발행 후 진행합니다.</div></div></div>
     </div>
   </div>
 
-  <div class="content">
+  <hr class="divider" />
 
-    <div class="page-title">
-      <div class="label">Exchange</div>
-      <h1>교환</h1>
-    </div>
-
-    <div class="section">
-      <div class="callout info">
-        <span class="icon">ℹ️</span>
-        <div>교환은 고객이 수령한 상품을 반품하고 <strong>동일 또는 다른 옵션의 상품으로 재출고</strong>하는 프로세스입니다. 회수와 재출고가 동시에 진행됩니다.</div>
-      </div>
-      <div class="section-title">기능 개요</div>
-      <p class="desc">교환 요청 접수 시 기존 상품 회수와 신규 상품 출고가 동시에 진행됩니다. 회수 상품 검수 완료 후 교환 상품이 출고되는 방식과, 교환 상품을 먼저 출고하는 선출고 방식으로 구분됩니다. 처리 방식은 고객사 정책에 따라 달라지므로 사전에 확인이 필요합니다.</p>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout warning">
-        <span class="icon">⚠️</span>
-        <div>교환 처리 시 <strong>회수 송장과 출고 송장</strong>을 혼동하지 않도록 주의합니다.</div>
-      </div>
-      <div class="section-title">처리 전 준비사항</div>
-      <div class="prep-list">
-        <div class="prep-item">
-          <div class="prep-num">1</div>
-          <div>
-            <div class="prep-item-title">교환 승인 및 처리 방식 확인</div>
-            <div class="prep-item-desc">WMS에서 교환 승인 여부를 확인합니다. 선출고 방식인지 검수 후 출고 방식인지 고객사 정책을 확인합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">2</div>
-          <div>
-            <div class="prep-item-title">교환 상품 재고 확인</div>
-            <div class="prep-item-desc">고객이 원하는 교환 상품(옵션, 사이즈 등)의 재고가 충분한지 사전 확인합니다. 재고 부족 시 고객사에 즉시 안내합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">3</div>
-          <div>
-            <div class="prep-item-title">회수 송장 발행 확인</div>
-            <div class="prep-item-desc">고객에게 회수용 반품 송장이 정상 발행되었는지 확인합니다. 미발행 건은 고객사를 통해 발행 후 진행합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">4</div>
-          <div>
-            <div class="prep-item-title">교환 출고 정보 확인</div>
-            <div class="prep-item-desc">교환 출고 상품명, 옵션, 수량, 배송지 정보를 WMS에서 재확인합니다. 기존 주문 정보와 다를 경우 고객사에 확인합니다.</div>
-          </div>
-        </div>
-        <div class="prep-item">
-          <div class="prep-num">5</div>
-          <div>
-            <div class="prep-item-title">포장재 준비</div>
-            <div class="prep-item-desc">교환 출고 상품에 맞는 포장재를 준비합니다. 사은품 동봉 여부도 기존 주문과 동일하게 적용합니다.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="callout success">
-        <span class="icon">✅</span>
-        <div>회수 입고와 교환 출고 모두 WMS에서 처리 완료해야 재고가 정확히 반영됩니다.</div>
-      </div>
+  <div class="section">
+    <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
       <div class="section-title">처리 과정</div>
-      <div class="process-list">
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 1</span><span class="step-title">교환 요청 확인 및 방식 결정</span></div>
-          <p class="step-desc">WMS에서 교환 요청 건을 확인하고 선출고 또는 검수 후 출고 방식을 결정합니다. 교환 상품 재고 여부를 재확인합니다.</p>
-          <div class="step-img">📷 WMS 교환 요청 확인 화면</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 2</span><span class="step-title">교환 상품 피킹 및 포장</span></div>
-          <p class="step-desc">교환 출고할 상품을 피킹하고 포장합니다. 기존 주문과 동일한 포장 기준을 적용하며, 사은품 동봉 여부도 확인합니다.</p>
-          <div class="step-img">📷 교환 상품 피킹·포장 사진</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 3</span><span class="step-title">교환 출고 송장 발행 및 출고</span></div>
-          <p class="step-desc">WMS에서 교환 출고 송장을 발행하여 부착합니다. 택배사 집하 구역에 적재하고 출고 처리합니다.</p>
-          <div class="step-img">📷 교환 출고 송장 부착 사진</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 4</span><span class="step-title">회수 상품 수령 및 검수</span></div>
-          <p class="step-desc">반품 택배로 회수된 기존 상품을 수령하고 검수합니다. 양품/불량 분류 후 WMS에 반품 입고 처리합니다.</p>
-          <div class="step-img">📷 회수 상품 검수 사진</div>
-        </div>
-        <div class="process-step">
-          <div class="step-header"><span class="step-badge">STEP 5</span><span class="step-title">WMS 교환 처리 완료</span></div>
-          <p class="step-desc">교환 출고와 회수 입고가 모두 완료되면 WMS에서 교환 건 처리 완료 상태로 업데이트합니다. 고객사에 처리 결과를 안내합니다.</p>
-          <div class="step-img">📷 WMS 교환 완료 처리 화면</div>
-        </div>
-      </div>
+      <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
-
-    <hr class="divider" />
-
-    <div class="section">
-      <div class="section-title">자주 하는 질문</div>
-      <div class="faq-list">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">교환 상품 재고가 없어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">즉시 고객사에 재고 부족 사실을 안내합니다. 처리 방향(환불 전환, 입고 후 출고 대기 등)을 고객사와 협의 후 진행합니다. WMS에 보류 상태로 등록하고 재고 입고 시 처리합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">선출고 후 회수 상품이 불량으로 확인됐어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">고객사에 불량 내용과 사진을 즉시 공유합니다. 불량 책임 소재에 따라 추가 비용(배송비, 상품비) 처리 방향을 고객사와 협의합니다. WMS에 불량 입고 처리 후 결과를 기록합니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">회수 송장이 없는 상품이 들어왔어요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">WMS에서 해당 송장 번호로 교환 건을 조회합니다. 조회되지 않으면 고객사에 확인 요청 후 보류 처리합니다. 임의로 교환 처리하지 않습니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">교환 출고가 이미 됐는데 고객이 교환을 취소하고 싶다고 해요.<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">출고 완료 건은 임의로 취소할 수 없습니다. 고객사 담당자에게 상황을 안내하고, 출고된 상품을 다시 반품 처리하는 방향으로 진행합니다. 추가 배송비 처리는 고객사 정책을 따릅니다.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">회수 상품과 교환 상품 SKU가 다른 경우 어떻게 하나요?<span class="faq-arrow">▾</span></button>
-          <div class="faq-answer">이종 SKU 교환의 경우 WMS에서 각각 반품 입고와 신규 출고로 분리하여 처리합니다. 재고 차감 및 증가가 정확히 반영되는지 처리 후 재고 현황을 재확인합니다.</div>
-        </div>
-      </div>
+    <div class="process-btn-group">
+      <button class="btn-process c1" onclick="openModal('apply')"><span class="btn-process-title">교환 접수</span></button>
+      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">회수 상품 검수</span></button>
+      <button class="btn-process c3" onclick="openModal('ship')"><span class="btn-process-title">교환 출고</span></button>
     </div>
-
   </div>
+
+  <hr class="divider" />
+
+  <div class="section">
+    <div class="section-title">자주 하는 질문</div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">교환 상품 재고가 없어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">즉시 고객사에 재고 부족 사실을 안내합니다. 처리 방향(환불 전환, 입고 후 출고 대기 등)을 고객사와 협의 후 진행합니다. WMS에 보류 상태로 등록하고 재고 입고 시 처리합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">선출고 후 회수 상품이 불량으로 확인됐어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">고객사에 불량 내용과 사진을 즉시 공유합니다. 불량 책임 소재에 따라 추가 비용 처리 방향을 고객사와 협의합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">회수 송장이 없는 상품이 들어왔어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">WMS에서 해당 송장 번호로 교환 건을 조회합니다. 조회되지 않으면 고객사에 확인 요청 후 보류 처리합니다. 임의로 교환 처리하지 않습니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">교환 출고가 이미 됐는데 고객이 취소하고 싶다고 해요.<span class="faq-arrow">▾</span></button><div class="faq-answer">출고 완료 건은 임의로 취소할 수 없습니다. 고객사 담당자에게 상황을 안내하고 출고된 상품을 다시 반품 처리하는 방향으로 진행합니다.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 모달 -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-left">
+        <span class="modal-type-label" id="modalTypeLabel"></span>
+        <span class="modal-title" id="modalTitle"></span>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="step-dots" id="stepDots"></div>
+      <div class="modal-step-info">
+        <span class="modal-badge" id="modalBadge"></span>
+        <div class="modal-step-title" id="modalStepTitle"></div>
+        <div class="modal-step-desc" id="modalStepDesc"></div>
+        <div id="modalOptions" class="modal-options" style="display:none;"></div>
+        <div id="modalNotes" class="modal-notes" style="display:none;"></div>
+        <div id="modalWarn" class="callout warning" style="display:none;"><span class="icon">⚠️</span><span id="modalWarnText"></span></div>
+      </div>
+      <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-nav" id="btnPrev" onclick="prevStep()">← 이전</button>
+      <span class="modal-counter" id="modalCounter"></span>
+      <button class="btn-nav primary" id="btnNext" onclick="nextStep()">다음 →</button>
+    </div>
+  </div>
+</div>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightboxImg" src="" alt="" />
+</div>
 
 <script>
-function toggleFaq(btn) {
-  const item = btn.closest('.faq-item');
-  item.classList.toggle('open');
+const STEPS = {
+  apply: {
+    label: 'Exchange · Apply', title: '교환 접수', color: 'c1',
+    steps: [
+      { badge:'STEP 1', title:'교환 접수 메뉴 접속', desc:'품고 나우 > 교환관리 > 교환 접수 > 등록 클릭합니다.', img:'../images/exchange-apply1.png' },
+      { badge:'STEP 2', title:'원 주문 조회 및 교환 상품 선택', desc:'원 주문번호를 조회하여 교환 대상 상품을 선택합니다.<br>교환할 상품의 옵션(사이즈, 색상 등)을 선택합니다.', img:'../images/exchange-apply2.png' },
+      { badge:'STEP 3', title:'처리 방식 선택', desc:'교환 처리 방식을 선택합니다.', options:[{label:'선출고', desc:'교환 상품을 먼저 출고 후 회수'},{label:'검수 후 출고', desc:'회수 확인 후 교환 상품 출고'}], img:'../images/exchange-apply3.png' },
+      { badge:'STEP 4', title:'접수 완료 확인', desc:'교환 접수 목록에서 상태가 접수완료로 변경되었는지 확인합니다.', img:'../images/exchange-apply4.png' },
+    ]
+  },
+  inspect: {
+    label: 'Exchange · Inspect', title: '회수 상품 검수', color: 'c2',
+    steps: [
+      { badge:'STEP 1', title:'회수 택배 수령', desc:'회수 택배가 도착하면 송장 번호를 스캔하여 WMS에서 해당 교환 건을 확인합니다.', img:'../images/exchange-inspect1.png' },
+      { badge:'STEP 2', title:'개봉 및 상품 상태 확인', desc:'박스를 개봉하여 상품 구성품, 사용 흔적, 파손 여부를 확인합니다.<br>상품 상태를 사진으로 기록합니다.', img:'../images/exchange-inspect2.png' },
+      { badge:'STEP 3', title:'WMS 검수 결과 등록', desc:'검수 결과(양품 / 불량)를 WMS에 등록합니다.<br>불량 시 고객사에 즉시 사진과 함께 안내합니다.', img:'../images/exchange-inspect3.png' },
+    ]
+  },
+  ship: {
+    label: 'Exchange · Ship', title: '교환 출고', color: 'c3',
+    steps: [
+      { badge:'STEP 1', title:'교환 출고 대상 확인', desc:'WMS에서 출고 대기 중인 교환 건을 확인합니다.<br>교환 상품 SKU, 옵션, 수량을 재확인합니다.', img:'../images/exchange-ship1.png' },
+      { badge:'STEP 2', title:'교환 상품 피킹 및 포장', desc:'교환 출고할 상품을 피킹하고 포장합니다.<br>사은품 동봉 여부는 원 주문 기준을 따릅니다.', img:'../images/exchange-ship2.png' },
+      { badge:'STEP 3', title:'송장 발행 및 출고', desc:'WMS에서 교환 출고 송장을 발행하여 부착합니다.<br>택배사 집하 구역에 적재 후 출고 처리합니다.', img:'../images/exchange-ship3.png' },
+      { badge:'STEP 4', title:'WMS 교환 처리 완료', desc:'교환 출고와 회수 입고가 모두 완료되면 WMS에서 교환 건 처리 완료 상태로 업데이트합니다.<br>고객사에 처리 결과를 안내합니다.', img:'../images/exchange-ship4.png' },
+    ]
+  }
+};
+let currentType = null; let currentStep = 0;
+function openModal(type) { currentType = type; currentStep = 0; renderModal(); document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
+function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
+function renderModal() {
+  const data = STEPS[currentType]; const step = data.steps[currentStep]; const color = data.color; const total = data.steps.length;
+  document.getElementById('modalTypeLabel').textContent = data.label;
+  document.getElementById('modalTypeLabel').className = 'modal-type-label ' + color;
+  document.getElementById('modalTitle').textContent = data.title;
+  document.getElementById('stepDots').innerHTML = data.steps.map((_, i) => `<div class="step-dot ${i === currentStep ? 'active ' + color : ''}"></div>`).join('');
+  const imgs = Array.isArray(step.img) ? step.img : [step.img];
+  document.getElementById('modalImgs').innerHTML = imgs.map(src => `<div class="modal-img-wrap" onclick="openLightbox('${src}')"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`).join('');
+  document.getElementById('modalBadge').textContent = step.badge;
+  document.getElementById('modalBadge').className = 'modal-badge ' + color;
+  document.getElementById('modalStepTitle').textContent = step.title;
+  document.getElementById('modalStepDesc').innerHTML = step.desc;
+  const optionsEl = document.getElementById('modalOptions');
+  if (step.options?.length) { optionsEl.style.display = 'flex'; optionsEl.innerHTML = step.options.map(o => `<div class="modal-option-item"><div class="modal-option-label">${o.label}</div><div class="modal-option-desc">${o.desc}</div></div>`).join(''); } else { optionsEl.style.display = 'none'; optionsEl.innerHTML = ''; }
+  const notesEl = document.getElementById('modalNotes');
+  if (step.notes?.length) { notesEl.style.display = 'flex'; notesEl.innerHTML = step.notes.map(n => `<div class="modal-note-item"><div class="modal-note-label">${n.label}</div><div class="modal-note-desc">${n.desc}</div></div>`).join(''); } else { notesEl.style.display = 'none'; notesEl.innerHTML = ''; }
+  const warnEl = document.getElementById('modalWarn');
+  if (step.warn) { warnEl.style.display = 'flex'; document.getElementById('modalWarnText').innerHTML = step.warn; } else { warnEl.style.display = 'none'; }
+  document.getElementById('modalCounter').textContent = `${currentStep + 1} / ${total}`;
+  const btnNext = document.getElementById('btnNext');
+  btnNext.className = 'btn-nav primary ' + color;
+  if (currentStep === total - 1) { btnNext.textContent = '완료'; btnNext.onclick = closeModal; } else { btnNext.textContent = '다음 →'; btnNext.onclick = nextStep; }
+  document.getElementById('btnPrev').disabled = currentStep === 0;
 }
+function nextStep() { if (currentStep < STEPS[currentType].steps.length - 1) { currentStep++; renderModal(); } }
+function prevStep() { if (currentStep > 0) { currentStep--; renderModal(); } }
+function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (document.getElementById('lightbox').classList.contains('open')) closeLightbox(); else closeModal(); } });
+function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
 </script>
 </body>
 </html>
