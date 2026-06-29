@@ -147,7 +147,7 @@
     </div>
     <div class="process-btn-group">
       <button class="btn-process c1" onclick="openModal('apply')"><span class="btn-process-title">재발송 접수하기</span></button>
-      <button class="btn-process c3" onclick="openModal('check')"><span class="btn-process-title">재발송 요청 취소하기</span></button>
+      <button class="btn-process c3" onclick="openModal('ship')"><span class="btn-process-title">재발송 요청 취소하기</span></button>
     </div>
   </div>
 
@@ -156,9 +156,9 @@
   <div class="section">
     <div class="section-title">자주 하는 질문</div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 요청을 했으나 실패로 떠요.<span class="faq-arrow">▾</span></button><div class="faq-answer">현재 출고 가능한재고가 0개이거나, 또는 진열공간에 재고가 없을 시 재발송 요청이 불가합니다. 진열공간 재고 부족의 경우라면 물류지원센터로 문의해주세요.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 요청을 했으나 실패로 떠요.<span class="faq-arrow">▾</span></button><div class="faq-answer">현재 출고 가능한 재고가 0개이거나, 또는 진열공간에 재고가 없을 시 재발송 요청이 불가합니다. 진열공간 재고 부족의 경우라면 물류지원센터로 문의해주세요.</div></div>
       <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 요청 후 품목 수정이 필요해요.<span class="faq-arrow">▾</span></button><div class="faq-answer">기본적으로 CS로 발송하는 주문건은 주문 수정이 불가해요. 기존 접수건 취소 후 다시 재발송 요청으로 진행해야합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 시 포장관련된 요청사항이 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">발송정보 내 메모값에 기재해주세요. 예) 파손으로 인한 재발송건으로 꼼꼼한 완충 부탁드립니다. 등 </div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 시 포장관련된 요청사항이 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">발송정보 내 메모값에 기재해주세요. 예) 파손으로 인한 재발송건으로 꼼꼼한 완충 부탁드립니다. 등</div></div>
       <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">배송 중 파손 재발송인데 재고가 없어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">품고에 재고가 없는 경우 출고가 불가합니다. 품고에서 발송된건이 택배사 사고 처리 확정인 경우라면 결제금액/1.1에 대한 금액을 변상 받으므로 자사 창고에서 출고 해주셔야합니다.</div></div>
     </div>
   </div>
@@ -211,17 +211,17 @@ const STEPS = {
       { badge:'STEP 6', title:'재발송 요청하기 - 2', desc:'재발송 필요한 CS 건 체크 > 오른쪽 재발송 > 재발송 클릭 > 확인 클릭', img:'../images/pd6.png' },
       { badge:'STEP 7', title:'재발송 요청 확인', desc:'재배송상태가 재발송 요청으로 변경되어야만 정상적으로 재발송 접수가 완료됩니다.', img:'../images/pd7.png' },
       { badge:'STEP 8', title:'재발송 송장 확인', desc:'재배송요청된 주문번호 클릭 > 조회 > CS로 생성된 송장번호로 확인 가능합니다.', img:'../images/pd8.png' },
-
     ]
   },
   ship: {
     label: '', title: '재발송 취소하기', color: 'c3',
     steps: [
       { badge:'STEP 1', title:'재발송 접수 메뉴 접속', desc:'품고 나우 > CS > 조회 > 키워드 선택 후 검색어를 입력하여 조회 후 원주문번호를 클릭합니다.', img:'../images/pd9.png' },
-      { badge:'STEP 2', title:'재발송 송장 발행 및 부착', desc:'① 조회 클릭 > ② 상세 클릭> ③ 송장 취소를 클릭해주세요.', warn:'할당됨/포장중 상태에서만 송장 취소가 가능합니다.' img:'../images/pd10.png' },
+      { badge:'STEP 2', title:'재발송 송장 발행 및 부착', desc:'① 조회 클릭 > ② 상세 클릭 > ③ 송장 취소를 클릭해주세요.', warn:'할당됨/포장중 상태에서만 송장 취소가 가능합니다.', img:'../images/pd10.png' },
     ]
   }
 };
+
 let currentType = null; let currentStep = 0;
 function openModal(type) { currentType = type; currentStep = 0; renderModal(); document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
