@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>반품 · 품고 시스템 가이드</title>
+<title>반품  가이드</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -136,6 +136,21 @@
     <div class="prep-list">
       <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">주문 상태 확인</div><div class="prep-item-desc">구매자의 주문상태가 반품요청이 맞는지 확인해주세요.</div></div></div>
       <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">출고 센터 확인</div><div class="prep-item-desc">품고에서 출고한 주문건만 조회 가능하며 처리 가능합니다.</div></div></div>
+<div class="prep-item-desc">
+  <table style="width:100%;border-collapse:collapse;font-size:12px;">
+    <thead>
+      <tr style="background:var(--bg);">
+        <th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼</th>
+        <th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">원주문번호</td><td style="padding:7px 10px;border:1px solid var(--border);">상품주문번호가 아닌 전체주문번호</td></tr>
+      <tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">원송장번호</td><td style="padding:7px 10px;border:1px solid var(--border);">최초 출고된 주문건의 송장번호</td></tr>
+      <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">회수송장번호</td><td style="padding:7px 10px;border:1px solid var(--border);">회수가 진행된 송장번호</td></tr>
+    </tbody>
+  </table>
+</div>     
     </div>
   </div>
 
@@ -147,8 +162,8 @@
       <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
     <div class="process-btn-group">
-      <button class="btn-process c1" onclick="openModal('manual')"><span class="btn-process-title">반품 검품 결과 확인</span></button>
-      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">반품 수기 접수</span></button>
+      <button class="btn-process c1" onclick="openModal('manual')"><span class="btn-process-title">반품 수기 접수</span></button>
+      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">반품 검품 결과 확인</span></button>
       <button class="btn-process c3" onclick="openModal('export')"><span class="btn-process-title">반품 반출 요청</span></button>
     </div>
   </div>
@@ -207,30 +222,38 @@
 <script>
 const STEPS = {
   manual: {
-    label: 'Returns · Manual', title: '반품 검품 결과 확인', color: 'c1',
+    label: 'Returns · Manual', title: '반품 수기 접수', color: 'c1',
     steps: [
-      { badge:'STEP 1', title:'반품 접수 메뉴 접속', desc:'품고 나우 > 반품관리 > 반품 접수 > 등록 클릭합니다.', img:'../images/return-manual1.png' },
-      { badge:'STEP 2', title:'주문 정보 및 반품 사유 입력', desc:'원 주문번호를 조회하여 반품 대상 상품을 선택합니다.<br>반품 사유(단순변심 / 오배송 / 상품불량)를 선택합니다.', img:'../images/return-manual2.png' },
-      { badge:'STEP 3', title:'반품 수량 및 수거 방법 선택', desc:'반품 수량을 입력하고 수거 방법(택배 / 직접 방문)을 선택합니다.', img:'../images/return-manual3.png' },
-      { badge:'STEP 4', title:'접수 완료 확인', desc:'등록 후 반품 접수 목록에서 상태가 접수완료로 변경되었는지 확인합니다.', img:'../images/return-manual4.png' },
+      { badge:'STEP 1', title:'반품 접수 메뉴 접속', desc:'품고 나우 > CS > 조회 > CS 등록 클릭합니다.', img:'../images/return1.png' },
+      { badge:'STEP 2', title:'.발송 정보 불러오기', desc:'①CS 타입 반품 선택 > ② 발송정보 조회 클릭 > 상세검색 > 키워드 선택 후 검색어 입력 > 조회 > 회수 필요한 주문건 체크 후 선택', img:'../images/return2.png' },
+      { badge:'STEP 3', title:'전체 SKU 회수', desc:'전체 발송된 SKU 회수인 경우 상단 CS 등록을 클릭합니다.', img:'../images/return3.png' },
+      { badge:'STEP 4', title:'일부 SKU 회수', desc:'회수 SKU 중 회수가 불필요한 SKU 체크 후 삭제 후 CS 등록을 클릭합니다.', img:'../images/return4.png' },
+      { badge:'STEP 5', title:'회수 요청하기-1', desc:'품고 나우 > CS > 조회 > 반품탭 클릭 > 조회 ', img:'../images/return5.png' },
+      { badge:'STEP 6', title:'회수 요청하기-2', desc:'회수 필요한 CS 건 체크 > 오른쪽 회수 > 요청 > 배송 계약 선택 ( 이천 375 XFC(네이버) - 한진(NFA) 선택 > 저장 ', img:'../images/return6.png' },
+      { badge:'STEP 7', title:'회수 요청 확인', desc:'반품 상태가 회수 요청으로 변경되어야만 정상적으로 회수 접수가 완료된 상태입니다.', img:'../images/return7.png' },
+
     ]
   },
   inspect: {
     label: 'Returns · Inspection', title: '반품 검품 결과 확인', color: 'c2',
     steps: [
-      { badge:'STEP 1', title:'반품 입고 확인', desc:'반품 택배가 도착하면 송장 번호를 스캔하여 WMS에서 해당 반품 건을 확인합니다.<br>박스 외관 파손 여부를 먼저 확인하고 사진으로 기록합니다.', img:'../images/return-inspect1.png' },
-      { badge:'STEP 2', title:'개봉 및 내용물 검수', desc:'박스를 개봉하여 상품 구성품이 모두 있는지, 사용 흔적이 있는지 확인합니다.<br>상품 상태를 사진으로 기록합니다.', img:'../images/return-inspect2.png' },
-      { badge:'STEP 3', title:'양품 / 불량 분류', desc:'고객사 검수 기준에 따라 양품과 불량으로 분류합니다.<br>판단이 어려운 경우 고객사 담당자에게 사진을 전송하여 확인을 받습니다.', img:'../images/return-inspect3.png' },
-      { badge:'STEP 4', title:'WMS 검품 결과 등록', desc:'양품은 해당 SKU 로케이션에 입고 처리합니다.<br>불량품은 불량 전용 로케이션에 보관하고 WMS에 불량 결과를 등록합니다.', img:'../images/return-inspect4.png' },
+      { badge:'STEP 1', title:'CS 검색하기', desc:'품고 나우 > CS > 조회 > 키워드 검색을 통해 검색어를 입력 후 조회합니다.', img:'../images/re12.png' },
+      { badge:'STEP 2', title:'반품 상태 및 상세 검품 결과 보기', desc:'반품 상태 = 센터 검품완료,상세보기를 클릭하여 상세 검품결과를 확인합니다.', img:'../images/re13.png' },
+      { badge:'STEP 3', title:'회수 SKU별 검품 결과 확인', desc:'가장 하단 회수 SKU 별 검품 상태를 확인합니다.', img:'../images/re14.png' },
+      { badge:'STEP 4', title:'메모 확인', desc:'검품 시 특이사항은 상단 메모에 기재되어있습니다.', img:'../images/re15.png' },
+      { badge:'ESC', title:'그 외 기타 기능', desc:'① 검품 영상 확인하기 ② 기간 설정 없이 조회하는 방법', img:'../images/re16.png' },
+     
     ]
   },
   export: {
     label: 'Returns · Export', title: '반품 반출 요청', color: 'c3',
     steps: [
-      { badge:'STEP 1', title:'반품 반출 요청 메뉴 접속', desc:'품고 나우 > 반품관리 > 반출 요청 > 등록 클릭합니다.', img:'../images/return-export1.png' },
-      { badge:'STEP 2', title:'반출 대상 상품 선택', desc:'반출이 필요한 반품 재고를 검색하여 선택합니다.<br>반출 수량과 반출 사유를 입력합니다.', img:'../images/return-export2.png' },
-      { badge:'STEP 3', title:'반출 일자 및 방법 선택', desc:'반출 희망일자를 입력합니다.<br>반출 방법(택배 / 차량)을 선택합니다.', warn:'반출 가능일은 신청일 기준 3영업일 이후입니다.<br>임의 날짜 지정 시 출고가 제한될 수 있습니다.', img:'../images/return-export3.png' },
-      { badge:'STEP 4', title:'접수 완료 확인', desc:'등록 후 초안 상태에서는 출고가 불가합니다.<br>요청서 상단 접수를 꼭 클릭해주세요!', img:'../images/return-export4.png' },
+      { badge:'사전확인', title:'CS 상태 확인하기', desc:'품고 나우 > CS > 조회 시 상태가 완료인 CS건만 반출 가능하므로, 처리로 되어있는 건은 CS 완료로 상태를 변경합니다.', img:'../images/rre1.png' },
+      { badge:'STEP 1', title:'반출 대장 신청하기', desc:'품고 나우 > CS > 반출 대장 > 반출 요청 클릭', img:'../images/rre2.png' },
+      { badge:'STEP 2', title:'반출지 정보 입력', desc:'수취인,전화번호,우편번호,주소를 입력합니다.',img:'../images/rre3.png' },
+      { badge:'STEP 3', title:'반출 내역 추가', desc:'하단 ① 반출 내역 추가 클릭 > ② 조회 > 반출 필요한 CS건 체크 > 추가 클릭', img:'../images/rre4.png' },
+      { badge:'STEP 4', title:'반출 요청 하기', desc:'상단 요청을 클릭하면 반출 요청이 완료됩니다.',warn:'반출 대장 신청 후 네이버물류지원센터를 통해 반출 신청 내역을 전달해주세요.' img:'../images/rre4.png' },
+     
     ]
   }
 };
