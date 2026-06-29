@@ -171,8 +171,8 @@
       <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
     <div class="process-btn-group">
-      <button class="btn-process c1" onclick="openModal('manual')"><span class="btn-process-title">반품 수기 접수</span></button>
-      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">반품 검품 결과 확인</span></button>
+      <button class="btn-process c1" onclick="openModal('manual')"><span class="btn-process-title">반품 접수하기</span></button>
+      <button class="btn-process c2" onclick="openModal('inspect')"><span class="btn-process-title">반품 검품 결과 확인하기</span></button>
       <button class="btn-process c3" onclick="openModal('export')"><span class="btn-process-title">반품 반출 요청</span></button>
     </div>
   </div>
@@ -231,7 +231,7 @@
 <script>
 const STEPS = {
   manual: {
-    label: 'Returns · Manual', title: '반품 수기 접수', color: 'c1',
+    label: 'Returns · Manual', title: '반품 접수', color: 'c1',
     steps: [
       { badge:'STEP 1', title:'반품 접수 메뉴 접속', desc:'품고 나우 > CS > 조회 > CS 등록 클릭합니다.', img:'../images/return1.png' },
       { badge:'STEP 2', title:'발송 정보 불러오기', desc:'① CS 타입 반품 선택 > ② 발송정보 조회 클릭 > 상세검색 > 키워드 선택 후 검색어 입력 > 조회 > 회수 필요한 주문건 체크 후 선택', img:'../images/return2.png' },
