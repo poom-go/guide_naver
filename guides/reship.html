@@ -126,21 +126,15 @@
 
   <div class="section">
     <div class="section-title">기능 개요</div>
-    <p class="desc">재발송은 미배송, 오배송, 배송 중 파손 등의 사유로 <strong>동일 상품을 동일 고객에게 다시 출고</strong>하는 프로세스입니다.<br>재발송 접수, 사유 확인 및 처리, 재출고 세 단계로 진행됩니다.</p>
+    <p class="desc">재발송은 미배송, 오배송, 배송 중 파손 등의 사유로 <strong>동일 상품을 동일 고객에게 다시 출고</strong>하는 프로세스입니다.<br>출고 가능한 재고가 있어야만 출고가 가능하며, 재고가 없는 경우에는 재발송 접수가 불가합니다.</p>
   </div>
 
   <hr class="divider" />
 
   <div class="section">
-    <div class="callout warning">
-      <span class="icon">⚠️</span>
-      <div>재발송 전 <strong>원인 파악</strong>이 먼저입니다. 사유 확인 없이 재출고하면 동일 문제가 반복될 수 있습니다.</div>
-    </div>
     <div class="section-title">처리 전 준비사항</div>
     <div class="prep-list">
-      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">재발송 사유 확인</div><div class="prep-item-desc">미배송, 배송 중 파손, 오배송 중 어떤 사유인지 정확히 파악합니다. 사유에 따라 배송비 처리와 재발송 방식이 달라집니다.</div></div></div>
-      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">배송지 정보 재확인</div><div class="prep-item-desc">기존 주문의 배송지 정보에 오류가 있었다면 정확한 주소로 수정합니다. 고객에게 직접 연락하여 주소를 재확인하는 것을 권장합니다.</div></div></div>
-      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">재발송 상품 재고 및 승인 확인</div><div class="prep-item-desc">동일 SKU의 재고가 있는지 확인합니다. 재발송은 반드시 고객사 승인 후 진행합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">재고 확인</div><div class="prep-item-desc">재발송 해야하는 SKU의 출고 가능한 재고 수량을 확인해주세요.</div></div></div>
     </div>
   </div>
 
@@ -152,9 +146,8 @@
       <span style="font-size:12px;color:var(--text-muted);">처리 유형을 선택하면 단계별 과정을 확인할 수 있습니다.</span>
     </div>
     <div class="process-btn-group">
-      <button class="btn-process c1" onclick="openModal('apply')"><span class="btn-process-title">재발송 접수</span></button>
-      <button class="btn-process c2" onclick="openModal('check')"><span class="btn-process-title">사유 확인 및 처리</span></button>
-      <button class="btn-process c3" onclick="openModal('ship')"><span class="btn-process-title">재출고</span></button>
+      <button class="btn-process c1" onclick="openModal('apply')"><span class="btn-process-title">재발송 접수하기</span></button>
+      <button class="btn-process c3" onclick="openModal('check')"><span class="btn-process-title">재발송 요청 취소하기</span></button>
     </div>
   </div>
 
@@ -163,10 +156,10 @@
   <div class="section">
     <div class="section-title">자주 하는 질문</div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">원 주문 상품이 아직 반송 중인데 재발송을 먼저 해도 되나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">고객사 정책에 따라 다릅니다. 선재발송이 승인된 경우 진행 가능하지만, 재고 차감이 이중으로 발생할 수 있으므로 WMS 재고를 정확히 확인 후 진행합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 상품도 사은품을 동봉해야 하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">원칙적으로 원 주문과 동일하게 사은품을 동봉합니다. 고객사가 재발송 건에 대해 사은품 제외를 별도 안내한 경우 해당 지침을 따릅니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">동일 고객에게 두 번째 재발송 요청이 왔어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">반복 재발송은 고객사 담당자에게 먼저 보고합니다. 배송 주소 오류, 수취 거부 반복 등 근본 원인을 파악하고 해결 후 진행합니다. 고객사의 명시적인 승인 없이 임의로 처리하지 않습니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">배송 중 파손 재발송인데 재고가 없어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">고객사에 재고 부족 사실을 즉시 안내합니다. 처리 방향(환불, 유사 상품 대체, 입고 후 처리 대기 등)을 고객사와 협의합니다. WMS에 처리 보류 상태로 등록하고 고객사 결정을 기다립니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 요청을 했으나 실패로 떠요.<span class="faq-arrow">▾</span></button><div class="faq-answer">현재 출고 가능한재고가 0개이거나, 또는 진열공간에 재고가 없을 시 재발송 요청이 불가합니다. 진열공간 재고 부족의 경우라면 물류지원센터로 문의해주세요.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 요청 후 품목 수정이 필요해요.<span class="faq-arrow">▾</span></button><div class="faq-answer">기본적으로 CS로 발송하는 주문건은 주문 수정이 불가해요. 기존 접수건 취소 후 다시 재발송 요청으로 진행해야합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">재발송 시 포장관련된 요청사항이 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">발송정보 내 메모값에 기재해주세요. 예) 파손으로 인한 재발송건으로 꼼꼼한 완충 부탁드립니다. 등 </div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">배송 중 파손 재발송인데 재고가 없어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">품고에 재고가 없는 경우 출고가 불가합니다. 품고에서 발송된건이 택배사 사고 처리 확정인 경우라면 결제금액/1.1에 대한 금액을 변상 받으므로 자사 창고에서 출고 해주셔야합니다.</div></div>
     </div>
   </div>
 </div>
@@ -208,29 +201,24 @@
 <script>
 const STEPS = {
   apply: {
-    label: 'Resend · Apply', title: '재발송 접수', color: 'c1',
+    label: '', title: '재발송 접수하기', color: 'c1',
     steps: [
-      { badge:'STEP 1', title:'재발송 접수 메뉴 접속', desc:'품고 나우 > 출고관리 > 재발송 접수 > 등록 클릭합니다.', img:'../images/reship-apply1.png' },
-      { badge:'STEP 2', title:'원 주문 조회', desc:'재발송이 필요한 원 주문번호를 조회합니다.<br>주문 정보와 배송지가 정확한지 확인합니다.', img:'../images/reship-apply2.png' },
-      { badge:'STEP 3', title:'재발송 사유 및 배송지 입력', desc:'재발송 사유(미배송 / 오배송 / 파손)를 선택합니다.<br>수정된 배송지 정보가 있는 경우 반드시 업데이트합니다.', img:'../images/reship-apply3.png' },
-      { badge:'STEP 4', title:'접수 완료 확인', desc:'재발송 접수 목록에서 상태가 접수완료로 변경되었는지 확인합니다.', img:'../images/reship-apply4.png' },
-    ]
-  },
-  check: {
-    label: 'Resend · Check', title: '사유 확인 및 처리', color: 'c2',
-    steps: [
-      { badge:'STEP 1', title:'재발송 사유 상세 확인', desc:'접수된 재발송 건의 사유를 상세히 파악합니다.<br>미배송의 경우 택배사에 배송 현황을 확인합니다.', img:'../images/reship-check1.png' },
-      { badge:'STEP 2', title:'원 주문 상품 회수 여부 확인', desc:'원 상품이 반송 중이거나 창고로 회수될 예정인지 확인합니다.<br>회수 예정이라면 입고 후 재발송 여부를 검토합니다.', img:'../images/reship-check2.png' },
-      { badge:'STEP 3', title:'고객사 재발송 승인 확인', desc:'재발송 처리 전 고객사의 승인 여부를 최종 확인합니다.<br>승인 내용을 WMS 메모에 기록합니다.', img:'../images/reship-check3.png' },
+      { badge:'STEP 1', title:'재발송 접수 메뉴 접속', desc:'품고 나우 > CS > 조회 > CS 등록 클릭합니다.', img:'../images/return1.png' },
+      { badge:'STEP 2', title:'발송 정보 불러오기', desc:'① CS 타입 반품 선택 > ② 발송정보 조회 클릭 > 상세검색 > 키워드 선택 후 검색어 입력 > 조회 > 회수 필요한 주문건 체크 후 선택', img:'../images/pd2.png' },
+      { badge:'STEP 3-1', title:'전체 SKU 발송', desc:'전체 발송된 SKU 재발송인 경우 상단 CS 등록을 클릭합니다.', img:'../images/pd3.png' },
+      { badge:'STEP 3-2', title:'일부 SKU 발송', desc:'발송된 SKU 중 재발송이 불필요한 SKU 체크 후 삭제 후 CS 등록을 클릭합니다.', img:'../images/pd4.png' },
+      { badge:'STEP 5', title:'재발송 요청하기 - 1', desc:'품고 나우 > CS > 조회 > 재발송탭 클릭 > 조회', img:'../images/pd5.png' },
+      { badge:'STEP 6', title:'재발송 요청하기 - 2', desc:'재발송 필요한 CS 건 체크 > 오른쪽 재발송 > 재발송 클릭 > 확인 클릭', img:'../images/pd6.png' },
+      { badge:'STEP 7', title:'재발송 요청 확인', desc:'재배송상태가 재발송 요청으로 변경되어야만 정상적으로 재발송 접수가 완료됩니다.', img:'../images/pd7.png' },
+      { badge:'STEP 8', title:'재발송 송장 확인', desc:'재배송요청된 주문번호 클릭 > 조회 > CS로 생성된 송장번호로 확인 가능합니다.', img:'../images/pd8.png' },
+
     ]
   },
   ship: {
-    label: 'Resend · Ship', title: '재출고', color: 'c3',
+    label: '', title: '재발송 취소하기', color: 'c3',
     steps: [
-      { badge:'STEP 1', title:'재발송 상품 피킹 및 포장', desc:'동일 SKU를 피킹하여 포장합니다.<br>파손으로 인한 재발송의 경우 포장 보강에 특히 주의합니다.', img:'../images/reship-ship1.png' },
-      { badge:'STEP 2', title:'재발송 송장 발행 및 부착', desc:'WMS에서 재발송 송장을 발행합니다.<br>수정된 배송지 정보가 정확히 반영되어 있는지 확인 후 박스에 부착합니다.', img:'../images/reship-ship2.png' },
-      { badge:'STEP 3', title:'택배사 인수 및 출고 처리', desc:'택배사 집하 구역에 적재하고 인수 스캔을 확인합니다.<br>출고 완료 후 WMS에 재발송 출고 처리합니다.', img:'../images/reship-ship3.png' },
-      { badge:'STEP 4', title:'고객사 안내 및 이력 기록', desc:'재발송 출고 완료 후 고객사에 새 운송장 번호를 안내합니다.<br>WMS에서 원 주문 건과 재발송 건을 연결하고 사유 및 처리 내용을 기록합니다.', img:'../images/reship-ship4.png' },
+      { badge:'STEP 1', title:'재발송 접수 메뉴 접속', desc:'품고 나우 > CS > 조회 > 키워드 선택 후 검색어를 입력하여 조회 후 원주문번호를 클릭합니다.', img:'../images/pd9.png' },
+      { badge:'STEP 2', title:'재발송 송장 발행 및 부착', desc:'① 조회 클릭 > ② 상세 클릭> ③ 송장 취소를 클릭해주세요.', warn:'할당됨/포장중 상태에서만 송장 취소가 가능합니다.' img:'../images/pd10.png' },
     ]
   }
 };
