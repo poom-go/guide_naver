@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>품고 업무 가이드</title>
+<title>품고 시스템 가이드</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,7 +39,7 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 16px;
   }
 
@@ -54,47 +54,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
     transition: border-color .15s, box-shadow .15s, transform .12s;
-    position: relative;
-    overflow: hidden;
   }
   .card:hover {
     border-color: var(--border-hover);
-    box-shadow: 0 4px 24px rgba(0,0,0,.07);
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
     transform: translateY(-2px);
   }
-  .card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-  }
-  .card.coral::before  { background: #993C1D; }
-  .card.pink::before   { background: #993556; }
-  .card.amber::before  { background: #B87018; }
-  .card.teal::before   { background: #0F6E56; }
-  .card.blue::before   { background: #2563eb; }
-  .card.purple::before { background: #534AB7; }
 
-  .card-icon {
-    width: 60px; height: 60px;
-    border-radius: 16px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 28px;
-  }
-  .card.coral  .card-icon { background: #FAECE7; }
-  .card.pink   .card-icon { background: #FBEAF0; }
-  .card.amber  .card-icon { background: #FAEEDA; }
-  .card.teal   .card-icon { background: #E1F5EE; }
-  .card.blue   .card-icon { background: #eff4ff; }
-  .card.purple .card-icon { background: #EEEDFE; }
+  .card-title { font-size: 16px; font-weight: 700; text-align: center; }
 
-  .card-title { font-size: 17px; font-weight: 700; text-align: center; }
-
-  @media (max-width: 640px) {
+  @media (max-width: 720px) {
     .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
     .header h1 { font-size: 24px; }
   }
 </style>
@@ -113,29 +88,17 @@
     </div>
 
     <div class="grid">
-      <a class="card coral" href="guides/return.html">
-        <div class="card-icon">↩️</div>
-        <div class="card-title">반품</div>
-      </a>
-      <a class="card pink" href="guides/exchange.html">
-        <div class="card-icon">🔄</div>
-        <div class="card-title">교환</div>
-      </a>
-      <a class="card amber" href="guides/reship.html">
-        <div class="card-icon">🚚</div>
-        <div class="card-title">재발송</div>
-      </a>
-      <a class="card teal" href="guides/gift.html">
-        <div class="card-icon">🎁</div>
-        <div class="card-title">사은품</div>
-      </a>
-      <a class="card blue" href="guides/stock.html">
-        <div class="card-icon">📦</div>
+      <a class="card" href="guides/stock.html">
         <div class="card-title">재고 반출</div>
       </a>
-      <a class="card purple" href="guides/faq.html">
-        <div class="card-icon">💬</div>
-        <div class="card-title">자주 하는 질문</div>
+      <a class="card" href="guides/gift.html">
+        <div class="card-title">사은품</div>
+      </a>
+      <a class="card" href="guides/return.html">
+        <div class="card-title">반품</div>
+      </a>
+      <a class="card" href="guides/reship.html">
+        <div class="card-title">재발송</div>
       </a>
     </div>
   </div>
