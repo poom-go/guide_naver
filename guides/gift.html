@@ -253,11 +253,11 @@ const STEPS = {
         key: 'overlap',
         title: '금액별 사은품 중복 증정 SKU가 있는 경우',
         steps: [
-          { badge:'예시', title:'금액별 사은품 중복 증정 예시', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 A+B | 10만원 증정 : 품목 A+B+C<br>이와 같이 금액별 증정 SKU가 중복되는 경우에만 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되지 않을 경우 [금액별 사은품 중복 증정 SKU가 없는 경우]를 재클릭해주세요.구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
+          { badge:'예시', title:'금액별 사은품 중복 증정 예시', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 A+B | 10만원 증정 : 품목 A+B+C<br>이와 같이 금액별 증정 SKU가 중복되는 경우에만 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되지 않을 경우 [금액별 사은품 중복 증정 SKU가 없는 경우]를 재클릭해주세요.<br>구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
           { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
           { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 넾다세일 금액대별 증정, 7/5 라이브 금액대별 증정 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
-     { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },          
-         { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/cash16.png', '../images/cash17.png'] },
+          { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td></tr><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },
+          { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/cash16.png', '../images/cash17.png'] },
           { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/cash188.png' },
         ]
       },
@@ -265,10 +265,10 @@ const STEPS = {
         key: 'nooverlap',
         title: '금액별 사은품 중복 증정 SKU가 없는 경우',
         steps: [
-          { badge:'유의사항', title:'', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 B | 10만원 증정 : 품목 C+D<br>이와 같이 금액별 증정 SKU가 중복되지 않는 경우 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되는 경우 [금액별 사은품 중복 증정 SKU가 있는 경우]를 재클릭해주세요.구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
+          { badge:'유의사항', title:'', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 B | 10만원 증정 : 품목 C+D<br>이와 같이 금액별 증정 SKU가 중복되지 않는 경우 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되는 경우 [금액별 사은품 중복 증정 SKU가 있는 경우]를 재클릭해주세요.<br>구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
           { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
           { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 넾다세일 금액대별 증정, 7/5 라이브 금액대별 증정 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
-     { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },          
+          { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td></tr><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },
           { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/cash16.png', '../images/cash17.png'] },
           { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/cash188.png' },
         ]
@@ -292,46 +292,41 @@ const STEPS = {
         { badge:'유의사항', title:'', desc:'풀필먼트 연동 이후 실제 주문이 발생된 스마트스토어 상품만 품고 시스템에 수집됩니다.<br>주문이 발생하지 않은 경우라면 품고 시스템 내 정보가 없으므로 수기로 등록해야합니다.<br>반드시 해당 작업이 선행된 후 등록이 가능하므로 등록되지 않은 상품번호에 사은품 증정이 필요한 경우라면 품고 시스템 내 상품을 등록 후 캠페인&프로모션을 등록해주세요.' },
       ],
       registered: [
-        { badge:'예시', title:'', desc:'특정 상품번호를 주문했을 시 사은품 증정에 해당하는 조건입니다.<br> 단, 해당하는 상품번호가 n개 이나,특정 상품번호를 n개 이상 구매 시 적용은 사은품 프로모션 생성이 불가합니다.' },
+        { badge:'예시', title:'', desc:'특정 상품번호를 주문했을 시 사은품 증정에 해당하는 조건입니다.<br>단, 해당하는 상품번호가 n개 이나, 특정 상품번호를 n개 이상 구매 시 적용은 사은품 프로모션 생성이 불가합니다.' },
         { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
-        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 상품 구매 시,품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },       
-        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 수량" 선택 주문 수량을 입력 후 + 상품 추가를 클릭합니다., img:['../images/tkdvna11.png', '../images/cash14.png'] },          
-        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/tkdvna12.png', '../images/tkdvna13.png','../images/cash17.png'] },
+        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 상품 구매 시, 품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 수량" 선택, 주문 수량을 입력 후 + 상품 추가를 클릭합니다.', img:['../images/tkdvna11.png', '../images/cash14.png'] },
+        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/tkdvna12.png', '../images/tkdvna13.png', '../images/cash17.png'] },
         { badge:'STEP 5', title:'캠페인 최종 등록', desc:'설정한 상품번호가 1개만 포함되어있어도 증정되는 기준입니다.<br>기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/tkdvna14.png' },
-
       ],
       'unregistered.single': [
         { badge:'용어 설명', title:'', blocks:[
           { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
           { img:'../images/single1.png' },
-          { desc:상품코드<br>스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
-          { img:'../images/single2.png' },         
+          { desc:'상품코드<br>스마트스토어 상품번호와 동일하게 입력 (윈도코드 보유시 상품번호, 윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },
         ]},
         { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
-        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br>② 판매 채널ID: 노출되는 값으로 선택(=API연동계정과 동일)<br>③ 상품명 입력<br>④ 상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
         { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
-        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명,상품 옵션 코드를 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
-
-
+        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br>유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명, 상품 옵션 코드를 입력하지마세요.<br>임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
       ],
       'unregistered.option': [
         { badge:'용어 설명', title:'', blocks:[
-          { desc:'상품명<br> 스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
           { img:'../images/single1.png' },
-          { desc:상품코드<br> 스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
-          { img:'../images/single2.png' },   
-          { desc:상품 옵션명<br> 옵션명: 옵션값 형태로 입력,옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때)컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1:베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디 '},
-          { img:'../images/single4.png' },      
-          { desc:상품 옵션코드<br> 스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
-          { img:'../images/single3.png' },    
+          { desc:'상품코드<br>스마트스토어 상품번호와 동일하게 입력 (윈도코드 보유시 상품번호, 윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },
+          { desc:'상품 옵션명<br>옵션명: 옵션값 형태로 입력, 옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때) 컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1: 베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디' },
+          { img:'../images/single4.png' },
+          { desc:'상품 옵션코드<br>스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
+          { img:'../images/single3.png' },
         ]},
         { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
-        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br>② 판매 채널ID: 노출되는 값으로 선택(=API연동계정과 동일)<br>③ 상품명 입력<br>④ 상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
         { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
         { badge:'STEP 4', title:'상품 옵션명/상품 옵션코드 입력', desc:'상품 옵션명은 필수로 입력해야하며, 상품 옵션코드는 스마트스토어 옵션 목록 내 관리코드 설정이 안되어있을 경우 공란으로 유지합니다.<br>옵션 목록의 수량과 동일하게 목록이 추가되어야합니다.', img:'../images/tkdvna5.png' },
-        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
-
-
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br>유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br>임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
       ],
     }
   },
@@ -349,57 +344,52 @@ const STEPS = {
     },
     flows: {
       registered: [
-        { badge:'예시', title:'', desc:'특정 옵션을를 주문했을 시 사은품 증정에 해당하는 조건입니다.<br> 상품번호 내 모든 옵션을 구매하는 경우라면 상품 기준으로 설정해주세요.' },
+        { badge:'예시', title:'', desc:'특정 옵션을 주문했을 시 사은품 증정에 해당하는 조건입니다.<br>상품번호 내 모든 옵션을 구매하는 경우라면 상품 기준으로 설정해주세요.' },
         { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
-        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 2개 옵션 구매 시,품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },       
-        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 옵션 수량" 선택, 주문 수량을 입력 후 + 상품 옵션 추가를 클릭합니다., img:['../images/dhqtus1.png'},          
-        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/dhqtus2.png','../images/dhqtus3.png', '../images/cash17.png'] },
+        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 2개 옵션 구매 시, 품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 옵션 수량" 선택, 주문 수량을 입력 후 + 상품 옵션 추가를 클릭합니다.', img:['../images/dhqtus1.png'] },
+        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/dhqtus2.png', '../images/dhqtus3.png', '../images/cash17.png'] },
         { badge:'STEP 5', title:'캠페인 최종 등록', desc:'설정한 옵션 중 2개만 포함되어있어도 증정되는 기준입니다.<br>기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/dhqtus4.png' },
         { badge:'최종 적용 예시', title:'', desc:'1개의 캠페인 내 여러개의 프로모션을 구성 할 수 있습니다.<br>캠페인 기간이 동일한 경우라면 프로모션 추가로 1개의 캠페인 안에서 프로모션을 관리해주세요.', img:'../images/cash19.png' },
-
       ],
       'unregistered.single': [
         { badge:'용어 설명', title:'', blocks:[
           { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
           { img:'../images/single1.png' },
-          { desc:상품코드<br>스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
-          { img:'../images/single2.png' },         
+          { desc:'상품코드<br>스마트스토어 상품번호와 동일하게 입력 (윈도코드 보유시 상품번호, 윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },
         ]},
         { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
-        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br>② 판매 채널ID: 노출되는 값으로 선택(=API연동계정과 동일)<br>③ 상품명 입력<br>④ 상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
         { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
-        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명,상품 옵션 코드를 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
-
-
+        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br>유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명, 상품 옵션 코드를 입력하지마세요.<br>임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
       ],
       'unregistered.option': [
         { badge:'용어 설명', title:'', blocks:[
-          { desc:'상품명<br> 스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
           { img:'../images/single1.png' },
-          { desc:상품코드<br> 스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
-          { img:'../images/single2.png' },   
-          { desc:상품 옵션명<br> 옵션명: 옵션값 형태로 입력,옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때)컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1:베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디 '},
-          { img:'../images/single4.png' },      
-          { desc:상품 옵션코드<br> 스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
-          { img:'../images/single3.png' },    
+          { desc:'상품코드<br>스마트스토어 상품번호와 동일하게 입력 (윈도코드 보유시 상품번호, 윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },
+          { desc:'상품 옵션명<br>옵션명: 옵션값 형태로 입력, 옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때) 컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1: 베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디' },
+          { img:'../images/single4.png' },
+          { desc:'상품 옵션코드<br>스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
+          { img:'../images/single3.png' },
         ]},
         { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
-        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br>② 판매 채널ID: 노출되는 값으로 선택(=API연동계정과 동일)<br>③ 상품명 입력<br>④ 상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
         { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
         { badge:'STEP 4', title:'상품 옵션명/상품 옵션코드 입력', desc:'상품 옵션명은 필수로 입력해야하며, 상품 옵션코드는 스마트스토어 옵션 목록 내 관리코드 설정이 안되어있을 경우 공란으로 유지합니다.<br>옵션 목록의 수량과 동일하게 목록이 추가되어야합니다.', img:'../images/tkdvna5.png' },
-        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
-
-
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br>유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br>임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
       ],
     }
   },
   sku: {
     label: 'Gift · SKU Quantity', title: 'SKU 수량 기준', color: '#B87018',
     steps: [
-  { badge:'예시', title:'전체 대상 증정 예시', desc:'모든 주문건에 조건 없이 적용되어야하는 경우에 사용하는 조건입니다.<br>특정 조건과 병합해야하는 경우라면 특정 조건에 해당하는 항목을 재클릭해주세요.' },
+      { badge:'예시', title:'전체 대상 증정 예시', desc:'모든 주문건에 조건 없이 적용되어야하는 경우에 사용하는 조건입니다.<br>특정 조건과 병합해야하는 경우라면 특정 조건에 해당하는 항목을 재클릭해주세요.' },
       { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
       { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 헤어 제품 2개 이상 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
-      { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "SKU 수량" 선택,주문 수량을 입력 후 + SKU 추가를 클릭합니다.', img:['../images/sku1.png'] },
+      { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "SKU 수량" 선택, 주문 수량을 입력 후 + SKU 추가를 클릭합니다.', img:['../images/sku1.png'] },
       { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/sku2.png', '../images/sku3.png', '../images/all6.png'] },
       { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/sku4.png' },
     ]
@@ -430,7 +420,6 @@ function openModal(type) {
   document.getElementById('modalTitle').textContent = data.title;
 }
 
-// ── 단순 분기 (amount) ──
 function showBranchSelect() {
   const data = STEPS[currentType];
   document.getElementById('stepView').style.display = 'none';
@@ -452,7 +441,6 @@ function selectBranch(key) {
   renderModal();
 }
 
-// ── 3단계 분기 (qty, option) ──
 function showRootBranchSelect() {
   const data = STEPS[currentType];
   document.getElementById('stepView').style.display = 'none';
@@ -527,7 +515,6 @@ function renderModal() {
   document.getElementById('stepDots').innerHTML = steps.map((_, i) => `<div class="step-dot" style="${i === currentStep ? 'transform:scale(1.4);background:'+color : ''}"></div>`).join('');
 
   if (step.blocks && step.blocks.length) {
-    // 설명/이미지가 순서대로 번갈아 나오는 블록 렌더링
     document.getElementById('modalImgs').innerHTML = '';
     document.getElementById('modalStepDesc').innerHTML = step.blocks.map(b => {
       if (b.desc) return `<div style="margin-bottom:14px;">${b.desc}</div>`;
