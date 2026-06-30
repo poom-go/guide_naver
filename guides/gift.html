@@ -106,6 +106,10 @@
   .lightbox img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 8px; pointer-events: none; }
   .lightbox-close { position: absolute; top: 16px; right: 20px; width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,.15); border: none; color: #fff; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
   .lightbox-close:hover { background: rgba(255,255,255,.25); }
+  .branch-btn { background: var(--bg); border: 1.5px solid var(--border); border-radius: 12px; padding: 16px 18px; text-align: left; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 700; color: var(--text-primary); transition: border-color .15s, transform .12s; }
+  .branch-btn:hover { transform: translateY(-1px); }
+  .branch-back { font-size: 12px; color: var(--text-muted); background: none; border: none; cursor: pointer; text-align: left; padding: 0; margin-bottom: 4px; font-family: inherit; }
+  .branch-back:hover { color: var(--text-primary); }
   @media (max-width: 580px) { .process-btn-group { grid-template-columns: repeat(2, 1fr); } .page-title h1 { font-size: 22px; } .modal-options { flex-direction: column; } .modal { height: 95vh; border-radius: 14px; } }
 </style>
 </head>
@@ -188,6 +192,8 @@
       <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
     <div class="modal-body">
+      <div id="branchSelect" style="display:none; flex-direction:column; gap:12px;"></div>
+      <div id="stepView" style="display:flex; flex-direction:column; gap:18px;">
       <div class="step-dots" id="stepDots"></div>
       <div class="modal-step-info">
         <span class="modal-badge" id="modalBadge"></span>
@@ -198,6 +204,7 @@
         <div id="modalWarn" class="callout warning" style="display:none;"><span class="icon">⚠️</span><span id="modalWarnText"></span></div>
       </div>
       <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
+      </div>
     </div>
     <div class="modal-footer">
       <button class="btn-nav" id="btnPrev" onclick="prevStep()">← 이전</button>
@@ -226,11 +233,23 @@ const STEPS = {
   },
   amount: {
     label: 'Gift · Payment Amount', title: '결제 금액 기준', color: '#2563eb',
-    steps: [
-      { badge:'STEP 1', title:'기준 금액 및 조건 확인', desc:'WMS에서 사은품 지급 기준 금액을 확인합니다.<br>할인 후 금액 기준인지 정가 기준인지 명확히 파악합니다.', img:'../images/gift-amount1.png' },
-      { badge:'STEP 2', title:'주문 결제 금액 확인', desc:'WMS 피킹지시서에서 결제 금액을 확인하고 사은품 적용 대상 여부를 판단합니다.<br>금액 구간별로 다른 사은품이 설정된 경우 해당 구간 사은품을 피킹합니다.', img:'../images/gift-amount2.png' },
-      { badge:'STEP 3', title:'사은품 동봉 및 출고', desc:'기준 금액 충족 주문에 한해 사은품을 동봉합니다.<br>일반 출고와 동일하게 처리합니다.', img:'../images/gift-amount3.png' },
-      { badge:'STEP 4', title:'재고 차감 확인', desc:'WMS에서 사은품 재고 차감을 확인합니다.', img:'../images/gift-amount4.png' },
+    branches: [
+      {
+        key: 'overlap',
+        title: '금액별 사은품 중복 증정 SKU가 있는 경우',
+        steps: [
+          { badge:'STEP 1', title:'', desc:'', img:'../images/gift-amount-overlap1.png' },
+          { badge:'STEP 2', title:'', desc:'', img:'../images/gift-amount-overlap2.png' },
+        ]
+      },
+      {
+        key: 'nooverlap',
+        title: '금액별 사은품 중복 증정 SKU가 없는 경우',
+        steps: [
+          { badge:'STEP 1', title:'', desc:'', img:'../images/gift-amount-nooverlap1.png' },
+          { badge:'STEP 2', title:'', desc:'', img:'../images/gift-amount-nooverlap2.png' },
+        ]
+      }
     ]
   },
   qty: {
@@ -280,18 +299,69 @@ const STEPS = {
   }
 };
 
-let currentType = null; let currentStep = 0;
+let currentType = null; let currentStep = 0; let currentBranch = null;
 
-function openModal(type) { currentType = type; currentStep = 0; renderModal(); document.getElementById('modalOverlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
+function openModal(type) {
+  currentType = type; currentStep = 0; currentBranch = null;
+  const data = STEPS[type];
+  document.getElementById('modalOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  if (data.branches) {
+    showBranchSelect();
+  } else {
+    document.getElementById('branchSelect').style.display = 'none';
+    document.getElementById('stepView').style.display = 'flex';
+    renderModal();
+  }
+  document.getElementById('modalTypeLabel').textContent = data.label;
+  document.getElementById('modalTypeLabel').style.color = data.color;
+  document.getElementById('modalTitle').textContent = data.title;
+}
+
+function showBranchSelect() {
+  const data = STEPS[currentType];
+  document.getElementById('stepView').style.display = 'none';
+  const branchEl = document.getElementById('branchSelect');
+  branchEl.style.display = 'flex';
+  branchEl.innerHTML = data.branches.map(b => `
+    <button class="branch-btn" onclick="selectBranch('${b.key}')" style="border-color:${data.color}55;">${b.title}</button>
+  `).join('');
+  document.getElementById('modalFooter') && (document.getElementById('modalFooter').style.display = 'none');
+  document.querySelector('.modal-footer').style.display = 'none';
+}
+
+function selectBranch(key) {
+  const data = STEPS[currentType];
+  currentBranch = data.branches.find(b => b.key === key);
+  currentStep = 0;
+  document.getElementById('branchSelect').style.display = 'none';
+  document.getElementById('stepView').style.display = 'flex';
+  document.querySelector('.modal-footer').style.display = 'flex';
+  renderModal();
+}
+
+function getActiveSteps() {
+  const data = STEPS[currentType];
+  return currentBranch ? currentBranch.steps : data.steps;
+}
+
 function closeModal() { document.getElementById('modalOverlay').classList.remove('open'); document.body.style.overflow = ''; }
 function closeModalOutside(e) { if (e.target === document.getElementById('modalOverlay')) closeModal(); }
 
 function renderModal() {
-  const data = STEPS[currentType]; const step = data.steps[currentStep]; const color = data.color; const total = data.steps.length;
-  document.getElementById('modalTypeLabel').textContent = data.label;
-  document.getElementById('modalTypeLabel').style.color = color;
-  document.getElementById('modalTitle').textContent = data.title;
-  document.getElementById('stepDots').innerHTML = data.steps.map((_, i) => `<div class="step-dot" style="${i === currentStep ? 'transform:scale(1.4);background:'+color : ''}"></div>`).join('');
+  const data = STEPS[currentType];
+  const steps = getActiveSteps();
+  const step = steps[currentStep];
+  const color = data.color;
+  const total = steps.length;
+
+  if (currentBranch) {
+    document.getElementById('modalTitle').textContent = data.title + ' · ' + currentBranch.title;
+  } else {
+    document.getElementById('modalTitle').textContent = data.title;
+  }
+
+  document.getElementById('stepDots').innerHTML = steps.map((_, i) => `<div class="step-dot" style="${i === currentStep ? 'transform:scale(1.4);background:'+color : ''}"></div>`).join('');
   const imgs = Array.isArray(step.img) ? step.img : [step.img];
   document.getElementById('modalImgs').innerHTML = imgs.map(src => `<div class="modal-img-wrap" onclick="openLightbox('${src}')"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`).join('');
   document.getElementById('modalBadge').textContent = step.badge;
@@ -308,9 +378,18 @@ function renderModal() {
   const btnNext = document.getElementById('btnNext');
   btnNext.style.background = color; btnNext.style.borderColor = color;
   if (currentStep === total - 1) { btnNext.textContent = '완료'; btnNext.onclick = closeModal; } else { btnNext.textContent = '다음 →'; btnNext.onclick = nextStep; }
-  document.getElementById('btnPrev').disabled = currentStep === 0;
+  const btnPrev = document.getElementById('btnPrev');
+  btnPrev.disabled = false;
+  btnPrev.onclick = prevStep;
+  if (currentStep === 0 && currentBranch) {
+    btnPrev.textContent = '← 유형 선택으로';
+    btnPrev.onclick = () => { showBranchSelect(); };
+  } else {
+    btnPrev.textContent = '← 이전';
+    btnPrev.disabled = currentStep === 0;
+  }
 }
-function nextStep() { if (currentStep < STEPS[currentType].steps.length - 1) { currentStep++; renderModal(); } }
+function nextStep() { const steps = getActiveSteps(); if (currentStep < steps.length - 1) { currentStep++; renderModal(); } }
 function prevStep() { if (currentStep > 0) { currentStep--; renderModal(); } }
 function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (document.getElementById('lightbox').classList.contains('open')) closeLightbox(); else closeModal(); } });
