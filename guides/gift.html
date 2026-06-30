@@ -31,7 +31,6 @@
   .breadcrumb .sep { color: #c8c6c0; }
   .content { max-width: 780px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
   .page-title { border-bottom: 2px solid var(--accent); padding-bottom: 14px; }
-  .page-title .label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
   .page-title h1 { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
   .section { display: flex; flex-direction: column; gap: 16px; }
   .section-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
@@ -66,7 +65,6 @@
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
   .faq-answer { display: none; padding: 13px 16px 15px; font-size: 13.5px; color: var(--text-secondary); line-height: 1.75; border-top: 1px solid var(--border); }
   .faq-item.open .faq-answer { display: block; }
-  /* 모달 */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 1000; align-items: center; justify-content: center; padding: 1rem; }
   .modal-overlay.open { display: flex; }
   .modal { background: var(--surface); border-radius: 20px; width: 100%; max-width: 900px; height: 90vh; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,.25); }
@@ -124,28 +122,48 @@
 
 <div class="content">
   <div class="page-title">
-    <div class="label">Gift</div>
     <h1>사은품</h1>
   </div>
 
   <div class="section">
     <div class="section-title">기능 개요</div>
-    <p class="desc">사은품은 고객사 설정 조건에 따라 출고 시 상품과 함께 동봉되는 증정품입니다.<br>증정 조건은 <strong>전체 대상, 결제 금액, 상품 수량, 옵션 수량, SKU 수량, 최초 주문, 랜덤</strong> 7가지로 구분됩니다.<br>유형을 선택하면 해당 처리 과정을 확인할 수 있습니다.</p>
+    <p class="desc">사은품은 고객사 설정 조건에 따라 출고 시 상품과 함께 동봉되는 증정품입니다.<br>증정 조건은 <strong>아래 유형 중 필요한 조건으로</strong> 설정 할 수 있어요.</p>
   </div>
 
   <hr class="divider" />
 
   <div class="section">
-    <div class="callout warning">
-      <span class="icon">⚠️</span>
-      <div>처리 전 아래 사항을 반드시 확인하세요. 오동봉 또는 미동봉 발생 시 고객 불만으로 이어집니다.</div>
-    </div>
     <div class="section-title">처리 전 준비사항</div>
     <div class="prep-list">
-      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">사은품 등록 및 활성화 상태 확인</div><div class="prep-item-desc">WMS > 사은품관리에서 해당 프로모션이 정상 등록·활성화 상태인지 확인합니다.</div></div></div>
-      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">사은품 재고 수량 확인</div><div class="prep-item-desc">현재 보관 중인 사은품 수량이 예상 주문량 대비 충분한지 확인합니다. 재고 부족 시 고객사에 즉시 안내합니다.</div></div></div>
-      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">적용 기간 및 조건 확인</div><div class="prep-item-desc">프로모션 시작일·종료일과 증정 조건을 확인합니다. 기간 외 주문 또는 조건 미충족 주문에는 적용하지 않습니다.</div></div></div>
-      <div class="prep-item"><div class="prep-num">4</div><div><div class="prep-item-title">WMS 자동 표시 여부 확인</div><div class="prep-item-desc">WMS 피킹지시서에 사은품 항목이 자동으로 표시되는지 확인합니다. 미표시 시 수동으로 확인하여 동봉합니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">1</div><div><div class="prep-item-title">사은품 재고 수량 확인</div><div class="prep-item-desc">현재 보관 중인 사은품 수량이 충분한지 확인해주세요.</div></div></div>
+      <div class="prep-item"><div class="prep-num">2</div><div><div class="prep-item-title">사은품 재고 부족 시 처리 방안</div><div class="prep-item-desc">사은품 재고 부족으로 인한 대체품 또는 제외여부를 등록 시 함께 기재해주세요.<br>미등록 시 제외 후 본품만 출고 진행되며, 그로 인한 CS가 증가할 수 있습니다.</div></div></div>
+      <div class="prep-item"><div class="prep-num">3</div><div><div class="prep-item-title">스마트스토어 노출 문구 확인</div><div class="prep-item-desc">사은품 증정 시 재고 소진 시 대체 또는 제외되는 내용에 대한 명시가 되어있는지 확인해주세요.</div></div></div>
+      <div class="prep-item">
+        <div class="prep-num">4</div>
+        <div>
+          <div class="prep-item-title">용어 설명</div>
+          <div class="prep-item-desc">
+            <table style="width:100%;border-collapse:collapse;font-size:12px;">
+              <thead>
+                <tr style="background:var(--bg);">
+                  <th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼</th>
+                  <th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">캠페인명</td><td style="padding:7px 10px;border:1px solid var(--border);">이벤트 명</td></tr>
+                <tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">프로모션명</td><td style="padding:7px 10px;border:1px solid var(--border);">사은품 규칙 명</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">캠페인 기간</td><td style="padding:7px 10px;border:1px solid var(--border);">프로모션(사은품 규칙)이 적용되어야 하는 주문일시 기간</td></tr>
+                <tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">비례 증정</td><td style="padding:7px 10px;border:1px solid var(--border);">조건 그룹 설정 기준으로 부합할 때 마다 비례로 증정이 필요한 경우 사용</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">선착순 증정 수량</td><td style="padding:7px 10px;border:1px solid var(--border);">사은품 규칙이 총 몇건의 주문번호로 적용되는지의 대한 수량</td></tr>
+                <tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">랜덤 사은품</td><td style="padding:7px 10px;border:1px solid var(--border);">여러가지 SKU 중 조건 부합 시 랜덤으로 임의 부여하여 출고를 희망할 경우 사용</td></tr>
+                <tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">랜덤 사은품 중복 증정</td><td style="padding:7px 10px;border:1px solid var(--border);">여러가지 SKU가 중복으로 증정되어도 되는 경우 사용</td></tr>
+                <tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">랜덤 증정 수량</td><td style="padding:7px 10px;border:1px solid var(--border);">랜덤 사은품이 증정되어야하는 수량</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -162,8 +180,6 @@
       <button class="btn-process c3" onclick="openModal('qty')"><span class="btn-process-title">상품 수량 기준</span></button>
       <button class="btn-process c4" onclick="openModal('option')"><span class="btn-process-title">옵션 수량 기준</span></button>
       <button class="btn-process c5" onclick="openModal('sku')"><span class="btn-process-title">SKU 수량 기준</span></button>
-      <button class="btn-process c6" onclick="openModal('first')"><span class="btn-process-title">최초 주문 기준</span></button>
-      <button class="btn-process c7" onclick="openModal('random')"><span class="btn-process-title">랜덤 사은품</span></button>
     </div>
   </div>
 
@@ -172,11 +188,10 @@
   <div class="section">
     <div class="section-title">자주 하는 질문</div>
     <div class="faq-list">
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">사은품 재고가 소진됐어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">즉시 고객사에 재고 소진 사실을 안내합니다. 프로모션 중단 또는 대체 사은품 여부를 확인하고 WMS에서 해당 사은품 설정을 비활성화합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">일부 주문에 사은품이 빠졌어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">누락된 주문 건을 파악하고 해당 고객에게 사은품을 별도 발송합니다. 재고가 있다면 즉시 별도 패키지로 출고하고 고객사에 안내합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">WMS 피킹지시서에 사은품 항목이 자동 출력되지 않아요.<span class="faq-arrow">▾</span></button><div class="faq-answer">WMS 사은품 설정이 정상 활성화 상태인지 확인합니다. 설정이 정상이라면 IT팀에 문의합니다. 해결 전까지 수동으로 확인하여 동봉합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">두 가지 사은품 조건이 동시에 충족되면 어떻게 하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">각 조건에 해당하는 사은품을 모두 동봉하는 것이 원칙입니다. 중복 적용 여부는 고객사 정책을 사전에 확인합니다.</div></div>
-      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">프로모션 종료일이 지났는데 WMS에 아직 활성화되어 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">즉시 WMS에서 해당 프로모션을 비활성화합니다. 종료일 이후 출고된 건에 사은품이 동봉됐다면 고객사에 보고합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">사은품 설정이 불가한 조건이 있나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">대부분의 기능을 제공하고는 있으나, 특정 상품만 또는 특정 옵션만 N개 이상 구매시 적용은 불가하며, 랜덤 사은품의 경우 비례 증정이 불가합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">일부 주문에 사은품이 적용되지 않았어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">사은품이 적용되지 않은 주문번호를 물류지원센터를 통해 문의해주세요. 미적용 사례에 대한 확인 후 답변 받으실 수 있습니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">두 가지 사은품 조건이 동시에 충족되면 어떻게 하나요?<span class="faq-arrow">▾</span></button><div class="faq-answer">각 조건 그룹을 병합하여 규칙을 생성해주셔야합니다.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">프로모션 종료일이 지났는데 아직 활성화되어 있어요.<span class="faq-arrow">▾</span></button><div class="faq-answer">프로모션 활성화가 되어있더라도, 캠페인 기간이 지난 경우 적용되지 않습니다.</div></div>
     </div>
   </div>
 </div>
@@ -194,16 +209,16 @@
     <div class="modal-body">
       <div id="branchSelect" style="display:none; flex-direction:column; gap:12px;"></div>
       <div id="stepView" style="display:flex; flex-direction:column; gap:18px;">
-      <div class="step-dots" id="stepDots"></div>
-      <div class="modal-step-info">
-        <span class="modal-badge" id="modalBadge"></span>
-        <div class="modal-step-title" id="modalStepTitle"></div>
-        <div class="modal-step-desc" id="modalStepDesc"></div>
-        <div id="modalOptions" class="modal-options" style="display:none;"></div>
-        <div id="modalNotes" class="modal-notes" style="display:none;"></div>
-        <div id="modalWarn" class="callout warning" style="display:none;"><span class="icon">⚠️</span><span id="modalWarnText"></span></div>
-      </div>
-      <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
+        <div class="step-dots" id="stepDots"></div>
+        <div class="modal-step-info">
+          <span class="modal-badge" id="modalBadge"></span>
+          <div class="modal-step-title" id="modalStepTitle"></div>
+          <div class="modal-step-desc" id="modalStepDesc"></div>
+          <div id="modalOptions" class="modal-options" style="display:none;"></div>
+          <div id="modalNotes" class="modal-notes" style="display:none;"></div>
+          <div id="modalWarn" class="callout warning" style="display:none;"><span class="icon">⚠️</span><span id="modalWarnText"></span></div>
+        </div>
+        <div id="modalImgs" style="display:flex;flex-direction:column;gap:10px;"></div>
       </div>
     </div>
     <div class="modal-footer">
@@ -219,16 +234,16 @@
 </div>
 
 <script>
-const COLOR_MAP = { all:'#0F6E56', amount:'#2563eb', qty:'#534AB7', option:'#993C1D', sku:'#B87018', first:'#993556', random:'#1e3a8a' };
-
 const STEPS = {
   all: {
-    label: 'Gift · All Orders', title: '전체 대상 증정', color: '#0F6E56',
+    label: '', title: '전체 대상 증정', color: '#0F6E56',
     steps: [
-      { badge:'STEP 1', title:'사은품 적용 여부 확인', desc:'WMS에서 해당 주문 건에 사은품 적용 표시가 있는지 확인합니다.<br>전체 대상 프로모션 기간이라면 모든 주문에 동봉합니다.', img:'../images/gift-all1.png' },
-      { badge:'STEP 2', title:'사은품 피킹', desc:'본 상품 피킹과 함께 사은품도 지정 수량만큼 피킹합니다.<br>피킹지시서에 사은품 항목이 포함되어 있는지 확인합니다.', img:'../images/gift-all2.png' },
-      { badge:'STEP 3', title:'박스 내 동봉 및 출고', desc:'포장 시 사은품을 본 상품과 함께 박스에 넣습니다.<br>사은품이 파손되지 않도록 완충재로 고정 후 일반 출고와 동일하게 처리합니다.', img:'../images/gift-all3.png' },
-      { badge:'STEP 4', title:'사은품 재고 차감 확인', desc:'WMS에서 사은품 재고가 정확히 차감되었는지 확인합니다.<br>미차감 시 수동으로 재고를 조정합니다.', img:'../images/gift-all4.png' },
+      { badge:'예시', title:'전체 대상 증정 예시', desc:'모든 주문건에 조건 없이 적용되어야하는 경우에 사용하는 조건입니다.<br>특정 조건과 병합해야하는 경우라면 특정 조건에 해당하는 항목을 재클릭해주세요.' },
+      { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+      { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 전구매증정, 모든 주문 증정 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+      { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 하단 증정 사은품 설정의 SKU 연결 추가를 클릭합니다.', img:['../images/all3.png', '../images/all4.png'] },
+      { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/all5.png', '../images/all6.png'] },
+      { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/all8.png' },
     ]
   },
   amount: {
@@ -238,79 +253,176 @@ const STEPS = {
         key: 'overlap',
         title: '금액별 사은품 중복 증정 SKU가 있는 경우',
         steps: [
-          { badge:'STEP 1', title:'', desc:'', img:'../images/gift-amount-overlap1.png' },
-          { badge:'STEP 2', title:'', desc:'', img:'../images/gift-amount-overlap2.png' },
+          { badge:'예시', title:'금액별 사은품 중복 증정 예시', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 A+B | 10만원 증정 : 품목 A+B+C<br>이와 같이 금액별 증정 SKU가 중복되는 경우에만 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되지 않을 경우 [금액별 사은품 중복 증정 SKU가 없는 경우]를 재클릭해주세요.구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
+          { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+          { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 넾다세일 금액대별 증정, 7/5 라이브 금액대별 증정 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+     { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },          
+         { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/cash16.png', '../images/cash17.png'] },
+          { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/cash188.png' },
         ]
       },
       {
         key: 'nooverlap',
         title: '금액별 사은품 중복 증정 SKU가 없는 경우',
         steps: [
-          { badge:'STEP 1', title:'', desc:'', img:'../images/gift-amount-nooverlap1.png' },
-          { badge:'STEP 2', title:'', desc:'', img:'../images/gift-amount-nooverlap2.png' },
+          { badge:'유의사항', title:'', desc:'금액별 구간이 3만원/5만원/10만원으로 가정했을 시<br>3만원 증정 : 품목 A | 5만원 증정 : 품목 B | 10만원 증정 : 품목 C+D<br>이와 같이 금액별 증정 SKU가 중복되지 않는 경우 해당하는 조건입니다.<br>금액대 증정 SKU가 중복되는 경우 [금액별 사은품 중복 증정 SKU가 있는 경우]를 재클릭해주세요.구매자가 실제 결제한 금액 기준으로 증정되어야하면 반드시 결제금액을 선택해야합니다.<br>총 결제금액으로 설정 시 실제 브랜드사의 금액은 충족되지 않으나, 타 브랜드로 인해 충족될 경우 증정됩니다.<br>자세한 사항은 STEP3을 참고해주세요.' },
+          { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+          { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 넾다세일 금액대별 증정, 7/5 라이브 금액대별 증정 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+     { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼과 금액 구간을 입력합니다.<br><br><table style="width:100%;border-collapse:collapse;font-size:12px;"><thead><tr style="background:var(--bg);"><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;width:35%;">컬럼값</th><th style="padding:7px 10px;text-align:left;border:1px solid var(--border);font-weight:700;">설명</th></tr></thead><tbody><tr><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">결제 금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자가 실제로 결제한 금액(쿠폰할인포함)</td></tr><tr style="background:var(--bg);"><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">주문금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준 금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 상품금액</td><td style="padding:7px 10px;border:1px solid var(--border);">스마트스토어 상품 내 할인이 적용되지 않은 판매가 기준의 총 합산금액</td><td style="padding:7px 10px;border:1px solid var(--border);font-weight:600;">총 결제금액</td><td style="padding:7px 10px;border:1px solid var(--border);">구매자 장바구니에 담긴 모든 판매자의 결제 합산금액</td></tr></tbody></table>', img:['../images/cash13.png', '../images/cash14.png'] },          
+          { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/cash16.png', '../images/cash17.png'] },
+          { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/cash188.png' },
         ]
       }
     ]
   },
   qty: {
-    label: 'Gift · Product Quantity', title: '상품 수량 기준', color: '#534AB7',
-    steps: [
-      { badge:'STEP 1', title:'수량 기준 확인', desc:'WMS에서 사은품 지급 기준 수량을 확인합니다.<br>합산 수량 기준인지 특정 SKU 수량 기준인지 파악합니다.', img:'../images/gift-qty1.png' },
-      { badge:'STEP 2', title:'주문 상품 수량 확인', desc:'WMS 피킹지시서에서 상품 총 수량을 확인하고 사은품 기준 충족 여부를 판단합니다.', img:'../images/gift-qty2.png' },
-      { badge:'STEP 3', title:'사은품 동봉 및 출고', desc:'기준 수량 충족 주문에 한해 사은품을 동봉합니다.<br>일반 출고와 동일하게 처리합니다.', img:'../images/gift-qty3.png' },
-      { badge:'STEP 4', title:'재고 차감 확인', desc:'WMS에서 사은품 재고 차감을 확인합니다.', img:'../images/gift-qty4.png' },
-    ]
+    label: '', title: '상품 수량 기준', color: '#534AB7',
+    rootBranches: [
+      { key: 'unregistered', title: '품고 나우 시스템 미등록 상태' },
+      { key: 'registered', title: '품고 나우 시스템 등록 상태' },
+    ],
+    subBranches: {
+      unregistered: [
+        { key: 'single', title: '단일 상품' },
+        { key: 'option', title: '옵션 상품' },
+      ]
+    },
+    flows: {
+      intro: [
+        { badge:'유의사항', title:'', desc:'풀필먼트 연동 이후 실제 주문이 발생된 스마트스토어 상품만 품고 시스템에 수집됩니다.<br>주문이 발생하지 않은 경우라면 품고 시스템 내 정보가 없으므로 수기로 등록해야합니다.<br>반드시 해당 작업이 선행된 후 등록이 가능하므로 등록되지 않은 상품번호에 사은품 증정이 필요한 경우라면 품고 시스템 내 상품을 등록 후 캠페인&프로모션을 등록해주세요.' },
+      ],
+      registered: [
+        { badge:'예시', title:'', desc:'특정 상품번호를 주문했을 시 사은품 증정에 해당하는 조건입니다.<br> 단, 해당하는 상품번호가 n개 이나,특정 상품번호를 n개 이상 구매 시 적용은 사은품 프로모션 생성이 불가합니다.' },
+        { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 상품 구매 시,품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },       
+        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 수량" 선택 주문 수량을 입력 후 + 상품 추가를 클릭합니다., img:['../images/tkdvna11.png', '../images/cash14.png'] },          
+        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/tkdvna12.png', '../images/tkdvna13.png','../images/cash17.png'] },
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'설정한 상품번호가 1개만 포함되어있어도 증정되는 기준입니다.<br>기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/tkdvna14.png' },
+
+      ],
+      'unregistered.single': [
+        { badge:'용어 설명', title:'', blocks:[
+          { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { img:'../images/single1.png' },
+          { desc:상품코드<br>스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },         
+        ]},
+        { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
+        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명,상품 옵션 코드를 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
+
+
+      ],
+      'unregistered.option': [
+        { badge:'용어 설명', title:'', blocks:[
+          { desc:'상품명<br> 스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { img:'../images/single1.png' },
+          { desc:상품코드<br> 스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },   
+          { desc:상품 옵션명<br> 옵션명: 옵션값 형태로 입력,옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때)컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1:베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디 '},
+          { img:'../images/single4.png' },      
+          { desc:상품 옵션코드<br> 스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
+          { img:'../images/single3.png' },    
+        ]},
+        { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
+        { badge:'STEP 4', title:'상품 옵션명/상품 옵션코드 입력', desc:'상품 옵션명은 필수로 입력해야하며, 상품 옵션코드는 스마트스토어 옵션 목록 내 관리코드 설정이 안되어있을 경우 공란으로 유지합니다.<br>옵션 목록의 수량과 동일하게 목록이 추가되어야합니다.', img:'../images/tkdvna5.png' },
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
+
+
+      ],
+    }
   },
   option: {
     label: 'Gift · Option Quantity', title: '옵션 수량 기준', color: '#993C1D',
-    steps: [
-      { badge:'STEP 1', title:'대상 옵션 및 기준 수량 확인', desc:'어떤 옵션이 사은품 대상인지, 각 옵션의 기준 수량이 얼마인지 WMS에서 확인합니다.<br>옵션에 따라 사은품 종류가 다를 경우 매핑 정보를 숙지합니다.', img:'../images/gift-option1.png' },
-      { badge:'STEP 2', title:'주문 내 옵션 수량 확인', desc:'WMS에서 주문 내 해당 옵션의 수량을 확인하고 사은품 기준 충족 여부를 판단합니다.', img:'../images/gift-option2.png' },
-      { badge:'STEP 3', title:'옵션 매핑 사은품 피킹 및 동봉', desc:'해당 옵션에 매핑된 사은품을 기준 수량에 맞게 피킹하여 동봉합니다.', img:'../images/gift-option3.png' },
-      { badge:'STEP 4', title:'재고 차감 확인', desc:'WMS에서 해당 사은품 재고 차감을 확인합니다.', img:'../images/gift-option4.png' },
-    ]
+    rootBranches: [
+      { key: 'unregistered', title: '품고 나우 시스템 미등록 상태' },
+      { key: 'registered', title: '품고 나우 시스템 등록 상태' },
+    ],
+    subBranches: {
+      unregistered: [
+        { key: 'single', title: '단일 상품' },
+        { key: 'option', title: '옵션 상품' },
+      ]
+    },
+    flows: {
+      registered: [
+        { badge:'예시', title:'', desc:'특정 옵션을를 주문했을 시 사은품 증정에 해당하는 조건입니다.<br> 상품번호 내 모든 옵션을 구매하는 경우라면 상품 기준으로 설정해주세요.' },
+        { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+        { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 7/2 라이브 2개 옵션 구매 시,품고 틴트 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },       
+        { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "상품 옵션 수량" 선택, 주문 수량을 입력 후 + 상품 옵션 추가를 클릭합니다., img:['../images/dhqtus1.png'},          
+        { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/dhqtus2.png','../images/dhqtus3.png', '../images/cash17.png'] },
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'설정한 옵션 중 2개만 포함되어있어도 증정되는 기준입니다.<br>기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/dhqtus4.png' },
+        { badge:'최종 적용 예시', title:'', desc:'1개의 캠페인 내 여러개의 프로모션을 구성 할 수 있습니다.<br>캠페인 기간이 동일한 경우라면 프로모션 추가로 1개의 캠페인 안에서 프로모션을 관리해주세요.', img:'../images/cash19.png' },
+
+      ],
+      'unregistered.single': [
+        { badge:'용어 설명', title:'', blocks:[
+          { desc:'상품명<br>스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { img:'../images/single1.png' },
+          { desc:상품코드<br>스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },         
+        ]},
+        { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
+        { badge:'STEP 4', title:'최종 점검', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 단일 상품으로 판매중인 경우 절대 상품 옵션명,상품 옵션 코드를 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna4.png' },
+
+
+      ],
+      'unregistered.option': [
+        { badge:'용어 설명', title:'', blocks:[
+          { desc:'상품명<br> 스마트스토어 상품 정보 내 입력되어있는 상품명과 동일하게 입력' },
+          { img:'../images/single1.png' },
+          { desc:상품코드<br> 스마트스토어 상품번호와 동일하게 입력( 윈도코드 보유시 상품번호,윈도코드 각각 등록필요)' },
+          { img:'../images/single2.png' },   
+          { desc:상품 옵션명<br> 옵션명: 옵션값 형태로 입력,옵션명이 여러개인 경우 /로 구분하여 입력<br>옵션 목록 수량만큼 목록으로 등록<br>(옵션명 1개일때) 컬러 선택: 베리<br>컬러 선택: 체리<br>컬러 선택: 레드<br>(옵션명 2개 이상일때)컬러 선택1: 베리 / 컬러 선택2: 베리<br>컬러 선택1:베리 / 컬러 선택2: 체리<br>컬러 선택1: 베리 / 컬러 선택2: 캔디 '},
+          { img:'../images/single4.png' },      
+          { desc:상품 옵션코드<br> 스마트스토어 내 옵션 목록에 관리코드와 동일하게 입력 (스마트스토어 내 등록되지 않은 경우라면 공란유지/옵션번호 입력하지 마세요.)' },
+          { img:'../images/single3.png' },    
+        ]},
+        { badge:'STEP 1', title:'상품 등록 메뉴 접속', desc:'품고 나우 > 주문 > 상품 > 등록 클릭합니다.', img:'../images/tkdvna1.png' },
+        { badge:'STEP 2', title:'필수값 입력', desc:'① 판매플랫폼: 스마트스토어(물류사)<br> ②판매 채널ID :노출되는 값으로 선택(=API연동계정과 동일)<br> ③상품명 입력<br> ④상품코드 입력 > 목록 추가 클릭 > SKU 연결추가 클릭합니다.', img:'../images/tkdvna2.png' },
+        { badge:'STEP 3', title:'SKU 선택', desc:'해당 상품에 실제 출고되어야하는 SKU를 체크 후 추가를 클릭합니다.', img:'../images/tkdvna3.png' },
+        { badge:'STEP 4', title:'상품 옵션명/상품 옵션코드 입력', desc:'상품 옵션명은 필수로 입력해야하며, 상품 옵션코드는 스마트스토어 옵션 목록 내 관리코드 설정이 안되어있을 경우 공란으로 유지합니다.<br>옵션 목록의 수량과 동일하게 목록이 추가되어야합니다.', img:'../images/tkdvna5.png' },
+        { badge:'STEP 5', title:'캠페인 최종 등록', desc:'입력한 정보가 일치하는지 점검 후 등록을 클릭합니다.<br> 유의사항!! 스마트스토어 옵션에 관리코드 설정이 안되어있으나, 임의로 상품 옵션코드 입력하지마세요.<br> 임의 입력으로 인한 사은품 미증정에 대한 이슈 발생 시 물류사는 대응해드리지 않습니다.', img:'../images/tkdvna6.png' },
+
+
+      ],
+    }
   },
   sku: {
     label: 'Gift · SKU Quantity', title: 'SKU 수량 기준', color: '#B87018',
     steps: [
-      { badge:'STEP 1', title:'대상 SKU 및 기준 수량 확인', desc:'WMS에서 사은품 대상 SKU 목록과 각 기준 수량을 확인합니다.<br>복수 SKU 합산 수량 기준인지 SKU 개별 기준인지 고객사 정책을 확인합니다.', img:'../images/gift-sku1.png' },
-      { badge:'STEP 2', title:'주문 내 대상 SKU 수량 확인', desc:'WMS 피킹지시서에서 대상 SKU 수량을 확인하고 기준 충족 여부를 판단합니다.', img:'../images/gift-sku2.png' },
-      { badge:'STEP 3', title:'사은품 피킹 및 동봉', desc:'기준 충족 SKU에 매핑된 사은품을 피킹하여 동봉합니다.<br>일반 출고와 동일하게 처리합니다.', img:'../images/gift-sku3.png' },
-      { badge:'STEP 4', title:'재고 차감 확인', desc:'WMS에서 사은품 재고 차감을 확인합니다.', img:'../images/gift-sku4.png' },
-    ]
-  },
-  first: {
-    label: 'Gift · First Order', title: '최초 주문 기준', color: '#993556',
-    steps: [
-      { badge:'STEP 1', title:'신규 고객 판별 기준 확인', desc:'WMS에서 신규 고객 표시 여부와 판별 기준(첫 주문 여부, 가입 후 첫 구매 등)을 확인합니다.<br>중복 증정 방지 설정이 되어 있는지도 확인합니다.', img:'../images/gift-first1.png' },
-      { badge:'STEP 2', title:'신규 고객 여부 확인', desc:'WMS 피킹지시서에서 해당 주문이 신규 고객 첫 주문 건인지 확인합니다.', img:'../images/gift-first2.png' },
-      { badge:'STEP 3', title:'사은품 피킹 및 동봉', desc:'신규 고객 확인 주문에 한해 최초 주문 사은품을 피킹하여 동봉합니다.', img:'../images/gift-first3.png' },
-      { badge:'STEP 4', title:'증정 이력 확인', desc:'WMS에서 재고 차감을 확인하고 해당 고객의 사은품 증정 이력이 기록되었는지 확인합니다.', img:'../images/gift-first4.png' },
-    ]
-  },
-  random: {
-    label: 'Gift · Random', title: '랜덤 사은품', color: '#1e3a8a',
-    steps: [
-      { badge:'STEP 1', title:'사은품 풀 및 배정 방식 확인', desc:'WMS에 등록된 랜덤 사은품 풀 목록과 각 사은품 재고를 확인합니다.<br>WMS 자동 배정인지 수동 선택 방식인지 확인합니다.', img:'../images/gift-random1.png' },
-      { badge:'STEP 2', title:'사은품 배정 확인 또는 선택', desc:'WMS 자동 배정 시 지정된 사은품을 확인합니다.<br>수동 방식이라면 재고 균형을 고려하여 풀 중 하나를 선택합니다.', img:'../images/gift-random2.png' },
-      { badge:'STEP 3', title:'사은품 피킹 및 동봉', desc:'배정된 사은품을 피킹하여 본 상품과 함께 동봉합니다.<br>일반 출고와 동일하게 처리합니다.', img:'../images/gift-random3.png' },
-      { badge:'STEP 4', title:'재고 차감 확인', desc:'WMS에서 해당 사은품 재고 차감을 확인합니다.<br>특정 사은품 재고 소진 시 즉시 고객사에 안내하고 풀에서 일시 제외합니다.', img:'../images/gift-random4.png' },
+  { badge:'예시', title:'전체 대상 증정 예시', desc:'모든 주문건에 조건 없이 적용되어야하는 경우에 사용하는 조건입니다.<br>특정 조건과 병합해야하는 경우라면 특정 조건에 해당하는 항목을 재클릭해주세요.' },
+      { badge:'STEP 1', title:'캠페인 등록 메뉴 접속', desc:'품고 나우 > 주문 > 캠페인 > 등록 클릭합니다.', img:'../images/all1.png' },
+      { badge:'STEP 2', title:'캠페인 등록', desc:'① 브랜드명 선택<br>② 캠페인명 입력<br>(예시) 헤어 제품 2개 이상 구매 시 등<br>③ 캠페인 기간을 설정 후 프로모션 목록 추가 클릭합니다.', img:'../images/all2.png' },
+      { badge:'STEP 3', title:'프로모션 추가', desc:'프로모션명을 입력 후 증정 조건 설정의 조건 그룹 추가를 클릭합니다.<br>+ 상세 조건 추가를 클릭 후 조건 그룹 컬럼 "SKU 수량" 선택,주문 수량을 입력 후 + SKU 추가를 클릭합니다.', img:['../images/sku1.png'] },
+      { badge:'STEP 4', title:'SKU 추가', desc:'증정이 필요한 SKU를 체크 후 선택 완료 클릭 > 증정되어야하는 수량 입력 후 추가 완료를 클릭합니다.', img:['../images/sku2.png', '../images/sku3.png', '../images/all6.png'] },
+      { badge:'STEP 5', title:'캠페인 최종 등록', desc:'기입한 내용을 점검하고, 기타 정보 메모값에 재고 소진 시 대체 또는 종료 여부를 기재합니다.<br>대체품 기재 시 바코드 넘버를 기입해야합니다.<br>예시) 소진 시 종료, 소진 시 1234567899로 대체 등', img:'../images/sku4.png' },
     ]
   }
 };
 
 let currentType = null; let currentStep = 0; let currentBranch = null;
+let currentFlowQueue = null; let currentFlowIndex = 0;
 
 function openModal(type) {
   currentType = type; currentStep = 0; currentBranch = null;
+  currentFlowQueue = null; currentFlowIndex = 0;
   const data = STEPS[type];
   document.getElementById('modalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
-  if (data.branches) {
+  if (data.rootBranches) {
+    showRootBranchSelect();
+  } else if (data.branches) {
     showBranchSelect();
   } else {
     document.getElementById('branchSelect').style.display = 'none';
     document.getElementById('stepView').style.display = 'flex';
+    document.querySelector('.modal-footer').style.display = 'flex';
     renderModal();
   }
   document.getElementById('modalTypeLabel').textContent = data.label;
@@ -318,6 +430,7 @@ function openModal(type) {
   document.getElementById('modalTitle').textContent = data.title;
 }
 
+// ── 단순 분기 (amount) ──
 function showBranchSelect() {
   const data = STEPS[currentType];
   document.getElementById('stepView').style.display = 'none';
@@ -326,7 +439,6 @@ function showBranchSelect() {
   branchEl.innerHTML = data.branches.map(b => `
     <button class="branch-btn" onclick="selectBranch('${b.key}')" style="border-color:${data.color}55;">${b.title}</button>
   `).join('');
-  document.getElementById('modalFooter') && (document.getElementById('modalFooter').style.display = 'none');
   document.querySelector('.modal-footer').style.display = 'none';
 }
 
@@ -340,8 +452,57 @@ function selectBranch(key) {
   renderModal();
 }
 
+// ── 3단계 분기 (qty, option) ──
+function showRootBranchSelect() {
+  const data = STEPS[currentType];
+  document.getElementById('stepView').style.display = 'none';
+  const branchEl = document.getElementById('branchSelect');
+  branchEl.style.display = 'flex';
+  branchEl.innerHTML = data.rootBranches.map(b => `
+    <button class="branch-btn" onclick="selectRootBranch('${b.key}')" style="border-color:${data.color}55;">${b.title}</button>
+  `).join('');
+  document.querySelector('.modal-footer').style.display = 'none';
+}
+
+function selectRootBranch(rootKey) {
+  const data = STEPS[currentType];
+  if (data.subBranches && data.subBranches[rootKey]) {
+    showSubBranchSelect(rootKey);
+  } else {
+    currentFlowQueue = [{ flowKey: rootKey, label: data.rootBranches.find(b=>b.key===rootKey).title }];
+    currentFlowIndex = 0; currentStep = 0;
+    document.getElementById('branchSelect').style.display = 'none';
+    document.getElementById('stepView').style.display = 'flex';
+    document.querySelector('.modal-footer').style.display = 'flex';
+    renderModal();
+  }
+}
+
+function showSubBranchSelect(rootKey) {
+  const data = STEPS[currentType];
+  const subs = data.subBranches[rootKey];
+  const branchEl = document.getElementById('branchSelect');
+  branchEl.innerHTML = `<button class="branch-back" onclick="showRootBranchSelect()">← 이전 단계로</button>` +
+    subs.map(s => `<button class="branch-btn" onclick="selectSubBranch('${rootKey}','${s.key}')" style="border-color:${data.color}55;">${s.title}</button>`).join('');
+}
+
+function selectSubBranch(rootKey, subKey) {
+  const data = STEPS[currentType];
+  const flowKey = rootKey + '.' + subKey;
+  currentFlowQueue = [
+    { flowKey: flowKey, label: data.rootBranches.find(b=>b.key===rootKey).title + ' · ' + data.subBranches[rootKey].find(s=>s.key===subKey).title },
+    { flowKey: 'registered', label: data.rootBranches.find(b=>b.key==='registered').title }
+  ];
+  currentFlowIndex = 0; currentStep = 0;
+  document.getElementById('branchSelect').style.display = 'none';
+  document.getElementById('stepView').style.display = 'flex';
+  document.querySelector('.modal-footer').style.display = 'flex';
+  renderModal();
+}
+
 function getActiveSteps() {
   const data = STEPS[currentType];
+  if (currentFlowQueue) return data.flows[currentFlowQueue[currentFlowIndex].flowKey];
   return currentBranch ? currentBranch.steps : data.steps;
 }
 
@@ -355,42 +516,76 @@ function renderModal() {
   const color = data.color;
   const total = steps.length;
 
-  if (currentBranch) {
+  if (currentFlowQueue) {
+    document.getElementById('modalTitle').textContent = data.title + ' · ' + currentFlowQueue[currentFlowIndex].label;
+  } else if (currentBranch) {
     document.getElementById('modalTitle').textContent = data.title + ' · ' + currentBranch.title;
   } else {
     document.getElementById('modalTitle').textContent = data.title;
   }
 
   document.getElementById('stepDots').innerHTML = steps.map((_, i) => `<div class="step-dot" style="${i === currentStep ? 'transform:scale(1.4);background:'+color : ''}"></div>`).join('');
-  const imgs = Array.isArray(step.img) ? step.img : [step.img];
-  document.getElementById('modalImgs').innerHTML = imgs.map(src => `<div class="modal-img-wrap" onclick="openLightbox('${src}')"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`).join('');
+
+  if (step.blocks && step.blocks.length) {
+    // 설명/이미지가 순서대로 번갈아 나오는 블록 렌더링
+    document.getElementById('modalImgs').innerHTML = '';
+    document.getElementById('modalStepDesc').innerHTML = step.blocks.map(b => {
+      if (b.desc) return `<div style="margin-bottom:14px;">${b.desc}</div>`;
+      if (b.img) return `<div class="modal-img-wrap" style="margin-bottom:14px;" onclick="openLightbox('${b.img}')"><img src="${b.img}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`;
+      return '';
+    }).join('');
+  } else {
+    const imgs = step.img ? (Array.isArray(step.img) ? step.img : [step.img]) : [];
+    document.getElementById('modalImgs').innerHTML = imgs.map(src => `<div class="modal-img-wrap" onclick="openLightbox('${src}')"><img src="${src}" alt="" onerror="this.parentElement.innerHTML='<span>📷 이미지를 불러올 수 없습니다</span>'" /></div>`).join('');
+    document.getElementById('modalStepDesc').innerHTML = step.desc || '';
+  }
   document.getElementById('modalBadge').textContent = step.badge;
   document.getElementById('modalBadge').style.background = color;
   document.getElementById('modalStepTitle').textContent = step.title;
-  document.getElementById('modalStepDesc').innerHTML = step.desc;
   const optionsEl = document.getElementById('modalOptions');
   if (step.options?.length) { optionsEl.style.display = 'flex'; optionsEl.innerHTML = step.options.map(o => `<div class="modal-option-item"><div class="modal-option-label">${o.label}</div><div class="modal-option-desc">${o.desc}</div></div>`).join(''); } else { optionsEl.style.display = 'none'; optionsEl.innerHTML = ''; }
   const notesEl = document.getElementById('modalNotes');
   if (step.notes?.length) { notesEl.style.display = 'flex'; notesEl.innerHTML = step.notes.map(n => `<div class="modal-note-item"><div class="modal-note-label">${n.label}</div><div class="modal-note-desc">${n.desc}</div></div>`).join(''); } else { notesEl.style.display = 'none'; notesEl.innerHTML = ''; }
   const warnEl = document.getElementById('modalWarn');
   if (step.warn) { warnEl.style.display = 'flex'; document.getElementById('modalWarnText').innerHTML = step.warn; } else { warnEl.style.display = 'none'; }
-  document.getElementById('modalCounter').textContent = `${currentStep + 1} / ${total}`;
+
+  const isLastStepOfFlow = currentStep === total - 1;
+  const isLastFlowInQueue = currentFlowQueue ? currentFlowIndex === currentFlowQueue.length - 1 : true;
+
+  if (currentFlowQueue) {
+    document.getElementById('modalCounter').textContent = `${currentFlowIndex + 1}-${currentStep + 1} / ${currentFlowQueue.length}단계`;
+  } else {
+    document.getElementById('modalCounter').textContent = `${currentStep + 1} / ${total}`;
+  }
+
   const btnNext = document.getElementById('btnNext');
   btnNext.style.background = color; btnNext.style.borderColor = color;
-  if (currentStep === total - 1) { btnNext.textContent = '완료'; btnNext.onclick = closeModal; } else { btnNext.textContent = '다음 →'; btnNext.onclick = nextStep; }
+  if (isLastStepOfFlow && isLastFlowInQueue) {
+    btnNext.textContent = '완료'; btnNext.onclick = closeModal;
+  } else if (isLastStepOfFlow && !isLastFlowInQueue) {
+    btnNext.textContent = '다음 단계로 →'; btnNext.onclick = nextFlow;
+  } else {
+    btnNext.textContent = '다음 →'; btnNext.onclick = nextStep;
+  }
+
   const btnPrev = document.getElementById('btnPrev');
-  btnPrev.disabled = false;
-  btnPrev.onclick = prevStep;
-  if (currentStep === 0 && currentBranch) {
+  if (currentStep === 0) {
     btnPrev.textContent = '← 유형 선택으로';
-    btnPrev.onclick = () => { showBranchSelect(); };
+    btnPrev.disabled = false;
+    btnPrev.onclick = () => {
+      if (data.rootBranches) showRootBranchSelect();
+      else showBranchSelect();
+    };
   } else {
     btnPrev.textContent = '← 이전';
-    btnPrev.disabled = currentStep === 0;
+    btnPrev.disabled = false;
+    btnPrev.onclick = prevStep;
   }
 }
+
 function nextStep() { const steps = getActiveSteps(); if (currentStep < steps.length - 1) { currentStep++; renderModal(); } }
 function prevStep() { if (currentStep > 0) { currentStep--; renderModal(); } }
+function nextFlow() { if (currentFlowQueue && currentFlowIndex < currentFlowQueue.length - 1) { currentFlowIndex++; currentStep = 0; renderModal(); } }
 function toggleFaq(btn) { btn.closest('.faq-item').classList.toggle('open'); }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if (document.getElementById('lightbox').classList.contains('open')) closeLightbox(); else closeModal(); } });
 function openLightbox(src) { document.getElementById('lightboxImg').src = src; document.getElementById('lightbox').classList.add('open'); }
